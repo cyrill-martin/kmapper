@@ -1,0 +1,76 @@
+<% kmap = JSON.parse(@kmap) %>
+<!-- kmapper map -->
+<div id="kmap_wrapper">
+	<div>
+		<%= link_to(image_tag("doaj_logo_cropped.jpg", 
+			id: "doaj_logo_show",
+			alt: "Direcory of Open Access Journals",
+			title: "Directory of Open Access Journals"), "https://doaj.org/", target: "_blank") %>
+		<%= form_tag("/doaj", method: "post", id: "search_show", class: "search") do %>
+			<%= label_tag(:query, "") %>
+			<%= text_field_tag(:query, params[:query], placeholder: "Search DOAJ") %>
+			<button type="submit"><%= image_tag("search.png", class: "search_icon") %></button>
+		<% end %>
+	</div>
+	<div id="kmap_map">
+		<% if false %>
+		<div id="info">
+			<%= kmap['articles'].length %> articles<br/>
+			<%= kmap['page_size'] %> articles per page<br/>
+		</div>
+		<% end %>
+		<script>
+			drawKmap(<%= raw(@kmap) %>, "#kmap_map");
+		</script>
+	</div>
+</div>
+<!-- kmapper map legend -->
+<div id="kmap_legend">
+    <% kmap["categories"].each do |category| %>
+    	<div class="legend_item" id="item_<%= category['id'] %>">
+    		<div class="legend_circle">
+	        	<svg class="legend_circle_svg" width="40" height="36">
+	                <circle class="category_circle" id="circle_<%= category['id'] %>" cx="20" cy="18" r="10" stroke="<%= category['color'] %>" stroke-width="3.57" fill="none"></circle>
+	            </svg>
+	        </div>
+	        <div class="legend_label">
+	        	<span class="category_label" id="label_<%= category['id']%>"><%= category["label"] %></span>
+	        </div>
+        </div>
+    <% end %>
+</div>
+<!-- kmapper map articles -->
+<div id="kmap_articles">
+	<% kmap["articles"].each do |article| %>
+		<div class="article a_page_<%= article['page'] %> a_category_<%= article['category_id'] %> article_<%= article['page'] %>_<%= article['category_id'] %>" id="article_<%= article['id'] %>_<%= article['page'] %>_<%= article['category_id'] %>">
+			<div class="title">
+				<a href="https://doaj.org/article/<%= article['doaj'] %>" target="_blank"><%= sanitize article['title']%></a>
+			</div>
+			<div class="authors"><%= article['authors']%></div>
+			<div class="citation">
+				<span class="journal"><%= article['journal'] %></span>
+				<% if article['year'] != nil %>
+					<span class="year"><%= " " + article['year'] + " " %></span>
+				<% end %>
+				<% if article['doi'] != nil %>
+					<span class="doi"><a href="https://doi.org/<%= article['doi'] %>" target="_blank"><%= "https://doi.org/" + article['doi'] %></a></span>
+				<% else %>
+					<span class="doaj"><a href="https://doaj.org/article/<%= article['doaj'] %>" target="_blank"><%= "https://doaj.org/article/" + article['doaj'] %></a></span>
+				<% end %>					
+			</div>
+			<div class="abstract">
+				<% if %>
+					<% article['abstract'] != nil %>
+					<%= article['abstract'][0...250] + "..." %>
+				<% end %>
+			</div>
+		</div>
+	<% end %>
+	<script>
+		mousePageLine();
+		mouseCluster();
+		mouseCategoryLine();
+		mouseLegendItem();
+		mouseArticle();
+	</script>
+</div>

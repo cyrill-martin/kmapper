@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Label:</strong>
+  <%= @kmapper.label %>
+</p>
+
+<p>
+  <strong>Color:</strong>
+  <%= @kmapper.color %>
+</p>
+
+<%= link_to 'Edit', edit_kmapper_path(@kmapper) %> |
+<%= link_to 'Back', kmappers_path %>

@@ -1,0 +1,27 @@
+<%= form_with(model: kmapper, local: true) do |form| %>
+  <% if kmapper.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(kmapper.errors.count, "error") %> prohibited this kmapper from being saved:</h2>
+
+      <ul>
+        <% kmapper.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :label %>
+    <%= form.text_field :label %>
+  </div>
+
+  <div class="field">
+    <%= form.label :color %>
+    <%= form.text_field :color %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

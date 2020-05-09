@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>kmapper</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+      <div id="container">
+          <header id="header">
+              <div id="logo_container">
+                  [Logo?]
+              </div>
+          </header>
+          <div id="main">
+              <%= yield %>
+          </div>
+          <footer id="footer">
+<!--                 Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a> -->
+<!-- Fonts??? -->
+          </footer>
+      </div>
+  </body>
+</html>

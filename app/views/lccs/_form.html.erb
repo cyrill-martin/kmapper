@@ -1,0 +1,37 @@
+<%= form_with(model: lcc, local: true) do |form| %>
+  <% if lcc.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(lcc.errors.count, "error") %> prohibited this lcc from being saved:</h2>
+
+      <ul>
+        <% lcc.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :code %>
+    <%= form.text_field :code %>
+  </div>
+
+  <div class="field">
+    <%= form.label :label %>
+    <%= form.text_field :label %>
+  </div>
+
+  <div class="field">
+    <%= form.label :subclass %>
+    <%= form.check_box :subclass %>
+  </div>
+
+  <div class="field">
+    <%= form.label :kmapper_id %>
+    <%= form.number_field :kmapper_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

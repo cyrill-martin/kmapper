@@ -1,0 +1,235 @@
+// Place all the styles related to the doaj controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+#doaj_logo_new {
+	position: absolute;
+	width: 343px;
+	top: 42%;
+}
+
+#search_new {
+	position: absolute;
+	width: 343px;
+	top: 50%;
+	z-index: 2;
+}
+
+#doaj_logo_show {
+	position: absolute;
+	width: 22.5%;
+	top: 46.5%;
+	z-index: 2;
+}
+
+#search_show {
+	position: absolute;
+	width: 45%;
+	top: 50%;
+	z-index: 2;
+}
+
+#kmap_wrapper {
+	position: relative;
+	float: left;
+	width: 34%;
+}
+
+.query {
+	visibility: hidden;
+}
+
+#kmap_map {
+
+}
+
+#info {
+	position: relative; 
+	padding: 5% 0 0 10%;
+	font-family: 'Liberation Mono';	
+}
+
+#kmap {
+	position: relative; 
+	padding: 5% 0 0 10%;
+	width: 80%;
+	font-family: 'Liberation Mono';
+}
+
+#kmap_legend {
+	position: relative;
+  	float: left;
+  	width: 26%;
+	max-height: 1300px;
+	overflow-y: auto;
+  	padding: 2% 1% 2% 0;
+}
+
+.legend_item {
+	overflow: hidden;
+}
+
+.legend_circle{
+	position: relative;
+	float: left; 
+}
+
+.legend_circle_svg {
+
+}
+
+.category_circle {
+
+}
+
+.legend_label {
+	margin: auto;
+	padding: 0.5em 0 0.5em 0;
+	overflow: hidden;
+}
+
+.category_label {
+
+}
+
+#kmap_articles {
+	position: relative;
+	float: left;
+	width: 40%;
+	max-height: 1300px;
+	overflow-y: auto;
+	padding: 0 5px 0 0;
+	margin: 2% 0 2% 0;
+}
+
+.article {
+	padding: 5px;
+	margin: 0 0 25px 0;
+	border-radius: 4px;
+}
+
+.title {
+	font-family: 'Tex Gyre Heros bold';
+	padding: 0 0 10px 0;
+}
+
+.authors {
+	font-family: 'Liberation Mono';
+	padding: 0 0 5px 0;
+	font-size: 0.8em;
+}
+
+.citation {
+	font-family: 'Liberation Mono';
+	font-size: 0.8em;
+}
+
+.journal {
+	font-family: 'Liberation Mono italic';
+}
+
+.year {
+}
+
+.doi {
+}
+
+.doaj {
+}
+
+.abstract {
+	font-family: 'Liberation Mono';
+	padding: 10px 0 0 0;
+	font-size: 0.8em;
+}
+
+@media only screen and (max-width:1200px) {
+	/* Responsiveness */
+	#kmap_wrapper {
+		width: 50%;
+  	}
+	#kmap {
+		position: relative; 
+		padding: 5% 0 0 10%;
+		width: 80%;
+	}
+
+  	#kmap_legend {
+  		width: 50%;
+  		max-height: 100%;
+  	}
+
+	#kmap_articles {
+		width: 100%;
+		max-height: 100%;
+	}
+}
+
+@media only screen and (max-width:750px) {
+
+	#kmap_wrapper {
+		width: 100%;
+  	}
+
+  	#doaj_logo_new {
+		position: relative;
+		padding: 2% 0 2% 0;
+	}
+
+	#doaj_logo_show {
+		position: relative;
+		padding: 2% 0 2% 0;
+		width: 343px;
+	}
+
+	#search_new {
+		position: relative;
+		width: 100%;
+	}
+
+	#search_show {
+		position: relative;
+		width: 100%;
+	}
+
+	.query_new {
+		width: 100%;
+	}
+
+	.query_show {
+		width: 100%;
+	}
+
+	.search_button {
+		width: 18%;
+	}
+
+	.query {
+		visibility: visible;
+	}
+
+	#info {
+		padding: 5% 0 0 0;
+	}
+
+	#kmap {
+		position: relative; 
+		padding: 5% 0 0 0;
+		width: 90%;
+	}
+
+  	#kmap_legend {
+  		width: 100%;
+  		max-height: 100%;
+  	}
+}
+
+@media only screen and (max-width:370px) {
+	#doaj_logo_show {
+		width: 100%;
+	}
+
+	#doaj_logo_new {
+		width: 100%;
+	}
+}

@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Code:</strong>
+  <%= @lcc.code %>
+</p>
+
+<p>
+  <strong>Label:</strong>
+  <%= @lcc.label %>
+</p>
+
+<p>
+  <strong>Subclass:</strong>
+  <%= @lcc.subclass %>
+</p>
+
+<p>
+  <strong>Kmapper:</strong>
+  <%= @lcc.kmapper_id %>
+</p>
+
+<%= link_to 'Edit', edit_lcc_path(@lcc) %> |
+<%= link_to 'Back', lccs_path %>
