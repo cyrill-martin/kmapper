@@ -219,7 +219,13 @@ window.mousePageLine =  function() {
 			    article
             		.css({"border-left-color": color, 
          		  		  "border-left-width":"1em", 
-         		  		  "border-left-style":"solid"})   
+         		  		  "border-left-style":"solid"}),
+		        $("#circle_" + catArray[i])
+		            .attr("r", 15)
+		            .attr("stroke-width", 4.5),
+		        $("#label_" + catArray[i])
+		        	.css("font-weight", "bold")
+		        	.css("font-size", "1.5em")   
 			};
             $(this)
 	    		.attr("stroke-width", "0.5em")
@@ -233,7 +239,26 @@ window.mousePageLine =  function() {
 	    	})
         }),
         $(".page").mouseout(function() {
-            var page = $(this).attr("id").slice(5, 6);
+        	var page = $(this).attr("id").slice(5, 6);
+            var catArray = [];
+            $(".a_page_" + page).each(function() {
+            	catArray.push(this.id.slice(14, 17));
+            });
+			var i;
+			for (i = 0; i < catArray.length; ++i) {
+			    var article = $(".a_page_" + page + ".a_category_" + catArray[i]);
+			    var color = $("#category_line_" + catArray[i]).attr("stroke");
+			    article
+            		.css({"border-left-color": color, 
+         		  		  "border-left-width":"1em", 
+         		  		  "border-left-style":"solid"}),
+		        $("#circle_" + catArray[i])
+		            .attr("r", 10)
+		            .attr("stroke-width", 3.57),
+		        $("#label_" + catArray[i])
+		        	.css("font-weight", "normal")
+		        	.css("font-size", "1em")   
+			};
             $(this)
 	    		.attr("stroke-width", pageLine.width)
             $("#pageLabel_" + page)
@@ -244,7 +269,7 @@ window.mousePageLine =  function() {
 	    		.attr("stroke-width", cluster.strokeWidth)
 	    	$(".a_page_" + page)
 	    		.css({"border-left-color": "white", 
-            	"border-left-width":"0"})
+            	"border-left-width":"0"}) 
 	}
 )};
 
