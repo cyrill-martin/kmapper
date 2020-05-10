@@ -208,6 +208,19 @@ window.mousePageLine =  function() {
     $(document).ready(function() {
         $(".page").mouseover(function() {
             var page = $(this).attr("id").slice(5, 6);
+            var catArray = [];
+            $(".a_page_" + page).each(function() {
+            	catArray.push(this.id.slice(14, 17));
+            });
+			var i;
+			for (i = 0; i < catArray.length; ++i) {
+			    var article = $(".a_page_" + page + ".a_category_" + catArray[i]);
+			    var color = $("#category_line_" + catArray[i]).attr("stroke");
+			    article
+            		.css({"border-left-color": color, 
+         		  		  "border-left-width":"1em", 
+         		  		  "border-left-style":"solid"})   
+			};
             $(this)
 	    		.attr("stroke-width", "0.5em")
                 .attr("cursor", "pointer")
@@ -216,9 +229,7 @@ window.mousePageLine =  function() {
             	.attr("x", canvas.x0 + 32),
            	$(".c_page_" + page)
            		.attr("r", "1.5em")
-	    		.attr("stroke-width", "0.6em"),
-	    	$(".a_page_" + page)
-
+	    		.attr("stroke-width", "0.6em");
 	    	})
         }),
         $(".page").mouseout(function() {
@@ -232,7 +243,8 @@ window.mousePageLine =  function() {
            		.attr("r", cluster.radius)
 	    		.attr("stroke-width", cluster.strokeWidth)
 	    	$(".a_page_" + page)
-
+	    		.css({"border-left-color": "white", 
+            	"border-left-width":"0"})
 	}
 )};
 
