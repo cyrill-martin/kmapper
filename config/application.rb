@@ -12,7 +12,11 @@ module Newkmapper
     config.load_defaults 6.0
 
     # In order to load Gradient thing
-	config.eager_load_paths += %W(#{config.root}/lib)
+	  config.eager_load_paths += %W(#{config.root}/lib)
+
+    # In order to load custom fonts
+    config.assets.paths << Rails.root.join("app", "assets", "fonts")
+    
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading

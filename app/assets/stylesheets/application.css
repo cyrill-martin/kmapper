@@ -15,7 +15,7 @@
  */
 
 /*Fonts*/
-@import url("fonts.css");
+@import url("fonts.css.scss");
 
 * {
 	box-sizing: border-box;
