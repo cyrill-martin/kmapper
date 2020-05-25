@@ -6,7 +6,7 @@
 			id: "doaj_logo_show",
 			alt: "Direcory of Open Access Journals",
 			title: "Directory of Open Access Journals"), "https://doaj.org/", target: "_blank") %>
-		<%= form_tag("/doaj", method: "post", id: "search_show", class: "search") do %>
+		<%= form_tag("/doaj", method: "get", id: "search_show", class: "search") do %>
 			<%= label_tag(:query, "") %>
 			<%= text_field_tag(:query, params[:query], placeholder: "Search DOAJ") %>
 			<button type="submit"><%= image_tag("search.png", class: "search_icon") %></button>

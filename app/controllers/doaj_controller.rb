@@ -4,7 +4,8 @@ class DoajController < ApplicationController
 
     def show
         # Get search query and do URL encoding
-        query = URI::encode(params["query"])
+        query = URI::encode(params[:query])
+
         search_for = 50
         page_size = 10
 
