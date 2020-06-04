@@ -78,6 +78,33 @@ window.drawKmap = function(kmap_object, append_to) {
 		.attr("preserveAspectRatio", "xMinYMin")
 		.attr("viewBox", "0 0 " + canvas.size*0.5 + " " + canvas.size)
 		.attr("id", "kmap");
+
+	// Shadow
+	var defs = svg.append("defs");
+	var dropShadowFilter = defs.append("svg:filter")
+	  .attr("id", "drop-shadow")
+	  .attr("filterUnits", "userSpaceOnUse")
+	  .attr("width", "350%")
+	  .attr("height", "350%");
+	dropShadowFilter.append("svg:feGaussianBlur")
+	  .attr("in", "SourceGraphic")
+	  .attr("stdDeviation", 2)
+	  .attr("result", "blur-out");
+	dropShadowFilter.append("svg:feColorMatrix")
+	  .attr("in", "blur-out")
+	  .attr("type", "hueRotate")
+	  .attr("values", 180)
+	  .attr("result", "color-out");
+	dropShadowFilter.append("svg:feOffset")
+	  .attr("in", "color-out")
+	  .attr("dx", 3)
+	  .attr("dy", 3)
+	  .attr("result", "the-shadow");
+	dropShadowFilter.append("svg:feBlend")
+	  .attr("in", "SourceGraphic")
+	  .attr("in2", "the-shadow")
+	  .attr("mode", "normal");
+
 	// Drawing the page lines
     svg.selectAll("page")
     	.data(canvas.radii)
@@ -94,7 +121,8 @@ window.drawKmap = function(kmap_object, append_to) {
     	})
     	.attr("stroke", pageLine.color)
     	.attr("stroke-width", pageLine.width)
-    	.attr("fill", "none");
+    	.attr("fill", "none")
+    	.attr("data-clicked", "false");
     // Writing the page labels
 	svg.selectAll("label")
 		.data(canvas.radii)
@@ -141,7 +169,8 @@ window.drawKmap = function(kmap_object, append_to) {
         	return d.color
     	})
     	.attr("opacity", categoryLine.opacity)
-    	.attr("stroke-width", categoryLine.width);
+    	.attr("stroke-width", categoryLine.width)
+    	.attr("data-clicked", "false");
 	// Drawing the article clusters and writing the article counts
 	for (var category of kmap_object.categories) {
 		var id = category.id;
@@ -169,7 +198,8 @@ window.drawKmap = function(kmap_object, append_to) {
 	    	.attr("r", cluster.radius)
 	    	.attr("stroke", color)
 	    	.attr("stroke-width", cluster.strokeWidth)
-	    	.attr("fill", cluster.fill);
+	    	.attr("fill", cluster.fill)
+	    	.attr("data-clicked", "false");
 	    // Counts
 		svg.selectAll("count")
 			.data(category.pages)
@@ -185,7 +215,8 @@ window.drawKmap = function(kmap_object, append_to) {
 			})
 			.attr("y", function(d) {
 				return getY(canvas.radii[d.page], id) +5;
-			});
+			})
+			.attr("cursor", "default")
 	};
 	// Query
 	svg.selectAll("query")
@@ -203,23 +234,66 @@ window.drawKmap = function(kmap_object, append_to) {
 		.attr("pointer-events", query.pointerEvents);
 };
 
-// Hover/click page lines
-window.mousePageLine =  function() {
+function coolCluster(element) {
+	var color = $(element).attr("stroke");
+	$(element)
+		.attr("fill", color)
+        .attr("data-clicked", "true")
+        .attr("filter", "url(#drop-shadow)")
+}; 
+
+function uncoolCluster(element) {
+	$(element)
+        .attr("fill", "white")
+        .attr("data-clicked", "false")
+        .attr("filter", "none")
+};
+
+function showArticles() {
+	var showArray = []; 
+	var hideArray = [];
+	$('.article[data-clicked="false"]').each(function(){
+		hideArray.push(this);
+	});
+	$('.article[data-clicked="true"]').each(function(){
+		showArray.push(this);
+	});
+	if (showArray.length == 0) {
+		// Show all articles
+		$(".article").slideDown(350)
+	}
+	else {
+		var i;
+		for (i = 0; i < showArray.length; ++i) {
+			// Show this articles
+			$(showArray[i]).slideDown(350)
+		}
+		var y;
+		for (y = 0; y < hideArray.length; ++y) {
+			// Hide this article
+			$(hideArray[y]).slideUp(350)
+		}
+
+	}
+};
+
+// Hover/click page line
+window.mousePageLine = function() {
     $(document).ready(function() {
         $(".page").mouseover(function() {
-            var page = $(this).attr("id").slice(5, 6);
-            var catArray = [];
-            $(".a_page_" + page).each(function() {
-            	catArray.push(this.id.slice(14, 17));
-            });
+		    var page = $(this).attr("id").slice(5, 6);
+		    var catArray = [];
+		    $(".a_page_" + page).each(function() {
+		    	catArray.push(this.id.slice(14, 17));
+		    });
 			var i;
 			for (i = 0; i < catArray.length; ++i) {
 			    var article = $(".a_page_" + page + ".a_category_" + catArray[i]);
 			    var color = $("#category_line_" + catArray[i]).attr("stroke");
 			    article
-            		.css({"border-left-color": color, 
-         		  		  "border-left-width":"1em", 
-         		  		  "border-left-style":"solid"}),
+		    		.css({"border-left-color": color, 
+		 		  		  "border-left-width":"1em", 
+		 		  		  "border-left-style":"solid"}),
 		        $("#circle_" + catArray[i])
 		            .attr("r", 15)
 		            .attr("stroke-width", 4.5),
@@ -227,31 +301,54 @@ window.mousePageLine =  function() {
 		        	.css("font-weight", "bold")
 		        	.css("font-size", "1.5em")   
 			};
-            $(this)
-	    		.attr("stroke-width", "0.5em")
-                .attr("cursor", "pointer")
-            $("#pageLabel_" + page)
-            	.css("font-size", "1.1em")
-            	.attr("x", canvas.x0 + 32),
-           	$(".c_page_" + page)
-           		.attr("r", "1.5em")
-	    		.attr("stroke-width", "0.6em");
-	    	})
-        }),
+		    $(this)
+				.attr("stroke-width", "0.5em")
+		        .attr("cursor", "pointer")
+		    $("#pageLabel_" + page)
+		    	.css("font-size", "1.1em")
+		    	.attr("x", canvas.x0 + 32),
+		   	$(".c_page_" + page)
+		   		.attr("r", "1.5em")
+				.attr("stroke-width", "0.6em");
+	    }),
+	    $(".page").click(function() {
+	    	var page = $(this).attr("id").slice(5, 6);
+	    	if ($(this).attr("data-clicked") == "false") {
+				$(".c_page_" + page).each(function() {
+					coolCluster(this);
+				}),
+				$(".a_page_" + page)
+	    			.attr("data-clicked", "true"),
+	    		$(this)
+	    			.attr("data-clicked", "true")
+	    			.attr("filter", "url(#drop-shadow)")
+	    	} 
+	    	else {
+	    		$(".c_page_" + page).each(function() {
+					uncoolCluster(this);
+				}),
+				$(".a_page_" + page)
+	    			.attr("data-clicked", "false"),
+	    		$(this)
+	    			.attr("data-clicked", "false")
+	    			.attr("filter", "none")
+	    	}
+	    	showArticles();
+	    }),
         $(".page").mouseout(function() {
-        	var page = $(this).attr("id").slice(5, 6);
-            var catArray = [];
-            $(".a_page_" + page).each(function() {
-            	catArray.push(this.id.slice(14, 17));
-            });
+			var page = $(this).attr("id").slice(5, 6);
+		    var catArray = [];
+		    $(".a_page_" + page).each(function() {
+		    	catArray.push(this.id.slice(14, 17));
+		    });
 			var i;
 			for (i = 0; i < catArray.length; ++i) {
 			    var article = $(".a_page_" + page + ".a_category_" + catArray[i]);
 			    var color = $("#category_line_" + catArray[i]).attr("stroke");
 			    article
-            		.css({"border-left-color": color, 
-         		  		  "border-left-width":"1em", 
-         		  		  "border-left-style":"solid"}),
+		    		.css({"border-left-color": color, 
+		 		  		  "border-left-width":"1em", 
+		 		  		  "border-left-style":"solid"}),
 		        $("#circle_" + catArray[i])
 		            .attr("r", 10)
 		            .attr("stroke-width", 3.57),
@@ -259,19 +356,20 @@ window.mousePageLine =  function() {
 		        	.css("font-weight", "normal")
 		        	.css("font-size", "1em")   
 			};
-            $(this)
-	    		.attr("stroke-width", pageLine.width)
-            $("#pageLabel_" + page)
-            	.css("font-size", "0.9em")
-	    		.attr("x", canvas.x0 + 22),
-           	$(".c_page_" + page)
-           		.attr("r", cluster.radius)
-	    		.attr("stroke-width", cluster.strokeWidth)
-	    	$(".a_page_" + page)
-	    		.css({"border-left-color": "white", 
-            	"border-left-width":"0"}) 
-	}
-)};
+		    $(this)
+				.attr("stroke-width", pageLine.width)
+		    $("#pageLabel_" + page)
+		    	.css("font-size", "0.9em")
+				.attr("x", canvas.x0 + 22),
+		   	$(".c_page_" + page)
+		   		.attr("r", cluster.radius)
+				.attr("stroke-width", cluster.strokeWidth),
+			$(".a_page_" + page)
+				.css({"border-left-color": "white", 
+		    	"border-left-width":"0"})
+		})
+    })
+};
 
 // Hover/click category line
 window.mouseCategoryLine =  function() {
@@ -279,40 +377,74 @@ window.mouseCategoryLine =  function() {
 		$(".category_line").mouseover(function() {
 			var cat = $(this).attr("id").slice(14, 17),
 				color = $(this).attr("stroke");
-		$(this)
-			.attr("stroke-width", "0.6em"),
-		$(".c_category_" + cat)
-            .attr("r", "1.5em")
-	    	.attr("stroke-width", "0.6em"),
-        $("#circle_" + cat)
-            .attr("r", 15)
-            .attr("stroke-width", 4.5),
-        $("#label_" + cat)
-        	.css("font-weight", "bold")
-        	.css("font-size", "1.5em"),
-        $(".a_category_" + cat)
-        	.css({"border-left-color": color, 
-         		  "border-left-width":"1em", 
-         		  "border-left-style":"solid"})
-		})
-	}),
-	$(document).ready(function() {
+			$(this)
+				.attr("stroke-width", "0.6em")
+				.attr("cursor", "pointer"),
+			$(".c_category_" + cat)
+			    .attr("r", "1.5em")
+				.attr("stroke-width", "0.6em"),
+			$("#circle_" + cat)
+			    .attr("r", 15)
+			    .attr("stroke-width", 4.5),
+			$("#label_" + cat)
+				.css("font-weight", "bold")
+				.css("font-size", "1.5em"),
+			$(".a_category_" + cat)
+				.css({"border-left-color": color, 
+			 		  "border-left-width":"1em", 
+			 		  "border-left-style":"solid"})
+		}),
+		$(".category_line").click(function() {
+			var cat = $(this).attr("id").slice(14, 17),
+				color = $(this).attr("stroke");
+	    	if ($(this).attr("data-clicked") == "false") {
+				$(".c_category_" + cat).each(function() {
+					coolCluster(this);
+				}),
+				$(".a_category_" + cat)
+	    			.attr("data-clicked", "true"),
+	    		$("#item_" + cat)
+	    			.attr("data-clicked", "true")
+	    			.css("filter", "url(#drop-shadow)"),
+	    		$("#circle_" + cat)
+	    			.attr("fill", color),
+	    		$(this)
+	    			.attr("data-clicked", "true")
+	    			.attr("filter", "url(#drop-shadow)")
+	    	} 
+	    	else {
+	    		$(".c_category_" + cat).each(function() {
+					uncoolCluster(this);
+				}),
+				$(".a_category_" + cat)
+	    			.attr("data-clicked", "false"),
+	    		$("#item_" + cat)
+	    			.attr("data-clicked", "false")
+	    			.css("filter", "none"),
+	    		$("#circle_" + cat)
+	    			.attr("fill", "white"),
+	    		$(this)
+	    			.attr("data-clicked", "false")
+	    			.attr("filter", "none")
+	    	}
+	    	showArticles();
+		}),
 		$(".category_line").mouseout(function() {
 			var cat = $(this).attr("id").slice(14, 17);
-		$(this)
-			.attr("stroke-width", categoryLine.width),
-		$(".c_category_" + cat)
-            .attr("r", cluster.radius)
-	    	.attr("stroke-width", cluster.strokeWidth),
-        $("#circle_" + cat)
-            .attr("r", 10)
-            .attr("stroke-width", 3.57),
-        $("#label_" + cat)
-        	.css("font-weight", "normal")
-        	.css("font-size", "1em"),
-        $(".a_category_" + cat)
-            .css({"border-left-color": "white", 
-            	"border-left-width":"0"})
+			$(this)
+				.attr("stroke-width", categoryLine.width),
+			$(".c_category_" + cat)
+			    .attr("r", cluster.radius)
+				.attr("stroke-width", cluster.strokeWidth),
+			$("#circle_" + cat)
+			    .attr("r", 10)
+			    .attr("stroke-width", 3.57),
+			$("#label_" + cat)
+				.css("font-weight", "normal")
+				.css("font-size", "1em"),
+			$(".a_category_" + cat)
+			    .css({"border-left-color": "white", 
+			    	"border-left-width":"0"})
 		})
 	})
 };
@@ -322,41 +454,76 @@ window.mouseLegendItem =  function() {
 	$(document).ready(function() {
 		$(".legend_item").mouseover(function() {
 			var cat = $(this).attr("id").slice(5, 8),
-				color = $("#category_line_" + cat).attr("stroke");
-        $("#circle_" + cat)
-        	.attr("r", 15)
-        	.attr("stroke-width", 4.5),
-        $("#label_" + cat)
-        	.css("font-weight", "bold")
-        	.css("font-size", "1.5em"),
+			color = $("#category_line_" + cat).attr("stroke");
+		$("#circle_" + cat)
+			.attr("r", 15)
+			.attr("stroke-width", 4.5)
+			.attr("cursor", "pointer"),
+		$("#label_" + cat)
+			.css("font-weight", "bold")
+			.css("font-size", "1.5em")
+			.css("cursor", "pointer"),
 		$(".c_category_" + cat)
-            .attr("r", "1.5em")
-	    	.attr("stroke-width", "0.6em"),
-	    $("#category_line_" + cat)
-	    	.attr("stroke-width", "0.6em"),
-        $(".a_category_" + cat)
-        	.css({"border-left-color": color, 
-         		"border-left-width":"1em", 
-         		"border-left-style":"solid"})
-		})
-	}),
-	$(document).ready(function() {
+		    .attr("r", "1.5em")
+			.attr("stroke-width", "0.6em"),
+		$("#category_line_" + cat)
+			.attr("stroke-width", "0.6em"),
+		$(".a_category_" + cat)
+			.css({"border-left-color": color, 
+		 		"border-left-width":"1em", 
+		 		"border-left-style":"solid"})
+		}),
+		$(".legend_item").click(function() {
+			var cat = $(this).attr("id").slice(5, 8),
+				color = $("#category_line_" + cat).attr("stroke");
+	    	if ($(this).attr("data-clicked") == "false") {
+				$(".c_category_" + cat).each(function() {
+					coolCluster(this);
+				}),
+				$(".a_category_" + cat)
+	    			.attr("data-clicked", "true"),
+	    		$("#category_line_" + cat)
+	    			.attr("data-clicked", "true")
+	    			.attr("filter", "url(#drop-shadow)")
+	    		$("#circle_" + cat)
+	    			.attr("fill", color),
+	    		$(this)
+	    			.attr("data-clicked", "true")
+	    			.css("filter", "url(#drop-shadow)")
+	    	} 
+	    	else {
+	    		$(".c_category_" + cat).each(function() {
+					uncoolCluster(this);
+				}),
+				$(".a_category_" + cat)
+	    			.attr("data-clicked", "false"),
+	    		$("#category_line_" + cat)
+	    			.attr("data-clicked", "false")
+	    			.attr("filter", "none"),
+	    		$("#circle_" + cat)
+	    			.attr("fill", "white"),
+	    		$(this)
+	    			.attr("data-clicked", "false")
+	    			.css("filter", "none")
+	    	}
+	    	showArticles();
+		}),
 		$(".legend_item").mouseout(function() {
 			var cat = $(this).attr("id").slice(5, 8);
-        $("#circle_" + cat)
-        	.attr("r", 10)
-        	.attr("stroke-width", 3.57),
-        $("#label_" + cat)
-        	.css("font-weight", "normal")
-        	.css("font-size", "1em"),
-		$(".c_category_" + cat)
-            .attr("r", cluster.radius)
-	    	.attr("stroke-width", cluster.strokeWidth),
-	    $("#category_line_" + cat)
-	    	.attr("stroke-width", categoryLine.width),
-        $(".a_category_" + cat)
-            .css({"border-left-color": "white", 
-            	"border-left-width":"0"})
+			$("#circle_" + cat)
+				.attr("r", 10)
+				.attr("stroke-width", 3.57),
+			$("#label_" + cat)
+				.css("font-weight", "normal")
+				.css("font-size", "1em"),
+			$(".c_category_" + cat)
+			    .attr("r", cluster.radius)
+				.attr("stroke-width", cluster.strokeWidth),
+			$("#category_line_" + cat)
+				.attr("stroke-width", categoryLine.width),
+			$(".a_category_" + cat)
+			    .css({"border-left-color": "white", 
+			    	"border-left-width":"0"})
 		})
 	})
 };
@@ -365,79 +532,106 @@ window.mouseLegendItem =  function() {
 window.mouseCluster = function() {
     $(document).ready(function() {
         $(".cluster").mouseover(function() {
-            var page = $(this).attr("id").slice(8, 9),
-                cat = $(this).attr("id").slice(10, 13),
-                color = $(this).attr("stroke");
-            $(this)
-            	.attr("r", "1.5em")
-	    		.attr("stroke-width", "0.6em")
-                .attr("cursor", "pointer"),
-            $("#circle_" + cat)
-            	.attr("r", 15)
-            	.attr("stroke-width", 4.5),
-            $("#label_" + cat)
-            	.css("font-weight", "bold")
-            	.css("font-size", "1.5em"),
-            $(".article_" + page + "_" + cat)
-            	.css({"border-left-color": color, 
-             		  "border-left-width":"1em", 
-             		  "border-left-style":"solid"})
+		    var page = $(this).attr("id").slice(8, 9),
+		        cat = $(this).attr("id").slice(10, 13),
+		        color = $(this).attr("stroke");
+		    $(this)
+		    	.attr("r", "1.5em")
+				.attr("stroke-width", "0.6em")
+		        .attr("cursor", "pointer"),
+		    $("#circle_" + cat)
+		    	.attr("r", 15)
+		    	.attr("stroke-width", 4.5),
+		    $("#label_" + cat)
+		    	.css("font-weight", "bold")
+		    	.css("font-size", "1.5em"),
+		    $(".article_" + page + "_" + cat)
+		    	.css({"border-left-color": color, 
+		     		  "border-left-width":"1em", 
+		     		  "border-left-style":"solid"})
         }),
         $(".cluster").mouseout(function() {
-            var page = $(this).attr("id").slice(8, 9),
-                cat = $(this).attr("id").slice(10, 13);
-            $(this)
-            	.attr("r", cluster.radius)
-	    		.attr("stroke-width", cluster.strokeWidth),
-            $("#circle_" + cat)
-            	.attr("r", 10)
-            	.attr("stroke-width", 3.57),
-            $("#label_" + cat)
-            	.css("font-weight", "normal")
-            	.css("font-size", "1em"),
-            $(".article_" + page + "_" + cat)
-            	.css({"border-left-color": "white", 
-             		  "border-left-width":"0"})
+		    var page = $(this).attr("id").slice(8, 9),
+		        cat = $(this).attr("id").slice(10, 13);
+			$(this)
+			   	.attr("r", cluster.radius)
+				.attr("stroke-width", cluster.strokeWidth)
+		    $("#circle_" + cat)
+		    	.attr("r", 10)
+		    	.attr("stroke-width", 3.57),
+		    $("#label_" + cat)
+		    	.css("font-weight", "normal")
+		    	.css("font-size", "1em"),
+		    $(".article_" + page + "_" + cat)
+		    	.css({"border-left-color": "white", 
+		     		  "border-left-width":"0"})
+        }),
+        $(".cluster").click(function() {
+        	var page = $(this).attr("id").slice(8, 9),
+        		cat = $(this).attr("id").slice(10, 13),
+        		color = $(this).attr("stroke");
+        	if ($(this).attr("data-clicked") == "false") {
+        		coolCluster(this);
+        		$(".article_" + page + "_" + cat)
+        			.attr("data-clicked", "true")
+            }
+        	else {
+        		uncoolCluster(this);
+        	    $(".article_" + page + "_" + cat)
+        			.attr("data-clicked", "false"),
+        		$("#item_" + cat)
+        			.attr("data-clicked", "false")
+        			.css("filter", "none"),
+        		$("#page_" + page)
+        			.attr("data-clicked", "false")
+        			.attr("filter", "none"),
+        		$("#category_line_" + cat)
+        			.attr("data-clicked", "false")
+        			.attr("filter", "none"),
+        		$("#circle_" + cat)
+        			.attr("fill", "white")
+        	}
+        	showArticles();
         })
-	}
-)};
+	})
+};
 
 // Hover/click article
 window.mouseArticle = function() {
     $(document).ready(function() {
         $(".article").mouseover(function() {
-            var page = $(this).attr("id").slice(12, 13),
-                cat = $(this).attr("id").slice(14, 17),
-                color = $("#category_line_" + cat).attr("stroke");
-            $(this)
-            	.css({"border-left-color": color, 
-             		"border-left-width":"1em", 
-             		"border-left-style":"solid"}),
-            $("#circle_" + cat)
-            	.attr("r", 15)
-            	.attr("stroke-width", 4.5),
-            $("#label_" + cat)
-            	.css("font-weight", "bold")
-            	.css("font-size", "1.5em"),
-            $("#cluster_" + page + "_" + cat)
-            	.attr("r", "1.5em")
-	    		.attr("stroke-width", "0.6em")
+		    var page = $(this).attr("id").slice(12, 13),
+		        cat = $(this).attr("id").slice(14, 17),
+		        color = $("#category_line_" + cat).attr("stroke");
+		    $(this)
+		    	.css({"border-left-color": color, 
+		     		"border-left-width":"1em", 
+		     		"border-left-style":"solid"}),
+		    $("#circle_" + cat)
+		    	.attr("r", 15)
+		    	.attr("stroke-width", 4.5),
+		    $("#label_" + cat)
+		    	.css("font-weight", "bold")
+		    	.css("font-size", "1.5em"),
+		    $("#cluster_" + page + "_" + cat)
+		    	.attr("r", "1.5em")
+				.attr("stroke-width", "0.6em")
         }),
         $(".article").mouseout(function() {
-            var page = $(this).attr("id").slice(12, 13),
-                cat = $(this).attr("id").slice(14, 17);
-            $(this)
-            	.css({"border-left-color": "white", 
-             		"border-left-width":"0"}),
-            $("#circle_" + cat)
-            	.attr("r", 10)
-            	.attr("stroke-width", 3.57),
-            $("#label_" + cat)
-            	.css("font-weight", "normal")
-            	.css("font-size", "1em"),
-            $("#cluster_" + page + "_" + cat)
-            	.attr("r", cluster.radius)
-	    		.attr("stroke-width", cluster.strokeWidth)
+		    var page = $(this).attr("id").slice(12, 13),
+		        cat = $(this).attr("id").slice(14, 17);
+		    $(this)
+		    	.css({"border-left-color": "white", 
+		     		"border-left-width":"0"}),
+		    $("#circle_" + cat)
+		    	.attr("r", 10)
+		    	.attr("stroke-width", 3.57),
+		    $("#label_" + cat)
+		    	.css("font-weight", "normal")
+		    	.css("font-size", "1em"),
+		    $("#cluster_" + page + "_" + cat)
+		    	.attr("r", cluster.radius)
+				.attr("stroke-width", cluster.strokeWidth)
         })
-	}
-)};
+	})
+};

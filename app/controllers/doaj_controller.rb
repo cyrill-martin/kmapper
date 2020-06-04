@@ -6,14 +6,16 @@ class DoajController < ApplicationController
         # Get search query and do URL encoding
         query = URI::encode(params[:query])
 
+        # Get the top 50 articles (currently)
         search_for = 50
+        # 10 articles per page
         page_size = 10
 
         # Call DOAJ API and save response in variable
         request = RestClient.get("https://doaj.org/api/v1/search/articles/#{query}" + "?pageSize=#{search_for}")
 
         if request.code == 200
-        # Parse API response into a Ruby hash object
+            # Parse API response into a Ruby hash object
             response = JSON.parse(request)
 
             # Get the actual article objects
@@ -123,7 +125,9 @@ class DoajController < ApplicationController
                 if info.has_key? "author"
                     authors = info["author"]
                     if authors.length > 3
-                        hsh["authors"] = authors[0]["name"] + " et al."
+                        if authors[0]["name"] != nil
+                            hsh["authors"] = authors[0]["name"] + " et al."
+                        end
                     else
                         all = []
                         authors.each do |a|
