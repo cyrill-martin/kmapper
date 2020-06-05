@@ -1,5 +1,11 @@
 import * as d3 from "d3";
 
+// Check for mobile
+var mobile = false;
+if((/iPhone|iPad|iPod|Android|webOS|BlackBerry|Opera Mini|IEMobile/i.test(navigator.userAgent) )) {
+	var mobile = true;
+};
+
 // Canvas parameters
 var canvas = {
 	size: 1000,
@@ -16,7 +22,7 @@ var canvas = {
 };
 // Page lines
 var pageLine = {
-	width: "0.15em",
+	width: "0.2em",
 	color: "lightgrey",
 };
 // Page labels
@@ -375,24 +381,26 @@ window.mousePageLine = function() {
 window.mouseCategoryLine =  function() {
 	$(document).ready(function() {
 		$(".category_line").mouseover(function() {
-			var cat = $(this).attr("id").slice(14, 17),
-				color = $(this).attr("stroke");
-			$(this)
-				.attr("stroke-width", "0.6em")
-				.attr("cursor", "pointer"),
-			$(".c_category_" + cat)
-			    .attr("r", "1.5em")
-				.attr("stroke-width", "0.6em"),
-			$("#circle_" + cat)
-			    .attr("r", 15)
-			    .attr("stroke-width", 4.5),
-			$("#label_" + cat)
-				.css("font-weight", "bold")
-				.css("font-size", "1.5em"),
-			$(".a_category_" + cat)
-				.css({"border-left-color": color, 
-			 		  "border-left-width":"1em", 
-			 		  "border-left-style":"solid"})
+			if (mobile == false) {
+				var cat = $(this).attr("id").slice(14, 17),
+					color = $(this).attr("stroke");
+				$(this)
+					.attr("stroke-width", "0.6em")
+					.attr("cursor", "pointer"),
+				$(".c_category_" + cat)
+				    .attr("r", "1.5em")
+					.attr("stroke-width", "0.6em"),
+				$("#circle_" + cat)
+				    .attr("r", 15)
+				    .attr("stroke-width", 4.5),
+				$("#label_" + cat)
+					.css("font-weight", "bold")
+					.css("font-size", "1.5em"),
+				$(".a_category_" + cat)
+					.css({"border-left-color": color, 
+				 		  "border-left-width":"1em", 
+				 		  "border-left-style":"solid"})
+			}
 		}),
 		$(".category_line").click(function() {
 			var cat = $(this).attr("id").slice(14, 17),
@@ -430,21 +438,23 @@ window.mouseCategoryLine =  function() {
 	    	showArticles();
 		}),
 		$(".category_line").mouseout(function() {
-			var cat = $(this).attr("id").slice(14, 17);
-			$(this)
-				.attr("stroke-width", categoryLine.width),
-			$(".c_category_" + cat)
-			    .attr("r", cluster.radius)
-				.attr("stroke-width", cluster.strokeWidth),
-			$("#circle_" + cat)
-			    .attr("r", 10)
-			    .attr("stroke-width", 3.57),
-			$("#label_" + cat)
-				.css("font-weight", "normal")
-				.css("font-size", "1em"),
-			$(".a_category_" + cat)
-			    .css({"border-left-color": "white", 
-			    	"border-left-width":"0"})
+			if (mobile == false) {
+				var cat = $(this).attr("id").slice(14, 17);
+				$(this)
+					.attr("stroke-width", categoryLine.width),
+				$(".c_category_" + cat)
+				    .attr("r", cluster.radius)
+					.attr("stroke-width", cluster.strokeWidth),
+				$("#circle_" + cat)
+				    .attr("r", 10)
+				    .attr("stroke-width", 3.57),
+				$("#label_" + cat)
+					.css("font-weight", "normal")
+					.css("font-size", "1em"),
+				$(".a_category_" + cat)
+				    .css({"border-left-color": "white", 
+				    	"border-left-width":"0"})
+			}
 		})
 	})
 };
@@ -453,25 +463,27 @@ window.mouseCategoryLine =  function() {
 window.mouseLegendItem =  function() {
 	$(document).ready(function() {
 		$(".legend_item").mouseover(function() {
-			var cat = $(this).attr("id").slice(5, 8),
-			color = $("#category_line_" + cat).attr("stroke");
-		$("#circle_" + cat)
-			.attr("r", 15)
-			.attr("stroke-width", 4.5)
-			.attr("cursor", "pointer"),
-		$("#label_" + cat)
-			.css("font-weight", "bold")
-			.css("font-size", "1.5em")
-			.css("cursor", "pointer"),
-		$(".c_category_" + cat)
-		    .attr("r", "1.5em")
-			.attr("stroke-width", "0.6em"),
-		$("#category_line_" + cat)
-			.attr("stroke-width", "0.6em"),
-		$(".a_category_" + cat)
-			.css({"border-left-color": color, 
-		 		"border-left-width":"1em", 
-		 		"border-left-style":"solid"})
+			if (mobile == false) {
+				var cat = $(this).attr("id").slice(5, 8),
+				color = $("#category_line_" + cat).attr("stroke");
+				$("#circle_" + cat)
+					.attr("r", 15)
+					.attr("stroke-width", 4.5)
+					.attr("cursor", "pointer"),
+				$("#label_" + cat)
+					.css("font-weight", "bold")
+					.css("font-size", "1.5em")
+					.css("cursor", "pointer"),
+				$(".c_category_" + cat)
+				    .attr("r", "1.5em")
+					.attr("stroke-width", "0.6em"),
+				$("#category_line_" + cat)
+					.attr("stroke-width", "0.6em"),
+				$(".a_category_" + cat)
+					.css({"border-left-color": color, 
+				 		"border-left-width":"1em", 
+				 		"border-left-style":"solid"})
+			}
 		}),
 		$(".legend_item").click(function() {
 			var cat = $(this).attr("id").slice(5, 8),
@@ -509,21 +521,23 @@ window.mouseLegendItem =  function() {
 	    	showArticles();
 		}),
 		$(".legend_item").mouseout(function() {
-			var cat = $(this).attr("id").slice(5, 8);
-			$("#circle_" + cat)
-				.attr("r", 10)
-				.attr("stroke-width", 3.57),
-			$("#label_" + cat)
-				.css("font-weight", "normal")
-				.css("font-size", "1em"),
-			$(".c_category_" + cat)
-			    .attr("r", cluster.radius)
-				.attr("stroke-width", cluster.strokeWidth),
-			$("#category_line_" + cat)
-				.attr("stroke-width", categoryLine.width),
-			$(".a_category_" + cat)
-			    .css({"border-left-color": "white", 
-			    	"border-left-width":"0"})
+			if (mobile == false) {
+				var cat = $(this).attr("id").slice(5, 8);
+				$("#circle_" + cat)
+					.attr("r", 10)
+					.attr("stroke-width", 3.57),
+				$("#label_" + cat)
+					.css("font-weight", "normal")
+					.css("font-size", "1em"),
+				$(".c_category_" + cat)
+				    .attr("r", cluster.radius)
+					.attr("stroke-width", cluster.strokeWidth),
+				$("#category_line_" + cat)
+					.attr("stroke-width", categoryLine.width),
+				$(".a_category_" + cat)
+				    .css({"border-left-color": "white", 
+				    	"border-left-width":"0"})
+			}
 		})
 	})
 };
@@ -532,39 +546,43 @@ window.mouseLegendItem =  function() {
 window.mouseCluster = function() {
     $(document).ready(function() {
         $(".cluster").mouseover(function() {
-		    var page = $(this).attr("id").slice(8, 9),
-		        cat = $(this).attr("id").slice(10, 13),
-		        color = $(this).attr("stroke");
-		    $(this)
-		    	.attr("r", "1.5em")
-				.attr("stroke-width", "0.6em")
-		        .attr("cursor", "pointer"),
-		    $("#circle_" + cat)
-		    	.attr("r", 15)
-		    	.attr("stroke-width", 4.5),
-		    $("#label_" + cat)
-		    	.css("font-weight", "bold")
-		    	.css("font-size", "1.5em"),
-		    $(".article_" + page + "_" + cat)
-		    	.css({"border-left-color": color, 
-		     		  "border-left-width":"1em", 
-		     		  "border-left-style":"solid"})
+			if (mobile == false) {
+			    var page = $(this).attr("id").slice(8, 9),
+			        cat = $(this).attr("id").slice(10, 13),
+			        color = $(this).attr("stroke");
+			    $(this)
+			    	.attr("r", "1.5em")
+					.attr("stroke-width", "0.6em")
+			        .attr("cursor", "pointer"),
+			    $("#circle_" + cat)
+			    	.attr("r", 15)
+			    	.attr("stroke-width", 4.5),
+			    $("#label_" + cat)
+			    	.css("font-weight", "bold")
+			    	.css("font-size", "1.5em"),
+			    $(".article_" + page + "_" + cat)
+			    	.css({"border-left-color": color, 
+			     		  "border-left-width":"1em", 
+			     		  "border-left-style":"solid"})
+			}
         }),
         $(".cluster").mouseout(function() {
-		    var page = $(this).attr("id").slice(8, 9),
-		        cat = $(this).attr("id").slice(10, 13);
-			$(this)
-			   	.attr("r", cluster.radius)
-				.attr("stroke-width", cluster.strokeWidth)
-		    $("#circle_" + cat)
-		    	.attr("r", 10)
-		    	.attr("stroke-width", 3.57),
-		    $("#label_" + cat)
-		    	.css("font-weight", "normal")
-		    	.css("font-size", "1em"),
-		    $(".article_" + page + "_" + cat)
-		    	.css({"border-left-color": "white", 
-		     		  "border-left-width":"0"})
+       		if (mobile == false) {
+			    var page = $(this).attr("id").slice(8, 9),
+			        cat = $(this).attr("id").slice(10, 13);
+				$(this)
+				   	.attr("r", cluster.radius)
+					.attr("stroke-width", cluster.strokeWidth)
+			    $("#circle_" + cat)
+			    	.attr("r", 10)
+			    	.attr("stroke-width", 3.57),
+			    $("#label_" + cat)
+			    	.css("font-weight", "normal")
+			    	.css("font-size", "1em"),
+			    $(".article_" + page + "_" + cat)
+			    	.css({"border-left-color": "white", 
+			     		  "border-left-width":"0"})
+			}
         }),
         $(".cluster").click(function() {
         	var page = $(this).attr("id").slice(8, 9),
