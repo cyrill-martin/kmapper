@@ -287,35 +287,37 @@ function showArticles() {
 window.mousePageLine = function() {
     $(document).ready(function() {
         $(".page").mouseover(function() {
-		    var page = $(this).attr("id").slice(5, 6);
-		    var catArray = [];
-		    $(".a_page_" + page).each(function() {
-		    	catArray.push(this.id.slice(14, 17));
-		    });
-			var i;
-			for (i = 0; i < catArray.length; ++i) {
-			    var article = $(".a_page_" + page + ".a_category_" + catArray[i]);
-			    var color = $("#category_line_" + catArray[i]).attr("stroke");
-			    article
-		    		.css({"border-left-color": color, 
-		 		  		  "border-left-width":"1em", 
-		 		  		  "border-left-style":"solid"}),
-		        $("#circle_" + catArray[i])
-		            .attr("r", 15)
-		            .attr("stroke-width", 4.5),
-		        $("#label_" + catArray[i])
-		        	.css("font-weight", "bold")
-		        	.css("font-size", "1.5em")   
-			};
-		    $(this)
-				.attr("stroke-width", "0.5em")
-		        .attr("cursor", "pointer")
-		    $("#pageLabel_" + page)
-		    	.css("font-size", "1.1em")
-		    	.attr("x", canvas.x0 + 32),
-		   	$(".c_page_" + page)
-		   		.attr("r", "1.5em")
-				.attr("stroke-width", "0.6em");
+			if (mobile == false) {
+			    var page = $(this).attr("id").slice(5, 6);
+			    var catArray = [];
+			    $(".a_page_" + page).each(function() {
+			    	catArray.push(this.id.slice(14, 17));
+			    });
+				var i;
+				for (i = 0; i < catArray.length; ++i) {
+				    var article = $(".a_page_" + page + ".a_category_" + catArray[i]);
+				    var color = $("#category_line_" + catArray[i]).attr("stroke");
+				    article
+			    		.css({"border-left-color": color, 
+			 		  		  "border-left-width":"1em", 
+			 		  		  "border-left-style":"solid"}),
+			        $("#circle_" + catArray[i])
+			            .attr("r", 15)
+			            .attr("stroke-width", 4.5),
+			        $("#label_" + catArray[i])
+			        	.css("font-weight", "bold")
+			        	.css("font-size", "1.5em")   
+				};
+			    $(this)
+					.attr("stroke-width", "0.5em")
+			        .attr("cursor", "pointer")
+			    $("#pageLabel_" + page)
+			    	.css("font-size", "1.1em")
+			    	.attr("x", canvas.x0 + 32),
+			   	$(".c_page_" + page)
+			   		.attr("r", "1.5em")
+					.attr("stroke-width", "0.6em")
+			}
 	    }),
 	    $(".page").click(function() {
 	    	var page = $(this).attr("id").slice(5, 6);
@@ -342,37 +344,39 @@ window.mousePageLine = function() {
 	    	showArticles();
 	    }),
         $(".page").mouseout(function() {
-			var page = $(this).attr("id").slice(5, 6);
-		    var catArray = [];
-		    $(".a_page_" + page).each(function() {
-		    	catArray.push(this.id.slice(14, 17));
-		    });
-			var i;
-			for (i = 0; i < catArray.length; ++i) {
-			    var article = $(".a_page_" + page + ".a_category_" + catArray[i]);
-			    var color = $("#category_line_" + catArray[i]).attr("stroke");
-			    article
-		    		.css({"border-left-color": color, 
-		 		  		  "border-left-width":"1em", 
-		 		  		  "border-left-style":"solid"}),
-		        $("#circle_" + catArray[i])
-		            .attr("r", 10)
-		            .attr("stroke-width", 3.57),
-		        $("#label_" + catArray[i])
-		        	.css("font-weight", "normal")
-		        	.css("font-size", "1em")   
-			};
-		    $(this)
-				.attr("stroke-width", pageLine.width)
-		    $("#pageLabel_" + page)
-		    	.css("font-size", "0.9em")
-				.attr("x", canvas.x0 + 22),
-		   	$(".c_page_" + page)
-		   		.attr("r", cluster.radius)
-				.attr("stroke-width", cluster.strokeWidth),
-			$(".a_page_" + page)
-				.css({"border-left-color": "white", 
-		    	"border-left-width":"0"})
+			if (mobile == false) {
+				var page = $(this).attr("id").slice(5, 6);
+			    var catArray = [];
+			    $(".a_page_" + page).each(function() {
+			    	catArray.push(this.id.slice(14, 17));
+			    });
+				var i;
+				for (i = 0; i < catArray.length; ++i) {
+				    var article = $(".a_page_" + page + ".a_category_" + catArray[i]);
+				    var color = $("#category_line_" + catArray[i]).attr("stroke");
+				    article
+			    		.css({"border-left-color": color, 
+			 		  		  "border-left-width":"1em", 
+			 		  		  "border-left-style":"solid"}),
+			        $("#circle_" + catArray[i])
+			            .attr("r", 10)
+			            .attr("stroke-width", 3.57),
+			        $("#label_" + catArray[i])
+			        	.css("font-weight", "normal")
+			        	.css("font-size", "1em")   
+				};
+			    $(this)
+					.attr("stroke-width", pageLine.width)
+			    $("#pageLabel_" + page)
+			    	.css("font-size", "0.9em")
+					.attr("x", canvas.x0 + 22),
+			   	$(".c_page_" + page)
+			   		.attr("r", cluster.radius)
+					.attr("stroke-width", cluster.strokeWidth),
+				$(".a_page_" + page)
+					.css({"border-left-color": "white", 
+			    	"border-left-width":"0"})
+			}
 		})
     })
 };
