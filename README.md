@@ -1,3 +1,3 @@
 # README
 
-kmapperBETA...Doc still to to, sorry!
+kmapperBETA...Doc still to do, sorry!

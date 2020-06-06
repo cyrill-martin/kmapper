@@ -30,13 +30,13 @@
 }
 
 #kmap_wrapper {
+	position: fixed;
+	left: 15px;
+
+
 	//position: relative;
 	//float: left;
-	//width: 34%;
-
-	position: relative;
-	float: left;
-	width: 34%;
+	width: 30%;
 }
 
 .query {
@@ -54,11 +54,6 @@
 }
 
 #kmap {
-	//position: relative; 
-	//padding: 5% 0 0 10%;
-	//width: 80%;
-	//font-family: 'Liberation Mono';
-
 	position: relative; 
 	padding: 5% 0 0 10%;
 	width: 80%;
@@ -68,21 +63,19 @@
 #kmap_legend {
 	//position: relative;
   	//float: left;
-  	//width: 26%;
-	//max-height: 1300px;
-	//overflow-y: auto;
-  	//padding: 2% 1% 2% 0;
 
-	position: relative;
-  	float: left;
-  	width: 26%;
+  	position: fixed; 
+  	left: 30%;
+
+  	width: 30%;
 	max-height: 1300px;
 	overflow-y: auto;
-  	padding: 2% 1% 2% 15px;
+  	padding: 2% 1% 2% 0;
 }
 
 .legend_item {
 	overflow: hidden;
+	margin: 0 0 -8px 0;
 }
 
 .legend_circle{
@@ -91,7 +84,6 @@
 }
 
 .legend_circle_svg {
-
 }
 
 .category_circle {
@@ -109,15 +101,11 @@
 }
 
 #kmap_articles {
-	//position: relative;
-	//float: left;
-	//width: 40%;
-	//overflow-y: auto;
-	//padding: 0 5px 0 0;
-	//margin: 2% 0 2% 0;
-
 	position: relative;
+	//float: left;
+	
 	float: right;
+
 	width: 40%;
 	overflow-y: auto;
 	padding: 0 5px 0 0;
@@ -168,16 +156,20 @@
 @media only screen and (max-width:1200px) {
 	/* Responsiveness */
 	#kmap_wrapper {
+		position: relative;
 		width: 50%;
+		float: left;
   	}
 	#kmap {
-		position: relative; 
+		position: relative;
 		padding: 5% 0 0 10%;
 		width: 80%;
 	}
 
   	#kmap_legend {
+  		position: relative;
   		width: 50%;
+  		left: 0;
   		max-height: 100%;
   	}
 
