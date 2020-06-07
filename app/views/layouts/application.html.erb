@@ -1,5 +1,26 @@
 <!DOCTYPE html>
 <html>
+<!-- Copyright 2020 Cyrill Martin (https://github.com/cyrill-martin) 
+
+Permission is hereby granted, free of charge, to any person obtaining 
+a copy of this software and associated documentation files (the "Software"), 
+to deal in the Software without restriction, including without limitation 
+the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+and/or sell copies of the Software, and to permit persons to whom the 
+Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in 
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL 
+THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, 
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN 
+THE SOFTWARE.  -->
+<!-- Search icon made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a> -->
+<!-- Fonts??? -->
   <head>
     <title>kmapper</title>
     <%= csrf_meta_tags %>
@@ -20,9 +41,12 @@
               <%= yield %>
           </div>
           <footer id="footer">
-            <%= link_to "GitHub", "https://github.com/cyrill-martin/kmapper", target: "_blank", rel: "nofollow" %>
-<!--                 Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a> -->
-<!-- Fonts??? -->
+            <div>
+              Copyright 2020 Cyrill Martin - <%= link_to "GitHub", "https://github.com/cyrill-martin/kmapper", target: "_blank", rel: "nofollow" %>
+            </div>
+            <div>
+              Article metadata by <%= link_to "DOAJ", "https://doaj.org", target: "_blank", rel: "nofollow" %> - <%= link_to "CC BY-SA 4.0", "https://creativecommons.org/licenses/by-sa/4.0/", target: "_blank", rel: "nofollow" %>
+            </div>
           </footer>
       </div>
   </body>
