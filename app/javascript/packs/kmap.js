@@ -271,14 +271,15 @@ function showArticles() {
 		var i;
 		for (i = 0; i < showArray.length; ++i) {
 			// Show this articles
-			$(showArray[i]).slideDown(350)
+			$(showArray[i])
+				.slideDown(350)
 		}
 		var y;
 		for (y = 0; y < hideArray.length; ++y) {
 			// Hide this article
-			$(hideArray[y]).slideUp(350)
+			$(hideArray[y])
+				.slideUp(350)
 		}
-
 	}
 };
 
@@ -374,7 +375,7 @@ window.mousePageLine = function() {
 					.attr("stroke-width", cluster.strokeWidth),
 				$(".a_page_" + page)
 					.css({"border-left-color": "white", 
-			    	"border-left-width":"0"})
+			    		  "border-left-width":"0"})
 			}
 		})
     })

@@ -32,11 +32,8 @@
 #kmap_wrapper {
 	position: fixed;
 	left: 15px;
-
-
-	//position: relative;
-	//float: left;
 	width: 30%;
+	z-index: 10;
 }
 
 .query {
@@ -61,16 +58,25 @@
 }
 
 #kmap_legend {
-	//position: relative;
-  	//float: left;
-
   	position: fixed; 
-  	left: 30%;
-
-  	width: 30%;
+  	left: 28%;
+  	width: 32%;
 	max-height: 1300px;
 	overflow-y: auto;
   	padding: 2% 1% 2% 0;
+  	z-index: 10;
+}
+
+.kmap_legend_column {
+	float: left;
+	width: 50%;
+	font-size: 0.9em;	
+}
+
+.kmap_legend_row:after {
+	content: "";
+	display: table;
+	clear: both;	
 }
 
 .legend_item {
@@ -102,10 +108,7 @@
 
 #kmap_articles {
 	position: relative;
-	//float: left;
-	
 	float: right;
-
 	width: 40%;
 	overflow-y: auto;
 	padding: 0 5px 0 0;
