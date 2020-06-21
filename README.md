@@ -4,9 +4,9 @@
 
 To disappoint everyone upfront, there's no fancy topic modeling or NLP going on at kmapper's side. It's a plain-simple (re-)organization of search results. 
 
-1. With kmapper you send a search query to the [DOAJ](DOAJ)'s article [search API](searchAPI).
+1. With kmapper you send a search query to the [DOAJ][DOAJ]'s article [search API][searchAPI].
 2. kmapper gets a response of the top **50** articles matching your query (10 results per "page").
-3. Based on an article's journal it has been published in, the DOAJ has already tagged each article with [LCC](LCC) classes and subclasses.
+3. Based on an article's journal it has been published in, the DOAJ has already tagged each article with [LCC][LCC] classes and subclasses.
 4. kmapper maps the received LCC classes to its own set of scientific disciplines and groups the search results based on relevance (search result "page") and scientific discipline.
 
 ## Why kmapper?
@@ -17,21 +17,21 @@ By showing a little bit more than the top 10 results of a search and by also bol
 
 ## What's the license?
 
-kmapper is licensed under the [MIT license](MIT). 
+kmapper is licensed under the [MIT license][MIT]. 
 
 
 ## How to use and develop locally?
 
 ### Dependencies 
 
-- [Ubuntu](Ubuntu) 18.04
-- [Rails](Rails) 6.0.3
-- [Ruby](Ruby) 2.7.1
-- [PostgreSQL](PostgreSQL) 12.3
+- [Ubuntu][Ubuntu] 18.04
+- [Rails][Rails] 6.0.3
+- [Ruby][Ruby] 2.7.1
+- [PostgreSQL][PostgreSQL] 12.3
   - To use the files as they are, you want to have a PostgreSQL user "kmapper" with password "kmap18" in place.
   - Otherwise you want to change *config/database.yml* accordingly.
-- [Node.js](Node) v10.21.0
-- [Yarn](Yarn) 1.22.4
+- [Node.js][Node] v10.21.0
+- [Yarn][Yarn] 1.22.4
 
 ### Getting started
 
@@ -53,7 +53,7 @@ kmapper is licensed under the [MIT license](MIT).
 1. Seed the database with the files provided in *db*. 
    - You either copy the contents of *seed_kmappers.rb* to *seeds.rb*, run ``rake db:seed`` and repeat this for *seed_lccs.rb* or you write your own custom rake task to seed the two files.
 1. Run ``rails server`` and go to http://localhost:3000 to see if everything is working. 
-   **It's probably not - welcome to hell!** A [Dockerfile](Docker) will hopefully follow soon. 
+   **It's probably not - welcome to hell!** A [Dockerfile][Docker] will hopefully follow soon. 
 
 
 [DOAJ]: https://doaj.org
