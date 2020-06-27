@@ -128,7 +128,8 @@ window.drawKmap = function(kmap_object, append_to) {
     	.attr("stroke", pageLine.color)
     	.attr("stroke-width", pageLine.width)
     	.attr("fill", "none")
-    	.attr("data-clicked", "false");
+    	.attr("data-clicked", "false")
+    	.attr("filter", "none");
     // Writing the page labels
 	svg.selectAll("label")
 		.data(canvas.radii)
@@ -176,7 +177,8 @@ window.drawKmap = function(kmap_object, append_to) {
     	})
     	.attr("opacity", categoryLine.opacity)
     	.attr("stroke-width", categoryLine.width)
-    	.attr("data-clicked", "false");
+    	.attr("data-clicked", "false")
+    	.attr("filter", "none");
 	// Drawing the article clusters and writing the article counts
 	for (var category of kmap_object.categories) {
 		var id = category.id;
@@ -196,7 +198,8 @@ window.drawKmap = function(kmap_object, append_to) {
 				return "cluster_" + d.page + "_" + id;
 			})
 			.attr("cursor", "pointer")
-			.attr("data-clicked", "false");
+			.attr("data-clicked", "false")
+			.attr("filter", "none");
 		// Clusters
 		clusterGroup.append("circle")
 			.attr("cx", function(d) {
@@ -237,6 +240,22 @@ window.drawKmap = function(kmap_object, append_to) {
 		.attr("font-size", query.fontSize)
 		.attr("fill", query.fill)
 		.attr("pointer-events", query.pointerEvents);
+	
+	// Reset kmap
+	svg.selectAll("reset")
+    	.data(["x reset"])
+    	.enter()
+    	.append("text")
+    	.attr("class", "reset")
+    	.attr("id", "resetKmap")
+    	.text(function(d) {
+            return d;
+        })
+        .attr("x", 420)
+        .attr("y", 30)
+		.attr("font-size", "1.1em")
+		.attr("fill", pageLabel.fill)
+		.attr("cursor", "pointer");
 };
 
 function coolCluster(element) {
@@ -266,6 +285,7 @@ function showArticles() {
 	if (showArray.length == 0) {
 		// Show all articles
 		$(".article").slideDown(350)
+		$("#resetKmap").css("visibility", "hidden")
 	}
 	else {
 		var i;
@@ -280,6 +300,7 @@ function showArticles() {
 			$(hideArray[y])
 				.slideUp(350)
 		}
+		$("#resetKmap").css("visibility", "visible")
 	}
 };
 
@@ -654,6 +675,23 @@ window.mouseArticle = function() {
 		    $("#cluster_" + page + "_" + cat).children("circle")
 		    	.attr("r", cluster.radius)
 				.attr("stroke-width", cluster.strokeWidth)
+        })
+	})
+};
+
+// Reset kmap
+window.resetKmap = function() {
+    $(document).ready(function() {
+        $("#resetKmap").click(function() {
+        	uncoolCluster(".cluster");
+        	$(".article, .cluster, .category_line, .page")
+        		.attr("data-clicked", "false")
+	    		.attr("filter", "none"),
+	    	$(".legend_item")
+	    		.css("filter", "none"),
+	    	$(".category_circle")
+	    		.attr("fill", "white");
+        	showArticles();
         })
 	})
 };
