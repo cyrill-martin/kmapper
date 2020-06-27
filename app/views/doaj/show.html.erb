@@ -44,7 +44,7 @@
 	<div id="kmap_legend">
 		<div class="kmap_legend_row">
 			<div class="kmap_legend_column">
-				<%kmap["categories"][0..20].each do |category| %>
+				<%kmap["categories"][0..15].each do |category| %>
 
 					    	<div class="legend_item" id="item_<%= category['id'] %>" data-clicked="false">
 					    		<div class="legend_circle">
@@ -61,7 +61,7 @@
 			</div>
 
 			<div class="kmap_legend_column">
-				<%kmap["categories"][21..-1].each do |category| %>
+				<%kmap["categories"][16..-1].each do |category| %>
 
 
 
