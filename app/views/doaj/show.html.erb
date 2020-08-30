@@ -1,15 +1,11 @@
 <% kmap = JSON.parse(@kmap) %>
 <!-- kmapper map -->
 <div id="kmap_wrapper">
-	<div>
-		<%= link_to(image_tag("doaj_logo_cropped.jpg", 
-			id: "doaj_logo_show",
-			alt: "Direcory of Open Access Journals",
-			title: "Directory of Open Access Journals"), "https://doaj.org/", target: "_blank") %>
-		<%= form_tag("/doaj", method: "get", id: "search_show", class: "search") do %>
-			<%= label_tag(:query, "") %>
-			<%= text_field_tag(:query, params[:query], placeholder: "Search DOAJ") %>
-			<button type="submit"><%= image_tag("search.png", class: "search_icon") %></button>
+	<div class="doaj_show_search">
+		<%= form_tag("/doaj", method: "get") do %>
+			<%= label_tag(:q, "") %>
+			<%= text_field_tag(:q, params[:q], placeholder: "Search DOAJ") %>
+			<%= submit_tag("Search", name: "") %>
 		<% end %>
 	</div>
 	<div id="kmap_map">
@@ -25,7 +21,7 @@
 	</div>
 </div>
 <!-- kmapper map legend -->
-<% if kmap["categories"].length < 26 %>
+<% if kmap["categories"].length < 21 %>
 	<div id="kmap_legend">
 	    <% kmap["categories"].each do |category| %>
 	    	<div class="legend_item" id="item_<%= category['id'] %>" data-clicked="false">
@@ -44,7 +40,7 @@
 	<div id="kmap_legend">
 		<div class="kmap_legend_row">
 			<div class="kmap_legend_column">
-				<%kmap["categories"][0..15].each do |category| %>
+				<%kmap["categories"][0..14].each do |category| %>
 
 					    	<div class="legend_item" id="item_<%= category['id'] %>" data-clicked="false">
 					    		<div class="legend_circle">
@@ -61,7 +57,7 @@
 			</div>
 
 			<div class="kmap_legend_column">
-				<%kmap["categories"][16..-1].each do |category| %>
+				<%kmap["categories"][15..-1].each do |category| %>
 			    	<div class="legend_item" id="item_<%= category['id'] %>" data-clicked="false">
 			    		<div class="legend_circle">
 				        	<svg class="legend_circle_svg" width="40" height="36">
@@ -84,9 +80,15 @@
 			<div class="a_category">
 				<%= kmap["categories"][article["category_id"]]["label"] %>
 			</div>
+
 			<div class="title">
-				<a href="https://doaj.org/article/<%= article['doaj'] %>" target="_blank"><%= sanitize article['title']%></a>
+				<% if article['doi'] != nil %>
+					<a href="https://doi.org/<%= article['doi'] %>" target="_blank"><%= sanitize article['title']%></a>
+				<% else %>
+					<a href="https://doaj.org/article/<%= article['doaj'] %>" target="_blank"><%= sanitize article['title']%></a>
+				<% end %>
 			</div>
+
 			<div class="authors"><%= article['authors']%></div>
 			<div class="citation">
 				<span class="journal"><%= article['journal'] %></span>

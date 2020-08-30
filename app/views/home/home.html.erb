@@ -1,0 +1,22 @@
+<div class="home">
+
+	<div class="intro">
+		<%= link_to "kmapperBETA", root_path %>
+		<p>The knowledge mapper</p>
+
+		<p>
+			Visualize your subject in an interdisciplinary context.<br> 
+			kmapper searches DOAJ, the <%= link_to "Directory of Open Access Journals", "https://doaj.org", target: "_blank" %>, and shows you the top articles in order of relevance - mapped by discipline.<br>
+			With more than 5.2 million publications you’ll get a pretty clear idea where to find relevant content to push your research even further.
+		</p>
+	</div>
+
+	<div class="home_search">
+		<%= form_tag("/doaj", method: "get") do %>
+			<%= label_tag(:q, "") %>
+			<%= text_field_tag(:q, nil, placeholder: "Search DOAJ") %>
+			<%= submit_tag("Search", name: "") %>
+		<% end %>
+	</div>
+
+</div>

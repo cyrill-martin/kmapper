@@ -33,21 +33,26 @@ THE SOFTWARE.  -->
   <body>
       <div id="container">
           <header id="header">
+            <% if @show_kmapper %>
               <div id="logo_container">
                   <%= link_to "kmapperBETA", root_path %>
+              </div>
+            <% end %>
+              <div id="menu_container">
+                <% if @show_download %>
+                  <%= link_to "Download", "" %>
+                <% end %>
+                 <% if @show_about %>
+                  <%= link_to "About", about_path %>
+                <% end %>               
               </div>
           </header>
           <div id="main">
               <%= yield %>
           </div>
           <footer id="footer">
-            <div>
-              Copyright 2020 Cyrill Martin - <%= link_to "GitHub", "https://github.com/cyrill-martin/kmapper", target: "_blank", rel: "nofollow" %>
-            </div>
-            <div>
-              Article metadata by <%= link_to "DOAJ", "https://doaj.org", target: "_blank", rel: "nofollow" %> - <%= link_to "CC BY-SA 4.0", "https://creativecommons.org/licenses/by-sa/4.0/", target: "_blank", rel: "nofollow" %>
-            </div>
           </footer>
       </div>
   </body>
+  
 </html>

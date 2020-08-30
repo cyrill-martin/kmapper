@@ -1,13 +1,13 @@
 import * as d3 from "d3";
 
 // Check for mobile
-var mobile = false;
+let mobile = false;
 if((/iPhone|iPad|iPod|Android|webOS|BlackBerry|Opera Mini|IEMobile/i.test(navigator.userAgent) )) {
-	var mobile = true;
+	let mobile = true;
 };
 
 // Canvas parameters
-var canvas = {
+let canvas = {
 	size: 1000,
 	x0: 0, // X-axis' 0
 	y0: 500, // Y-axis' 0
@@ -21,24 +21,24 @@ var canvas = {
 	]
 };
 // Page lines
-var pageLine = {
+let pageLine = {
 	width: "0.2em",
 	color: "lightgrey",
 };
-// Page labels
-var pageLabel = {
+// Labels
+let pageLabel = {
 	fontSize: "0.9em",
 	fill: "lightgrey",
 	pointerEvents: "none"
 };
 // Category lines
-var categoryLine = {
+let categoryLine = {
 	width: "0.4em",
 	opacity: "1.0"
 
 };
 // Article clusters
-var cluster = {
+let cluster = {
 	strokeWidth: "0.4em",
 	radius: "1em",
 	fill: "white"
@@ -46,14 +46,14 @@ var cluster = {
 
 window.drawKmap = function(kmap_object, append_to) {
 	// Number of kmap categories
-	var length = kmap_object.categories.length;	
-	var halfLength = Math.floor(length/2);
+	let length = kmap_object.categories.length;	
+	let halfLength = Math.floor(length/2);
 	// Degree of puffer so no category line will go exactly on 90° or 270°
-	var margin = 12;
+	let margin = 12;
 	// Degrees between each category line to draw
-	var degree = (180-(2*margin))/length;
+	let degree = (180-(2*margin))/length;
 	// Query
-	var query = {
+	let query = {
 		fontSize: "1em",
 		fill: "grey",
 		pointerEvents: "none"
@@ -79,15 +79,15 @@ window.drawKmap = function(kmap_object, append_to) {
 		}
     };
 	// The main svg canvas
-	var svg = d3.select(append_to)
+	let svg = d3.select(append_to)
 		.append("svg")
 		.attr("preserveAspectRatio", "xMinYMin")
 		.attr("viewBox", "0 0 " + canvas.size*0.5 + " " + canvas.size)
 		.attr("id", "kmap");
 
 	// Shadow
-	var defs = svg.append("defs");
-	var dropShadowFilter = defs.append("svg:filter")
+	let defs = svg.append("defs");
+	let dropShadowFilter = defs.append("svg:filter")
 	  .attr("id", "drop-shadow")
 	  .attr("filterUnits", "userSpaceOnUse")
 	  .attr("width", "350%")
@@ -131,26 +131,26 @@ window.drawKmap = function(kmap_object, append_to) {
     	.attr("data-clicked", "false")
     	.attr("filter", "none");
     // Writing the page labels
-	svg.selectAll("label")
-		.data(canvas.radii)
-		.enter()
-		.append("text")
-		.text(function(d, i) {
-			return "Page " + (i+1);
-		})
-		.attr("text-anchor", "middle")
-		.attr("class", "pageLabel")
-		.attr("id", function(d, i) {
-			return "pageLabel_" + i;
-			})
-		.attr("x", canvas.x0 + 22)
-		.attr("y", function(d) {
-			return canvas.y0 - (d+6);
-		})
-		.attr("font-size", pageLabel.fontSize)
-		.attr("fill", pageLabel.fill)
-		.attr("pointer-events", pageLabel.pointerEvents)
-		.attr("letter-spacing", "-1px");
+	// svg.selectAll("label")
+	// 	.data(canvas.radii)
+	// 	.enter()
+	// 	.append("text")
+	// 	.text(function(d, i) {
+	// 		return "Page " + (i+1);
+	// 	})
+	// 	.attr("text-anchor", "middle")
+	// 	.attr("class", "pageLabel")
+	// 	.attr("id", function(d, i) {
+	// 		return "pageLabel_" + i;
+	// 		})
+	// 	.attr("x", canvas.x0 + 22)
+	// 	.attr("y", function(d) {
+	// 		return canvas.y0 - (d+6);
+	// 	})
+	// 	.attr("font-size", pageLabel.fontSize)
+	// 	.attr("fill", pageLabel.fill)
+	// 	.attr("pointer-events", pageLabel.pointerEvents)
+	// 	.attr("letter-spacing", "-1px");
     // Drawing the category lines
 	svg.selectAll("category_line")
 		.data(kmap_object.categories)
@@ -180,18 +180,18 @@ window.drawKmap = function(kmap_object, append_to) {
     	.attr("data-clicked", "false")
     	.attr("filter", "none");
 	// Drawing the article clusters and writing the article counts
-	for (var category of kmap_object.categories) {
-		var id = category.id;
-		var color = category.color;
+	for (let category of kmap_object.categories) {
+		let id = category.id;
+		let color = category.color;
 		// Cluster groups
-		var clusterGroup = svg.selectAll("cluster")
+		let clusterGroup = svg.selectAll("cluster")
 			.data(category.pages)
 			.enter()
 			.append("g")
 			.attr("class", function(d) {
-				var one = "cluster";
-				var two = "c_page_" + d.page;
-				var three = "c_category_" + id;
+				let one = "cluster";
+				let two = "c_page_" + d.page;
+				let three = "c_category_" + id;
 				return one + " " + two + " " + three;
 			})
 			.attr("id", function(d) {
@@ -259,7 +259,7 @@ window.drawKmap = function(kmap_object, append_to) {
 };
 
 function coolCluster(element) {
-	var color = $(element).children("circle").attr("stroke");
+	let color = $(element).children("circle").attr("stroke");
 	$(element).children("circle")
 		.attr("fill", color)
         .attr("filter", "url(#drop-shadow)"),
@@ -274,8 +274,8 @@ function uncoolCluster(element) {
 };
 
 function showArticles() {
-	var showArray = []; 
-	var hideArray = [];
+	let showArray = []; 
+	let hideArray = [];
 	$('.article[data-clicked="false"]').each(function(){
 		hideArray.push(this);
 	});
@@ -288,13 +288,13 @@ function showArticles() {
 		$("#resetKmap").css("visibility", "hidden")
 	}
 	else {
-		var i;
+		let i;
 		for (i = 0; i < showArray.length; ++i) {
 			// Show this articles
 			$(showArray[i])
 				.slideDown(350)
 		}
-		var y;
+		let y;
 		for (y = 0; y < hideArray.length; ++y) {
 			// Hide this article
 			$(hideArray[y])
@@ -309,15 +309,15 @@ window.mousePageLine = function() {
     $(document).ready(function() {
         $(".page").mouseover(function() {
 			if (mobile == false) {
-			    var page = $(this).attr("id").slice(5, 6);
-			    var catArray = [];
+			    let page = $(this).attr("id").slice(5, 6);
+			    let catArray = [];
 			    $(".a_page_" + page).each(function() {
 			    	catArray.push(this.id.slice(14, 17));
 			    });
-				var i;
+				let i;
 				for (i = 0; i < catArray.length; ++i) {
-				    var article = $(".a_page_" + page + ".a_category_" + catArray[i]);
-				    var color = $("#category_line_" + catArray[i]).attr("stroke");
+				    let article = $(".a_page_" + page + ".a_category_" + catArray[i]);
+				    let color = $("#category_line_" + catArray[i]).attr("stroke");
 				    article
 			    		.css({"border-left-color": color, 
 			 		  		  "border-left-width":"1em", 
@@ -327,7 +327,7 @@ window.mousePageLine = function() {
 			            .attr("stroke-width", 4.5),
 			        $("#label_" + catArray[i])
 			        	.css("font-weight", "bold")
-			        	.css("font-size", "1.5em")   
+			        	// .css("font-size", "1.5em")   
 				};
 			    $(this)
 					.attr("stroke-width", "0.5em")
@@ -341,7 +341,7 @@ window.mousePageLine = function() {
 			}
 	    }),
 	    $(".page").click(function() {
-	    	var page = $(this).attr("id").slice(5, 6);
+	    	let page = $(this).attr("id").slice(5, 6);
 	    	if ($(this).attr("data-clicked") == "false") {
 				$(".c_page_" + page).each(function() {
 					coolCluster(this);
@@ -366,15 +366,15 @@ window.mousePageLine = function() {
 	    }),
         $(".page").mouseout(function() {
 			if (mobile == false) {
-				var page = $(this).attr("id").slice(5, 6);
-			    var catArray = [];
+				let page = $(this).attr("id").slice(5, 6);
+			    let catArray = [];
 			    $(".a_page_" + page).each(function() {
 			    	catArray.push(this.id.slice(14, 17));
 			    });
-				var i;
+				let i;
 				for (i = 0; i < catArray.length; ++i) {
-				    var article = $(".a_page_" + page + ".a_category_" + catArray[i]);
-				    var color = $("#category_line_" + catArray[i]).attr("stroke");
+				    let article = $(".a_page_" + page + ".a_category_" + catArray[i]);
+				    let color = $("#category_line_" + catArray[i]).attr("stroke");
 				    article
 			    		.css({"border-left-color": color, 
 			 		  		  "border-left-width":"1em", 
@@ -384,7 +384,7 @@ window.mousePageLine = function() {
 			            .attr("stroke-width", 3.57),
 			        $("#label_" + catArray[i])
 			        	.css("font-weight", "normal")
-			        	.css("font-size", "1em")   
+			        	// .css("font-size", "1em")   
 				};
 			    $(this)
 					.attr("stroke-width", pageLine.width)
@@ -407,7 +407,7 @@ window.mouseCategoryLine =  function() {
 	$(document).ready(function() {
 		$(".category_line").mouseover(function() {
 			if (mobile == false) {
-				var cat = $(this).attr("id").slice(14, 17),
+				let cat = $(this).attr("id").slice(14, 17),
 					color = $(this).attr("stroke");
 				$(this)
 					.attr("stroke-width", "0.6em")
@@ -419,8 +419,8 @@ window.mouseCategoryLine =  function() {
 				    .attr("r", 15)
 				    .attr("stroke-width", 4.5),
 				$("#label_" + cat)
-					.css("font-weight", "bold")
-					.css("font-size", "1.5em"),
+					.css("font-weight", "bold"),
+					// .css("font-size", "1.5em"),
 				$(".a_category_" + cat)
 					.css({"border-left-color": color, 
 				 		  "border-left-width":"1em", 
@@ -428,7 +428,7 @@ window.mouseCategoryLine =  function() {
 			}
 		}),
 		$(".category_line").click(function() {
-			var cat = $(this).attr("id").slice(14, 17),
+			let cat = $(this).attr("id").slice(14, 17),
 				color = $(this).attr("stroke");
 	    	if ($(this).attr("data-clicked") == "false") {
 				$(".c_category_" + cat).each(function() {
@@ -437,10 +437,11 @@ window.mouseCategoryLine =  function() {
 				$(".a_category_" + cat)
 	    			.attr("data-clicked", "true"),
 	    		$("#item_" + cat)
-	    			.attr("data-clicked", "true")
-	    			.css("filter", "url(#drop-shadow)"),
+	    			.attr("data-clicked", "true"),
+	    			// .css("filter", "url(#drop-shadow)"),
 	    		$("#circle_" + cat)
-	    			.attr("fill", color),
+	    			.attr("fill", color)
+	    			.css("filter", "url(#drop-shadow)"),
 	    		$(this)
 	    			.attr("data-clicked", "true")
 	    			.attr("filter", "url(#drop-shadow)")
@@ -452,10 +453,11 @@ window.mouseCategoryLine =  function() {
 				$(".a_category_" + cat)
 	    			.attr("data-clicked", "false"),
 	    		$("#item_" + cat)
-	    			.attr("data-clicked", "false")
-	    			.css("filter", "none"),
+	    			.attr("data-clicked", "false"),
+	    			// .css("filter", "none"),
 	    		$("#circle_" + cat)
-	    			.attr("fill", "white"),
+	    			.attr("fill", "white")
+	    			.css("filter", "none"),
 	    		$(this)
 	    			.attr("data-clicked", "false")
 	    			.attr("filter", "none")
@@ -464,7 +466,7 @@ window.mouseCategoryLine =  function() {
 		}),
 		$(".category_line").mouseout(function() {
 			if (mobile == false) {
-				var cat = $(this).attr("id").slice(14, 17);
+				let cat = $(this).attr("id").slice(14, 17);
 				$(this)
 					.attr("stroke-width", categoryLine.width),
 				$(".c_category_" + cat).children("circle")
@@ -474,8 +476,8 @@ window.mouseCategoryLine =  function() {
 				    .attr("r", 10)
 				    .attr("stroke-width", 3.57),
 				$("#label_" + cat)
-					.css("font-weight", "normal")
-					.css("font-size", "1em"),
+					.css("font-weight", "normal"),
+					// .css("font-size", "1em"),
 				$(".a_category_" + cat)
 				    .css({"border-left-color": "white", 
 				    	"border-left-width":"0"})
@@ -489,7 +491,7 @@ window.mouseLegendItem =  function() {
 	$(document).ready(function() {
 		$(".legend_item").mouseover(function() {
 			if (mobile == false) {
-				var cat = $(this).attr("id").slice(5, 8),
+				let cat = $(this).attr("id").slice(5, 8),
 				color = $("#category_line_" + cat).attr("stroke");
 				$("#circle_" + cat)
 					.attr("r", 15)
@@ -497,7 +499,7 @@ window.mouseLegendItem =  function() {
 					.attr("cursor", "pointer"),
 				$("#label_" + cat)
 					.css("font-weight", "bold")
-					.css("font-size", "1.5em")
+					// .css("font-size", "1.5em")
 					.css("cursor", "pointer"),
 				$(".c_category_" + cat).children("circle")
 				    .attr("r", "1.5em")
@@ -511,7 +513,7 @@ window.mouseLegendItem =  function() {
 			}
 		}),
 		$(".legend_item").click(function() {
-			var cat = $(this).attr("id").slice(5, 8),
+			let cat = $(this).attr("id").slice(5, 8),
 				color = $("#category_line_" + cat).attr("stroke");
 	    	if ($(this).attr("data-clicked") == "false") {
 				$(".c_category_" + cat).each(function() {
@@ -523,10 +525,12 @@ window.mouseLegendItem =  function() {
 	    			.attr("data-clicked", "true")
 	    			.attr("filter", "url(#drop-shadow)")
 	    		$("#circle_" + cat)
-	    			.attr("fill", color),
+	    			.attr("data-clicked", "true")
+	    			.attr("fill", color)
+	    			.css("filter", "url(#drop-shadow)"),
 	    		$(this)
 	    			.attr("data-clicked", "true")
-	    			.css("filter", "url(#drop-shadow)")
+	    			// .css("filter", "url(#drop-shadow)")
 	    	} 
 	    	else {
 	    		$(".c_category_" + cat).each(function() {
@@ -538,22 +542,24 @@ window.mouseLegendItem =  function() {
 	    			.attr("data-clicked", "false")
 	    			.attr("filter", "none"),
 	    		$("#circle_" + cat)
-	    			.attr("fill", "white"),
+	    			.attr("data-clicked", "false")
+	    			.attr("fill", "white")
+	    			.css("filter", "none"),
 	    		$(this)
 	    			.attr("data-clicked", "false")
-	    			.css("filter", "none")
+	    			// .css("filter", "none")
 	    	}
 	    	showArticles();
 		}),
 		$(".legend_item").mouseout(function() {
 			if (mobile == false) {
-				var cat = $(this).attr("id").slice(5, 8);
+				let cat = $(this).attr("id").slice(5, 8);
 				$("#circle_" + cat)
 					.attr("r", 10)
 					.attr("stroke-width", 3.57),
 				$("#label_" + cat)
-					.css("font-weight", "normal")
-					.css("font-size", "1em"),
+					.css("font-weight", "normal"),
+					// .css("font-size", "1em"),
 				$(".c_category_" + cat).children("circle")
 				    .attr("r", cluster.radius)
 					.attr("stroke-width", cluster.strokeWidth),
@@ -572,7 +578,7 @@ window.mouseCluster = function() {
     $(document).ready(function() {
         $(".cluster").mouseover(function() {
 			if (mobile == false) {
-			    var page = $(this).attr("id").slice(8, 9),
+			    let page = $(this).attr("id").slice(8, 9),
 			        cat = $(this).attr("id").slice(10, 13),
 			        color = $(this).children("circle").attr("stroke"); // HERE
 			    $(this).children("circle")
@@ -583,8 +589,8 @@ window.mouseCluster = function() {
 			    	.attr("r", 15)
 			    	.attr("stroke-width", 4.5),
 			    $("#label_" + cat)
-			    	.css("font-weight", "bold")
-			    	.css("font-size", "1.5em"),
+			    	.css("font-weight", "bold"),
+			    	// .css("font-size", "1.5em"),
 			    $(".article_" + page + "_" + cat)
 			    	.css({"border-left-color": color, 
 			     		  "border-left-width":"1em", 
@@ -593,7 +599,7 @@ window.mouseCluster = function() {
         }),
         $(".cluster").mouseout(function() {
        		if (mobile == false) {
-			    var page = $(this).attr("id").slice(8, 9),
+			    let page = $(this).attr("id").slice(8, 9),
 			        cat = $(this).attr("id").slice(10, 13);
 				$(this).children("circle")
 				   	.attr("r", cluster.radius)
@@ -602,15 +608,15 @@ window.mouseCluster = function() {
 			    	.attr("r", 10)
 			    	.attr("stroke-width", 3.57),
 			    $("#label_" + cat)
-			    	.css("font-weight", "normal")
-			    	.css("font-size", "1em"),
+			    	.css("font-weight", "normal"),
+			    	// .css("font-size", "1em"),
 			    $(".article_" + page + "_" + cat)
 			    	.css({"border-left-color": "white", 
 			     		  "border-left-width":"0"})
 			}
         }),
         $(".cluster").click(function() {
-        	var page = $(this).attr("id").slice(8, 9),
+        	let page = $(this).attr("id").slice(8, 9),
         		cat = $(this).attr("id").slice(10, 13),
         		color = $(this).attr("stroke");
         	if ($(this).attr("data-clicked") == "false") {
@@ -623,8 +629,8 @@ window.mouseCluster = function() {
         	    $(".article_" + page + "_" + cat)
         			.attr("data-clicked", "false"),
         		$("#item_" + cat)
-        			.attr("data-clicked", "false")
-        			.css("filter", "none"),
+        			.attr("data-clicked", "false"),
+        			// .css("filter", "none"),
         		$("#page_" + page)
         			.attr("data-clicked", "false")
         			.attr("filter", "none"),
@@ -633,6 +639,7 @@ window.mouseCluster = function() {
         			.attr("filter", "none"),
         		$("#circle_" + cat)
         			.attr("fill", "white")
+        			.css("filter", "none")
         	}
         	showArticles();
         })
@@ -643,7 +650,7 @@ window.mouseCluster = function() {
 window.mouseArticle = function() {
     $(document).ready(function() {
         $(".article").mouseover(function() {
-		    var page = $(this).attr("id").slice(12, 13),
+		    let page = $(this).attr("id").slice(12, 13),
 		        cat = $(this).attr("id").slice(14, 17),
 		        color = $("#category_line_" + cat).attr("stroke");
 		    $(this)
@@ -654,14 +661,14 @@ window.mouseArticle = function() {
 		    	.attr("r", 15)
 		    	.attr("stroke-width", 4.5),
 		    $("#label_" + cat)
-		    	.css("font-weight", "bold")
-		    	.css("font-size", "1.5em"),
+		    	.css("font-weight", "bold"),
+		    	// .css("font-size", "1.5em"),
 		    $("#cluster_" + page + "_" + cat).children("circle")
 		    	.attr("r", "1.5em")
 				.attr("stroke-width", "0.6em")
         }),
         $(".article").mouseout(function() {
-		    var page = $(this).attr("id").slice(12, 13),
+		    let page = $(this).attr("id").slice(12, 13),
 		        cat = $(this).attr("id").slice(14, 17);
 		    $(this)
 		    	.css({"border-left-color": "white", 
@@ -670,8 +677,8 @@ window.mouseArticle = function() {
 		    	.attr("r", 10)
 		    	.attr("stroke-width", 3.57),
 		    $("#label_" + cat)
-		    	.css("font-weight", "normal")
-		    	.css("font-size", "1em"),
+		    	.css("font-weight", "normal"),
+		    	// .css("font-size", "1em"),
 		    $("#cluster_" + page + "_" + cat).children("circle")
 		    	.attr("r", cluster.radius)
 				.attr("stroke-width", cluster.strokeWidth)
@@ -684,13 +691,13 @@ window.resetKmap = function() {
     $(document).ready(function() {
         $("#resetKmap").click(function() {
         	uncoolCluster(".cluster");
-        	$(".article, .cluster, .category_line, .page")
+        	$(".article, .cluster, .category_line, .page, .legend_item")
         		.attr("data-clicked", "false")
 	    		.attr("filter", "none"),
-	    	$(".legend_item")
-	    		.css("filter", "none"),
 	    	$(".category_circle")
-	    		.attr("fill", "white");
+	    		.attr("fill", "white")
+	    		.attr("data-clicked", "false")
+	    		.css("filter", "none");
         	showArticles();
         })
 	})

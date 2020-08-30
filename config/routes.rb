@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-	root 'doaj#new'
-	get '/doaj', to: 'doaj#show', constraints: { query_string: /query/ }
-	get '/doaj', to: 'doaj#new'
+  get 'about/show'
+	root "home#home"
+	get "/doaj", to: "doaj#show", constraints: { query_string: /q/ }
+	get "/doaj", to: redirect("/")
+	get "/about", to: "about#show"
 end

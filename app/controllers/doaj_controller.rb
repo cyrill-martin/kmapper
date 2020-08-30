@@ -3,8 +3,11 @@ class DoajController < ApplicationController
     end
 
     def show
+        @show_kmapper = true
+        @show_about = true
+        @show_download = true
         # Get search query and do URL encoding
-        query = URI::encode(params[:query])
+        query = URI::encode(params[:q])
 
         # Get the top 50 articles (currently)
         search_for = 50
@@ -32,7 +35,7 @@ class DoajController < ApplicationController
 
             # kmap objects
             kmap_timestamp = Time.now
-            kmap_query = params["query"]
+            kmap_query = params[:q]
             kmap_nr_of_articles = results.length
             kmap_categories = []
             kmap_results = []
