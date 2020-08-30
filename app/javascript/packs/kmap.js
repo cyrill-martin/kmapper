@@ -79,6 +79,10 @@ window.drawKmap = function(kmap_object, append_to) {
 		}
     };
 	// The main svg canvas
+
+	// Remove any previously generated svg (?!)
+	d3.select("svg").remove();
+
 	let svg = d3.select(append_to)
 		.append("svg")
 		.attr("preserveAspectRatio", "xMinYMin")
