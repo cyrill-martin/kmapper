@@ -323,11 +323,7 @@ window.mousePageLine = function() {
 			 		  		  "border-left-width":"1em", 
 			 		  		  "border-left-style":"solid"}),
 			        $("#circle_" + catArray[i])
-			            .attr("r", 15)
-			            .attr("stroke-width", 4.5),
-			        $("#label_" + catArray[i])
-			        	.css("font-weight", "bold")
-			        	// .css("font-size", "1.5em")   
+			        	.attr("fill", color)
 				};
 			    $(this)
 					.attr("stroke-width", "0.5em")
@@ -350,7 +346,6 @@ window.mousePageLine = function() {
 	    			.attr("data-clicked", "true"),
 	    		$(this)
 	    			.attr("data-clicked", "true")
-	    			.attr("filter", "url(#drop-shadow)")
 	    	} 
 	    	else {
 	    		$(".c_page_" + page).each(function() {
@@ -360,7 +355,6 @@ window.mousePageLine = function() {
 	    			.attr("data-clicked", "false"),
 	    		$(this)
 	    			.attr("data-clicked", "false")
-	    			.attr("filter", "none")
 	    	}
 	    	showArticles();
 	    }),
@@ -380,11 +374,7 @@ window.mousePageLine = function() {
 			 		  		  "border-left-width":"1em", 
 			 		  		  "border-left-style":"solid"}),
 			        $("#circle_" + catArray[i])
-			            .attr("r", 10)
-			            .attr("stroke-width", 3.57),
-			        $("#label_" + catArray[i])
-			        	.css("font-weight", "normal")
-			        	// .css("font-size", "1em")   
+			        	.attr("fill", "white")
 				};
 			    $(this)
 					.attr("stroke-width", pageLine.width)
@@ -416,11 +406,7 @@ window.mouseCategoryLine =  function() {
 				    .attr("r", "1.5em")
 					.attr("stroke-width", "0.6em"),
 				$("#circle_" + cat)
-				    .attr("r", 15)
-				    .attr("stroke-width", 4.5),
-				$("#label_" + cat)
-					.css("font-weight", "bold"),
-					// .css("font-size", "1.5em"),
+					.attr("fill", color),
 				$(".a_category_" + cat)
 					.css({"border-left-color": color, 
 				 		  "border-left-width":"1em", 
@@ -438,7 +424,6 @@ window.mouseCategoryLine =  function() {
 	    			.attr("data-clicked", "true"),
 	    		$("#item_" + cat)
 	    			.attr("data-clicked", "true"),
-	    			// .css("filter", "url(#drop-shadow)"),
 	    		$("#circle_" + cat)
 	    			.attr("fill", color)
 	    			.css("filter", "url(#drop-shadow)"),
@@ -454,7 +439,6 @@ window.mouseCategoryLine =  function() {
 	    			.attr("data-clicked", "false"),
 	    		$("#item_" + cat)
 	    			.attr("data-clicked", "false"),
-	    			// .css("filter", "none"),
 	    		$("#circle_" + cat)
 	    			.attr("fill", "white")
 	    			.css("filter", "none"),
@@ -472,15 +456,20 @@ window.mouseCategoryLine =  function() {
 				$(".c_category_" + cat).children("circle")
 				    .attr("r", cluster.radius)
 					.attr("stroke-width", cluster.strokeWidth),
-				$("#circle_" + cat)
-				    .attr("r", 10)
-				    .attr("stroke-width", 3.57),
-				$("#label_" + cat)
-					.css("font-weight", "normal"),
-					// .css("font-size", "1em"),
 				$(".a_category_" + cat)
 				    .css({"border-left-color": "white", 
 				    	"border-left-width":"0"})
+				if ($(this).attr("data-clicked") == "false") {
+					$("#circle_" + cat)
+						.attr("fill", "white")
+					// $(".c_category_" + cat).children("circle")
+					// 	.attr("fill", "white")
+				} else {
+					$("#circle_" + color)
+						.attr("fill", "white")
+					// $(".c_category_" + cat).children("circle")
+					// 	.attr("fill", color)
+				}
 			}
 		})
 	})
@@ -494,12 +483,9 @@ window.mouseLegendItem =  function() {
 				let cat = $(this).attr("id").slice(5, 8),
 				color = $("#category_line_" + cat).attr("stroke");
 				$("#circle_" + cat)
-					.attr("r", 15)
-					.attr("stroke-width", 4.5)
-					.attr("cursor", "pointer"),
+					.attr("fill", color)
+					.css("cursor", "pointer"),
 				$("#label_" + cat)
-					.css("font-weight", "bold")
-					// .css("font-size", "1.5em")
 					.css("cursor", "pointer"),
 				$(".c_category_" + cat).children("circle")
 				    .attr("r", "1.5em")
@@ -530,7 +516,6 @@ window.mouseLegendItem =  function() {
 	    			.css("filter", "url(#drop-shadow)"),
 	    		$(this)
 	    			.attr("data-clicked", "true")
-	    			// .css("filter", "url(#drop-shadow)")
 	    	} 
 	    	else {
 	    		$(".c_category_" + cat).each(function() {
@@ -547,27 +532,26 @@ window.mouseLegendItem =  function() {
 	    			.css("filter", "none"),
 	    		$(this)
 	    			.attr("data-clicked", "false")
-	    			// .css("filter", "none")
 	    	}
 	    	showArticles();
 		}),
 		$(".legend_item").mouseout(function() {
+			let cat = $(this).attr("id").slice(5, 8);
 			if (mobile == false) {
-				let cat = $(this).attr("id").slice(5, 8);
-				$("#circle_" + cat)
-					.attr("r", 10)
-					.attr("stroke-width", 3.57),
-				$("#label_" + cat)
-					.css("font-weight", "normal"),
-					// .css("font-size", "1em"),
+
 				$(".c_category_" + cat).children("circle")
-				    .attr("r", cluster.radius)
+					.attr("r", cluster.radius)
 					.attr("stroke-width", cluster.strokeWidth),
 				$("#category_line_" + cat)
 					.attr("stroke-width", categoryLine.width),
 				$(".a_category_" + cat)
-				    .css({"border-left-color": "white", 
-				    	"border-left-width":"0"})
+					   .css({"border-left-color": "white", 
+					    	"border-left-width":"0"});
+
+				if ($(this).attr("data-clicked") == "false") {
+					$("#circle_" + cat)
+						.attr("fill", "white")
+				}
 			}
 		})
 	})
@@ -580,17 +564,13 @@ window.mouseCluster = function() {
 			if (mobile == false) {
 			    let page = $(this).attr("id").slice(8, 9),
 			        cat = $(this).attr("id").slice(10, 13),
-			        color = $(this).children("circle").attr("stroke"); // HERE
+			        color = $(this).children("circle").attr("stroke");
 			    $(this).children("circle")
 			    	.attr("r", "1.5em")
 					.attr("stroke-width", "0.6em")
 			        .attr("cursor", "pointer"),
 			    $("#circle_" + cat)
-			    	.attr("r", 15)
-			    	.attr("stroke-width", 4.5),
-			    $("#label_" + cat)
-			    	.css("font-weight", "bold"),
-			    	// .css("font-size", "1.5em"),
+			    	.attr("fill", color),
 			    $(".article_" + page + "_" + cat)
 			    	.css({"border-left-color": color, 
 			     		  "border-left-width":"1em", 
@@ -604,15 +584,14 @@ window.mouseCluster = function() {
 				$(this).children("circle")
 				   	.attr("r", cluster.radius)
 					.attr("stroke-width", cluster.strokeWidth)
-			    $("#circle_" + cat)
-			    	.attr("r", 10)
-			    	.attr("stroke-width", 3.57),
-			    $("#label_" + cat)
-			    	.css("font-weight", "normal"),
-			    	// .css("font-size", "1em"),
 			    $(".article_" + page + "_" + cat)
 			    	.css({"border-left-color": "white", 
 			     		  "border-left-width":"0"})
+
+			    if ($("#item_" + cat).attr("data-clicked") == "false") {
+					$("#circle_" + cat)
+		    			.attr("fill", "white")
+				}
 			}
         }),
         $(".cluster").click(function() {
@@ -630,7 +609,6 @@ window.mouseCluster = function() {
         			.attr("data-clicked", "false"),
         		$("#item_" + cat)
         			.attr("data-clicked", "false"),
-        			// .css("filter", "none"),
         		$("#page_" + page)
         			.attr("data-clicked", "false")
         			.attr("filter", "none"),
@@ -658,11 +636,7 @@ window.mouseArticle = function() {
 		     		"border-left-width":"1em", 
 		     		"border-left-style":"solid"}),
 		    $("#circle_" + cat)
-		    	.attr("r", 15)
-		    	.attr("stroke-width", 4.5),
-		    $("#label_" + cat)
-		    	.css("font-weight", "bold"),
-		    	// .css("font-size", "1.5em"),
+		    	.attr("fill", color),
 		    $("#cluster_" + page + "_" + cat).children("circle")
 		    	.attr("r", "1.5em")
 				.attr("stroke-width", "0.6em")
@@ -673,15 +647,15 @@ window.mouseArticle = function() {
 		    $(this)
 		    	.css({"border-left-color": "white", 
 		     		"border-left-width":"0"}),
-		    $("#circle_" + cat)
-		    	.attr("r", 10)
-		    	.attr("stroke-width", 3.57),
-		    $("#label_" + cat)
-		    	.css("font-weight", "normal"),
-		    	// .css("font-size", "1em"),
 		    $("#cluster_" + page + "_" + cat).children("circle")
 		    	.attr("r", cluster.radius)
 				.attr("stroke-width", cluster.strokeWidth)
+
+			if ($("#item_" + cat).attr("data-clicked") == "false") {
+				$("#circle_" + cat)
+		    		.attr("fill", "white")
+			}
+
         })
 	})
 };
