@@ -236,7 +236,8 @@ class DoajController < ApplicationController
             kmap["categories"] = kmap_categories
             kmap["articles"] = kmap_results
 
-            @kmap = JSON.pretty_generate(kmap)
+            @kmap = kmap
+            #JSON.pretty_generate(kmap)
         else
             @kmap = "Couldn't access the DOAJ search, sorry"
         end
