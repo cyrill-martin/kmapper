@@ -33,19 +33,37 @@ THE SOFTWARE.  -->
   <body>
       <div id="container">
           <header id="header">
+
             <% if @show_kmapper %>
               <div id="logo_container">
                   <%= link_to "kmapperBETA", root_path %>
               </div>
             <% end %>
-              <div id="menu_container">
-                <% if @show_download %>
-                  <%= link_to "Download", "" %>
-                <% end %>
-                 <% if @show_about %>
-                  <%= link_to "About", about_path %>
-                <% end %>               
+
+            <div id="menu_container">
+
+              <% if @show_download %>
+                <%= link_to "Download", "#" %>
+              <% end %>
+
+               <% if @show_about %>
+                <%= link_to "About", about_path %>
+              <% end %>  
+
+            </div>
+
+            <% if @show_header_search %>
+              <div class="header_search">
+                <div class="search">
+                  <%= form_tag("/doaj", method: "get") do %>
+                    <%= label_tag(:q, "") %>
+                    <%= text_field_tag(:q, params[:q], placeholder: "Search DOAJ") %>
+                    <%= submit_tag("Search", name: "") %>
+                  <% end %>
+                </div>
               </div>
+            <% end %>
+
           </header>
           <div id="main">
               <%= yield %>

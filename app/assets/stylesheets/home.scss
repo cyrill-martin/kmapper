@@ -14,44 +14,12 @@
   	transform: translate(-50%, -50%);
 }
 
-.intro {
-	text-align: center;
+.intro p {
+	font-size: 0.9em;
+	
 }
 
-.home_search {
-	overflow: auto;
-	border-radius: 4px;
-	-moz-border-radius: 4px;
-	-webkit-border-radius: 4px;
-	-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  	outline: 0;
-  	width: 100%;
-}
 
-.home_search input[type="text"] {
-	border: 0px;
-	width: 67%;
-	padding: 10px 10px;
-}
-
-.home_search input[type="submit"] {
-	border: 0px;
-	background: none;
-	background-color: rgba(38, 50, 56, 0.8);
-	color: #fff;
-	float: right;
-	padding: 10px;
-	border-radius-top-right: 4px;
-	-moz-border-radius-top-right: 4px;
-	-webkit-border-radius-top-right: 4px;
-	border-radius-bottom-right: 4px;
-	-moz-border-radius-bottom-right: 4px;
-	-webkit-border-radius-bottom-right: 4px;
-    cursor:pointer;
-  	outline: 0;
-  	-webkit-appearance: none;
-}
 
 /* ===========================
    ====== Medua Query for Search Box ====== 
@@ -61,14 +29,9 @@
 	
 	.home {
 		position: absolute;
-		top: 50%;
+		top: 35%;
   		left: 50%;
 		width: 95%;
-	}
-
-	.home_search {
-		width: 95%;
-		margin: 0 auto;
 	}
 
 }

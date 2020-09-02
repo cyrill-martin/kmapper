@@ -56,18 +56,60 @@ a:hover, a:focus {
 header {
 	position: fixed;
 	top: 0;
-	height: 60px;
+	height: 54px;
 	width: 100%;
 	padding: 15px 0 0 15px;
 	background-color: white;
 	z-index: 20;
 }
 
+.search {
+	overflow: auto;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  	outline: 0;
+}
+
+.search input[type="text"] {
+	border: 0px;
+	width: 67%;
+	padding: 10px 10px;
+	background-color: rgba(255, 255, 255, 0.8);
+}
+
+.search input[type="submit"] {
+	border: 0px;
+	background: none;
+	background-color: rgba(38, 50, 56, 0.8);
+	color: #fff;
+	float: right;
+	padding: 10px;
+	border-radius-top-right: 4px;
+	-moz-border-radius-top-right: 4px;
+	-webkit-border-radius-top-right: 4px;
+	border-radius-bottom-right: 4px;
+	-moz-border-radius-bottom-right: 4px;
+	-webkit-border-radius-bottom-right: 4px;
+    cursor:pointer;
+  	outline: 0;
+  	-webkit-appearance: none;
+}
+
+.header_search {
+	position: absolute; 
+	left: 180px; 
+	width: 40%;
+
+}
+
 #logo_container {
 	position: relative;
 	float: left;
 	width: 150px;
-	height: 100%;
+	height: 37px;
 	font-size: 1em;
 }
 
@@ -78,7 +120,7 @@ header {
 }
 
 #main {
-	margin-top: 65px;
+	margin-top: 54px;
 	padding: 0 15px 0 15px;
 	height: 100%;
 }
@@ -101,24 +143,22 @@ header {
 	}
 }
 
-/*@media only screen and (max-width: 750px) {
+@media only screen and (max-width: 750px) {
 
 	header {
-		margin-bottom: 15px;
+		position: relative;
 	}
 
-	form.search {
-		padding-right: 5px;
-
+	#main {
+		margin: 0;
 	}
 
-	form.search input[type=text] {
-		width: 90%;
-		float: left;
+	.header_search {
+		position: relative;
+		left: 0;
+		width: 100%;
+		display: inline-block;
+		padding: 0 15px 0 0;
 	}
 
-	form.search button {
-		width: 10%;
-		float: left;
-	}
- }*/
+ }

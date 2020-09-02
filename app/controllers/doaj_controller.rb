@@ -6,6 +6,7 @@ class DoajController < ApplicationController
         @show_kmapper = true
         @show_about = true
         @show_download = true
+        @show_header_search = true
         # Get search query and do URL encoding
         query = URI::encode(params[:q])
 

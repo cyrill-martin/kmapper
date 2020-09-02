@@ -1,12 +1,5 @@
 <!-- kmapper map -->
 <div id="kmap_wrapper">
-	<div class="doaj_show_search">
-		<%= form_tag("/doaj", method: "get") do %>
-			<%= label_tag(:q, "") %>
-			<%= text_field_tag(:q, params[:q], placeholder: "Search DOAJ") %>
-			<%= submit_tag("Search", name: "") %>
-		<% end %>
-	</div>
 	<div id="kmap_map">
 		<% if false %>
 		<div id="info">
