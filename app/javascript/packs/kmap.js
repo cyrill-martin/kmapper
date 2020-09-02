@@ -258,7 +258,7 @@ window.drawKmap = function(kmap_object, append_to) {
         .attr("x", 420)
         .attr("y", 30)
 		.attr("font-size", "1.1em")
-		.attr("fill", pageLabel.fill)
+		// .attr("fill", pageLabel.fill)
 		.attr("cursor", "pointer");
 };
 
@@ -570,8 +570,9 @@ window.mouseCluster = function() {
 			        cat = $(this).attr("id").slice(10, 13),
 			        color = $(this).children("circle").attr("stroke");
 			    $(this).children("circle")
-			    	.attr("r", "1.5em")
-					.attr("stroke-width", "0.6em")
+			    	.attr("fill", color)
+			    	// .attr("r", "1.5em")
+					// .attr("stroke-width", "0.6em")
 			        .attr("cursor", "pointer"),
 			    $("#circle_" + cat)
 			    	.attr("fill", color),
@@ -586,8 +587,9 @@ window.mouseCluster = function() {
 			    let page = $(this).attr("id").slice(8, 9),
 			        cat = $(this).attr("id").slice(10, 13);
 				$(this).children("circle")
-				   	.attr("r", cluster.radius)
-					.attr("stroke-width", cluster.strokeWidth)
+					.attr("fill", "white"),
+				   	// .attr("r", cluster.radius)
+					// .attr("stroke-width", cluster.strokeWidth)
 			    $(".article_" + page + "_" + cat)
 			    	.css({"border-left-color": "white", 
 			     		  "border-left-width":"0"})
