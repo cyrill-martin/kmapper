@@ -680,10 +680,3 @@ window.resetKmap = function() {
         })
 	})
 };
-
-mousePageLine();
-mouseCluster();
-mouseCategoryLine();
-mouseLegendItem();
-mouseArticle();
-resetKmap();
