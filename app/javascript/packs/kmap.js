@@ -90,30 +90,30 @@ window.drawKmap = function(kmap_object, append_to) {
 		.attr("id", "kmap");
 
 	// Shadow
-	let defs = svg.append("defs");
-	let dropShadowFilter = defs.append("svg:filter")
-	  .attr("id", "drop-shadow")
-	  .attr("filterUnits", "userSpaceOnUse")
-	  .attr("width", "350%")
-	  .attr("height", "350%");
-	dropShadowFilter.append("svg:feGaussianBlur")
-	  .attr("in", "SourceGraphic")
-	  .attr("stdDeviation", 2)
-	  .attr("result", "blur-out");
-	dropShadowFilter.append("svg:feColorMatrix")
-	  .attr("in", "blur-out")
-	  .attr("type", "hueRotate")
-	  .attr("values", 180)
-	  .attr("result", "color-out");
-	dropShadowFilter.append("svg:feOffset")
-	  .attr("in", "color-out")
-	  .attr("dx", 3)
-	  .attr("dy", 3)
-	  .attr("result", "the-shadow");
-	dropShadowFilter.append("svg:feBlend")
-	  .attr("in", "SourceGraphic")
-	  .attr("in2", "the-shadow")
-	  .attr("mode", "normal");
+	// let defs = svg.append("defs");
+	// let dropShadowFilter = defs.append("svg:filter")
+	//   .attr("id", "drop-shadow")
+	//   .attr("filterUnits", "userSpaceOnUse")
+	//   .attr("width", "350%")
+	//   .attr("height", "350%");
+	// dropShadowFilter.append("svg:feGaussianBlur")
+	//   .attr("in", "SourceGraphic")
+	//   .attr("stdDeviation", 2)
+	//   .attr("result", "blur-out");
+	// dropShadowFilter.append("svg:feColorMatrix")
+	//   .attr("in", "blur-out")
+	//   .attr("type", "hueRotate")
+	//   .attr("values", 180)
+	//   .attr("result", "color-out");
+	// dropShadowFilter.append("svg:feOffset")
+	//   .attr("in", "color-out")
+	//   .attr("dx", 3)
+	//   .attr("dy", 3)
+	//   .attr("result", "the-shadow");
+	// dropShadowFilter.append("svg:feBlend")
+	//   .attr("in", "SourceGraphic")
+	//   .attr("in2", "the-shadow")
+	//   .attr("mode", "normal");
 
 	// Drawing the page lines
     svg.selectAll("page")
@@ -181,8 +181,8 @@ window.drawKmap = function(kmap_object, append_to) {
     	})
     	.attr("opacity", categoryLine.opacity)
     	.attr("stroke-width", categoryLine.width)
-    	.attr("data-clicked", "false")
-    	.attr("filter", "none");
+    	.attr("data-clicked", "false");
+    	// .attr("filter", "none");
 	// Drawing the article clusters and writing the article counts
 	for (let category of kmap_object.categories) {
 		let id = category.id;
@@ -202,8 +202,8 @@ window.drawKmap = function(kmap_object, append_to) {
 				return "cluster_" + d.page + "_" + id;
 			})
 			.attr("cursor", "pointer")
-			.attr("data-clicked", "false")
-			.attr("filter", "none");
+			.attr("data-clicked", "false"); 
+			// .attr("filter", "none");
 		// Clusters
 		clusterGroup.append("circle")
 			.attr("cx", function(d) {
@@ -258,22 +258,26 @@ window.drawKmap = function(kmap_object, append_to) {
         .attr("x", 420)
         .attr("y", 30)
 		.attr("font-size", "1.1em")
-		// .attr("fill", pageLabel.fill)
+		.attr("fill", pageLabel.fill)
 		.attr("cursor", "pointer");
+};
+
+function toggleClicked(element) {
+	$(this).attr("data-clicked", ($(this).attr("data-clicked") == "false" ? true : false));
 };
 
 function coolCluster(element) {
 	let color = $(element).children("circle").attr("stroke");
 	$(element).children("circle")
-		.attr("fill", color)
-        .attr("filter", "url(#drop-shadow)"),
+		.attr("fill", color),
+        // .attr("filter", "url(#drop-shadow)"),
     $(element).attr("data-clicked", "true")
 }; 
 
 function uncoolCluster(element) {
 	$(element).children("circle")
-        .attr("fill", "white")
-        .attr("filter", "none"),
+        .attr("fill", "white"),
+        // .attr("filter", "none"),
     $(element).attr("data-clicked", "false")
 };
 
@@ -322,22 +326,15 @@ window.mousePageLine = function() {
 				for (i = 0; i < catArray.length; ++i) {
 				    let article = $(".a_page_" + page + ".a_category_" + catArray[i]);
 				    let color = $("#category_line_" + catArray[i]).attr("stroke");
-				    article
-			    		.css({"border-left-color": color, 
-			 		  		  "border-left-width":"1em", 
-			 		  		  "border-left-style":"solid"}),
+				    article.find("a")
+				    	.css("color", color),
 			        $("#circle_" + catArray[i])
+			        	.attr("fill", color),
+			        $("#cluster_" + page + "_" + catArray[i]).children("circle")
 			        	.attr("fill", color)
 				};
 			    $(this)
-					.attr("stroke-width", "0.5em")
 			        .attr("cursor", "pointer")
-			    $("#pageLabel_" + page)
-			    	.css("font-size", "1.1em")
-			    	.attr("x", canvas.x0 + 32),
-			   	$(".c_page_" + page).children("circle")
-			   		.attr("r", "1.5em")
-					.attr("stroke-width", "0.6em")
 			}
 	    }),
 	    $(".page").click(function() {
@@ -373,24 +370,17 @@ window.mousePageLine = function() {
 				for (i = 0; i < catArray.length; ++i) {
 				    let article = $(".a_page_" + page + ".a_category_" + catArray[i]);
 				    let color = $("#category_line_" + catArray[i]).attr("stroke");
-				    article
-			    		.css({"border-left-color": color, 
-			 		  		  "border-left-width":"1em", 
-			 		  		  "border-left-style":"solid"}),
-			        $("#circle_" + catArray[i])
-			        	.attr("fill", "white")
+			 		if ($("#cluster_" + page + "_" + catArray[i]).attr("data-clicked") == "false") {
+				        $("#cluster_" + page + "_" + catArray[i]).children("circle")
+				        	.attr("fill", "white")
+				    }
+				    if ($("#circle_" + catArray[i]).attr("data-clicked") == "false") {
+				    	$("#circle_" + catArray[i])
+				        	.attr("fill", "white")
+				    }
 				};
-			    $(this)
-					.attr("stroke-width", pageLine.width)
-			    $("#pageLabel_" + page)
-			    	.css("font-size", "0.9em")
-					.attr("x", canvas.x0 + 22),
-			   	$(".c_page_" + page).children("circle")
-			   		.attr("r", cluster.radius)
-					.attr("stroke-width", cluster.strokeWidth),
-				$(".a_page_" + page)
-					.css({"border-left-color": "white", 
-			    		  "border-left-width":"0"})
+				$(".a_page_" + page).find("a")
+					.css("color", "")
 			}
 		})
     })
@@ -404,17 +394,14 @@ window.mouseCategoryLine =  function() {
 				let cat = $(this).attr("id").slice(14, 17),
 					color = $(this).attr("stroke");
 				$(this)
-					.attr("stroke-width", "0.6em")
+					.attr("stroke-width", "0.5em")
 					.attr("cursor", "pointer"),
 				$(".c_category_" + cat).children("circle")
-				    .attr("r", "1.5em")
-					.attr("stroke-width", "0.6em"),
+					.attr("fill", color),
 				$("#circle_" + cat)
 					.attr("fill", color),
-				$(".a_category_" + cat)
-					.css({"border-left-color": color, 
-				 		  "border-left-width":"1em", 
-				 		  "border-left-style":"solid"})
+				$(".a_category_" + cat).find("a")
+					.css("color", color)
 			}
 		}),
 		$(".category_line").click(function() {
@@ -429,11 +416,11 @@ window.mouseCategoryLine =  function() {
 	    		$("#item_" + cat)
 	    			.attr("data-clicked", "true"),
 	    		$("#circle_" + cat)
-	    			.attr("fill", color)
-	    			.css("filter", "url(#drop-shadow)"),
+	    			.attr("fill", color), 
+	    			// .css("filter", "url(#drop-shadow)"),
 	    		$(this)
 	    			.attr("data-clicked", "true")
-	    			.attr("filter", "url(#drop-shadow)")
+	    			// .attr("filter", "url(#drop-shadow)")
 	    	} 
 	    	else {
 	    		$(".c_category_" + cat).each(function() {
@@ -444,11 +431,11 @@ window.mouseCategoryLine =  function() {
 	    		$("#item_" + cat)
 	    			.attr("data-clicked", "false"),
 	    		$("#circle_" + cat)
-	    			.attr("fill", "white")
-	    			.css("filter", "none"),
+	    			.attr("fill", "white"), 
+	    			// .css("filter", "none"),
 	    		$(this)
 	    			.attr("data-clicked", "false")
-	    			.attr("filter", "none")
+	    			// .attr("filter", "none")
 	    	}
 	    	showArticles();
 		}),
@@ -457,23 +444,23 @@ window.mouseCategoryLine =  function() {
 				let cat = $(this).attr("id").slice(14, 17);
 				$(this)
 					.attr("stroke-width", categoryLine.width),
-				$(".c_category_" + cat).children("circle")
-				    .attr("r", cluster.radius)
-					.attr("stroke-width", cluster.strokeWidth),
-				$(".a_category_" + cat)
-				    .css({"border-left-color": "white", 
-				    	"border-left-width":"0"})
+				$(".a_category_" + cat).find("a")
+					.css("color", "")
 				if ($(this).attr("data-clicked") == "false") {
 					$("#circle_" + cat)
 						.attr("fill", "white")
-					// $(".c_category_" + cat).children("circle")
-					// 	.attr("fill", "white")
-				} else {
-					$("#circle_" + color)
-						.attr("fill", "white")
-					// $(".c_category_" + cat).children("circle")
-					// 	.attr("fill", color)
 				}
+				let pageArray = [];
+				$(".c_category_" + cat).each(function() {
+			    	pageArray.push(this.id.slice(8, 9));
+			    });
+				let i;
+				for (i = 0; i < pageArray.length; ++i) {
+					if ($("#cluster_" + pageArray[i] + "_" + cat).attr("data-clicked") == "false") {
+						$("#cluster_" + pageArray[i] + "_" + cat).children("circle")
+						.attr("fill", "white")
+					}
+				};
 			}
 		})
 	})
@@ -492,14 +479,11 @@ window.mouseLegendItem =  function() {
 				$("#label_" + cat)
 					.css("cursor", "pointer"),
 				$(".c_category_" + cat).children("circle")
-				    .attr("r", "1.5em")
-					.attr("stroke-width", "0.6em"),
+					.attr("fill", color),
 				$("#category_line_" + cat)
-					.attr("stroke-width", "0.6em"),
-				$(".a_category_" + cat)
-					.css({"border-left-color": color, 
-				 		"border-left-width":"1em", 
-				 		"border-left-style":"solid"})
+					.attr("stroke-width", "0.5em"),
+				$(".a_category_" + cat).find("a")
+					.css("color", color)
 			}
 		}),
 		$(".legend_item").click(function() {
@@ -512,12 +496,12 @@ window.mouseLegendItem =  function() {
 				$(".a_category_" + cat)
 	    			.attr("data-clicked", "true"),
 	    		$("#category_line_" + cat)
-	    			.attr("data-clicked", "true")
-	    			.attr("filter", "url(#drop-shadow)")
+	    			.attr("data-clicked", "true"),
+	    			// .attr("filter", "url(#drop-shadow)")
 	    		$("#circle_" + cat)
 	    			.attr("data-clicked", "true")
-	    			.attr("fill", color)
-	    			.css("filter", "url(#drop-shadow)"),
+	    			.attr("fill", color),
+	    			// .css("filter", "url(#drop-shadow)"),
 	    		$(this)
 	    			.attr("data-clicked", "true")
 	    	} 
@@ -528,12 +512,12 @@ window.mouseLegendItem =  function() {
 				$(".a_category_" + cat)
 	    			.attr("data-clicked", "false"),
 	    		$("#category_line_" + cat)
-	    			.attr("data-clicked", "false")
-	    			.attr("filter", "none"),
+	    			.attr("data-clicked", "false"), 
+	    			// .attr("filter", "none"),
 	    		$("#circle_" + cat)
 	    			.attr("data-clicked", "false")
-	    			.attr("fill", "white")
-	    			.css("filter", "none"),
+	    			.attr("fill", "white"), 
+	    			// .css("filter", "none"),
 	    		$(this)
 	    			.attr("data-clicked", "false")
 	    	}
@@ -542,20 +526,25 @@ window.mouseLegendItem =  function() {
 		$(".legend_item").mouseout(function() {
 			let cat = $(this).attr("id").slice(5, 8);
 			if (mobile == false) {
-
-				$(".c_category_" + cat).children("circle")
-					.attr("r", cluster.radius)
-					.attr("stroke-width", cluster.strokeWidth),
 				$("#category_line_" + cat)
 					.attr("stroke-width", categoryLine.width),
-				$(".a_category_" + cat)
-					   .css({"border-left-color": "white", 
-					    	"border-left-width":"0"});
-
+				$(".a_category_" + cat).find("a")
+					.css("color", "")
 				if ($(this).attr("data-clicked") == "false") {
 					$("#circle_" + cat)
 						.attr("fill", "white")
-				}
+				};
+				let pageArray = [];
+				$(".c_category_" + cat).each(function() {
+			    	pageArray.push(this.id.slice(8, 9));
+			    });
+				let i;
+				for (i = 0; i < pageArray.length; ++i) {
+					if ($("#cluster_" + pageArray[i] + "_" + cat).attr("data-clicked") == "false") {
+						$("#cluster_" + pageArray[i] + "_" + cat).children("circle")
+						.attr("fill", "white")
+					}
+				};
 			}
 		})
 	})
@@ -571,29 +560,23 @@ window.mouseCluster = function() {
 			        color = $(this).children("circle").attr("stroke");
 			    $(this).children("circle")
 			    	.attr("fill", color)
-			    	// .attr("r", "1.5em")
-					// .attr("stroke-width", "0.6em")
 			        .attr("cursor", "pointer"),
 			    $("#circle_" + cat)
 			    	.attr("fill", color),
-			    $(".article_" + page + "_" + cat)
-			    	.css({"border-left-color": color, 
-			     		  "border-left-width":"1em", 
-			     		  "border-left-style":"solid"})
+			    $(".article_" + page + "_" + cat).find("a")
+			    	.css("color", color)
 			}
         }),
         $(".cluster").mouseout(function() {
        		if (mobile == false) {
 			    let page = $(this).attr("id").slice(8, 9),
 			        cat = $(this).attr("id").slice(10, 13);
-				$(this).children("circle")
-					.attr("fill", "white"),
-				   	// .attr("r", cluster.radius)
-					// .attr("stroke-width", cluster.strokeWidth)
-			    $(".article_" + page + "_" + cat)
-			    	.css({"border-left-color": "white", 
-			     		  "border-left-width":"0"})
-
+			    if ($(this).attr("data-clicked") == "false") {
+					$(this).children("circle")
+						.attr("fill", "white")
+				}
+			    $(".article_" + page + "_" + cat).find("a")
+			    	.css("color", "")
 			    if ($("#item_" + cat).attr("data-clicked") == "false") {
 					$("#circle_" + cat)
 		    			.attr("fill", "white")
@@ -616,14 +599,14 @@ window.mouseCluster = function() {
         		$("#item_" + cat)
         			.attr("data-clicked", "false"),
         		$("#page_" + page)
-        			.attr("data-clicked", "false")
-        			.attr("filter", "none"),
+        			.attr("data-clicked", "false"), 
+        			// .attr("filter", "none"),
         		$("#category_line_" + cat)
-        			.attr("data-clicked", "false")
-        			.attr("filter", "none"),
+        			.attr("data-clicked", "false"), 
+        			// .attr("filter", "none"),
         		$("#circle_" + cat)
         			.attr("fill", "white")
-        			.css("filter", "none")
+        			// .css("filter", "none")
         	}
         	showArticles();
         })
@@ -637,31 +620,29 @@ window.mouseArticle = function() {
 		    let page = $(this).attr("id").slice(12, 13),
 		        cat = $(this).attr("id").slice(14, 17),
 		        color = $("#category_line_" + cat).attr("stroke");
-		    $(this)
-		    	.css({"border-left-color": color, 
-		     		"border-left-width":"1em", 
-		     		"border-left-style":"solid"}),
+		    $(this).find("a")
+		    	.css("color", color),
 		    $("#circle_" + cat)
 		    	.attr("fill", color),
 		    $("#cluster_" + page + "_" + cat).children("circle")
-		    	.attr("r", "1.5em")
-				.attr("stroke-width", "0.6em")
+		    	.attr("fill",  color)
+		    	.attr("r", "1.2em")
         }),
         $(".article").mouseout(function() {
 		    let page = $(this).attr("id").slice(12, 13),
 		        cat = $(this).attr("id").slice(14, 17);
-		    $(this)
-		    	.css({"border-left-color": "white", 
-		     		"border-left-width":"0"}),
+		    $(this).find("a")
+		    	.css("color", "")
 		    $("#cluster_" + page + "_" + cat).children("circle")
 		    	.attr("r", cluster.radius)
-				.attr("stroke-width", cluster.strokeWidth)
-
+		    if ($("#cluster_" + page + "_" + cat).attr("data-clicked") == "false") { 
+			    $("#cluster_" + page + "_" + cat).children("circle")
+			    	.attr("fill", "white")
+			}
 			if ($("#item_" + cat).attr("data-clicked") == "false") {
 				$("#circle_" + cat)
 		    		.attr("fill", "white")
 			}
-
         })
 	})
 };
@@ -672,12 +653,12 @@ window.resetKmap = function() {
         $("#resetKmap").click(function() {
         	uncoolCluster(".cluster");
         	$(".article, .cluster, .category_line, .page, .legend_item")
-        		.attr("data-clicked", "false")
-	    		.attr("filter", "none"),
+        		.attr("data-clicked", "false"),
+	    		// .attr("filter", "none"),
 	    	$(".category_circle")
 	    		.attr("fill", "white")
-	    		.attr("data-clicked", "false")
-	    		.css("filter", "none");
+	    		.attr("data-clicked", "false");
+	    		// .css("filter", "none");
         	showArticles();
         })
 	})
