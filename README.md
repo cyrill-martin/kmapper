@@ -11,7 +11,7 @@ To disappoint everyone upfront, there's no fancy topic modeling or NLP going on 
 
 ## Why kmapper?
 
-Tackling complex real-world problems needs interdisciplinary research and an open and easy to navigate knowledge landscape. kmapper is short for the cheesy term "knowledge mapper". 
+Tackling complex real-world problems needs interdisciplinary research and an open and easy to navigate knowledge landscape. kmapper is the knowledge mapper. 
 
 By showing a little bit more than the top 10 results of a search and by also boldly showing different scientific disciplines involved with a user's search, kmapper breaks discipline silos without changing the disciplinarity of journal publications and review processes in place. In that way, kmapper also pushes for serendipity. 
 
