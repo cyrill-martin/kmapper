@@ -148,7 +148,12 @@ header {
   z-index: 1;
 }
 
-.dropdown-content a {
+.dropdown-content div {
+	width: 100%;
+	margin-top: 5px;
+}
+
+.dropdown-content div a {
 	cursor: pointer;
 }
 

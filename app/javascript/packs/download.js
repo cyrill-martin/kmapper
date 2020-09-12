@@ -70,10 +70,14 @@ window.downloadVisible = function(object) {
          ids.push(parseInt(this.id.slice(8,11)));
       });
 
-      let newObject = createNewObject(object, ids);
-      let FileSaver = require('file-saver');
-      let blob = new Blob([JSON.stringify(newObject, null, 4)], {type: "application/json"});
-      FileSaver.saveAs(blob, "visibleArticles.json");
+      if (ids.length == 0) {
+        $("#downloadAll").click();
+      } else {
+        let newObject = createNewObject(object, ids);
+        let FileSaver = require('file-saver');
+        let blob = new Blob([JSON.stringify(newObject, null, 4)], {type: "application/json"});
+        FileSaver.saveAs(blob, "visibleArticles.json");
+      }
     })
   });
 };
