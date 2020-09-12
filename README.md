@@ -52,7 +52,7 @@ kmapper is licensed under the [MIT license][MIT].
 1. Run ``rake db:migrate`` to create the database tables.
 1. Seed the database with the files provided in *db*. 
    - You either copy the contents of *seed_kmappers.rb* to *seeds.rb*, run ``rake db:seed`` and repeat this for *seed_lccs.rb* or you write your own custom rake task to seed the two files.
-1. Run ``rails server`` and go to http://localhost:3000 to see if everything is working. **It's probably not - welcome to hell!** A [Dockerfile][Docker] will hopefully follow soon. 
+1. Run ``rails server`` and go to http://localhost:3000 to see if everything is working. 
 
 
 [DOAJ]: https://doaj.org
