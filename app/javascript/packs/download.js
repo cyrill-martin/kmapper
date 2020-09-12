@@ -1,3 +1,5 @@
+import { saveAs } from 'file-saver';
+
 /* When the user clicks on the button, 
 toggle between hiding and showing the dropdown content */
 window.showDownloadMenu = function() {
@@ -12,10 +14,10 @@ window.showDownloadMenu = function() {
 window.onclick = function(event) {
   $(document).ready(function() {
     if (!event.target.matches(".dropbtn")) {
-      var dropdowns = document.getElementsByClassName("dropdown-content");
-      var i;
+      let dropdowns = document.getElementsByClassName("dropdown-content");
+      let i;
       for (i = 0; i < dropdowns.length; i++) {
-        var openDropdown = dropdowns[i];
+        let openDropdown = dropdowns[i];
         if (openDropdown.classList.contains("dropdown-show")) {
           openDropdown.classList.remove("dropdown-show");
         }
@@ -24,18 +26,54 @@ window.onclick = function(event) {
   });
 };
 
-window.downloadAll = function() {
+window.downloadAll = function(object) {
   $(document).ready(function() {
     $("#downloadAll").click(function() {
-      alert("You will be able to download json metadata of all articles");
+      let FileSaver = require('file-saver');
+      let blob = new Blob([JSON.stringify(object, null, 4)], {type: "application/json"});
+      FileSaver.saveAs(blob, "allArticles.json");
+      // alert("You will be able to download json metadata of all articles");
     })
   });
 };
 
-window.downloadVisible = function() {
+function createNewObject(object, ary) {
+  let copiedObject = Object.assign({}, object);
+
+  console.log(ary);
+  console.log("Passed object:")
+  console.log(object);
+
+  delete copiedObject.total;
+  delete copiedObject.page;
+  delete copiedObject.pageSize;
+  delete copiedObject.next;
+  delete copiedObject.last;
+
+  let newResults = [];
+  let i;
+  for (i = 0; i < ary.length; ++i) {
+    newResults.push(object.results[ary[i]]);
+  }
+
+  copiedObject.results = newResults;
+  return copiedObject;
+};
+
+window.downloadVisible = function(object) {
   $(document).ready(function() {
     $("#downloadVisible").click(function() {
-      alert("You will be able to download json metadata of the visible articles");
+      // All --> download all
+      // Else:
+      let ids = [];
+      $('.article[data-clicked="true"]').each(function() {
+         ids.push(parseInt(this.id.slice(8,11)));
+      });
+
+      let newObject = createNewObject(object, ids);
+      let FileSaver = require('file-saver');
+      let blob = new Blob([JSON.stringify(newObject, null, 4)], {type: "application/json"});
+      FileSaver.saveAs(blob, "visibleArticles.json");
     })
   });
 };
@@ -43,7 +81,9 @@ window.downloadVisible = function() {
 window.downloadKmap = function(object) {
   $(document).ready(function() {
     $("#downloadKmap").click(function() {
-      alert("You will be able to download the kmap json data");
+      let FileSaver = require('file-saver');
+      let blob = new Blob([JSON.stringify(object, null, 4)], {type: "application/json"});
+      FileSaver.saveAs(blob, "kmap.json");
     })
   });
 };

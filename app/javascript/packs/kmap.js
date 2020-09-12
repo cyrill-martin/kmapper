@@ -89,32 +89,6 @@ window.drawKmap = function(kmap_object, append_to) {
 		.attr("viewBox", "0 0 " + canvas.size*0.5 + " " + canvas.size)
 		.attr("id", "kmap");
 
-	// Shadow
-	// let defs = svg.append("defs");
-	// let dropShadowFilter = defs.append("svg:filter")
-	//   .attr("id", "drop-shadow")
-	//   .attr("filterUnits", "userSpaceOnUse")
-	//   .attr("width", "350%")
-	//   .attr("height", "350%");
-	// dropShadowFilter.append("svg:feGaussianBlur")
-	//   .attr("in", "SourceGraphic")
-	//   .attr("stdDeviation", 2)
-	//   .attr("result", "blur-out");
-	// dropShadowFilter.append("svg:feColorMatrix")
-	//   .attr("in", "blur-out")
-	//   .attr("type", "hueRotate")
-	//   .attr("values", 180)
-	//   .attr("result", "color-out");
-	// dropShadowFilter.append("svg:feOffset")
-	//   .attr("in", "color-out")
-	//   .attr("dx", 3)
-	//   .attr("dy", 3)
-	//   .attr("result", "the-shadow");
-	// dropShadowFilter.append("svg:feBlend")
-	//   .attr("in", "SourceGraphic")
-	//   .attr("in2", "the-shadow")
-	//   .attr("mode", "normal");
-
 	// Drawing the page lines
     svg.selectAll("page")
     	.data(canvas.radii)
@@ -260,10 +234,6 @@ window.drawKmap = function(kmap_object, append_to) {
 		.attr("font-size", "1.1em")
 		.attr("fill", pageLabel.fill)
 		.attr("cursor", "pointer");
-};
-
-function toggleClicked(element) {
-	$(this).attr("data-clicked", ($(this).attr("data-clicked") == "false" ? true : false));
 };
 
 function coolCluster(element) {
