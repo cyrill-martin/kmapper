@@ -3,6 +3,34 @@
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
 
+// Original
+$kmapFont: 'Liberation Mono';
+$categoryFont: 'Tex Gyre Heros';
+
+$articleCategoryFont: 'Liberation Mono';
+$titleFont: 'Tex Gyre Heros bold';
+$journalFont: 'Liberation Mono italic';
+$authorFont: 'Liberation Mono';
+$authorFontSize: 0.8em;
+$citationFont: 'Liberation Mono';
+$citationFontSize: 0.8em;
+$abstractFont: 'Liberation Mono';
+$abstractFontSize: 0.8em;
+
+// $kmapFont: 'Lane';
+// $categoryFont: 'Lane';
+
+// $articleCategoryFont: 'Lane';
+// $titleFont: 'Lane';
+// $journalFont: 'Lane';
+// $authorFont: 'Lane';
+// $authorFontSize: 1em;
+// $citationFont: 'Lane';
+// $citationFontSize: 1em;
+// $abstractFont: 'Cormorant';
+// $abstractFontSize: 1em;
+
+
 #kmap_wrapper {
 	position: fixed;
 	left: 15px;
@@ -22,17 +50,17 @@
 
 }
 
-#info {
-	position: relative; 
-	padding: 5% 0 0 10%;
-	font-family: 'Liberation Mono';	
-}
+// #info {
+// 	position: relative; 
+//	padding: 5% 0 0 10%;
+//	font-family: 'Liberation Mono';	
+// }
 
 #kmap {
 	position: relative; 
 	padding: 5% 0 0 10%;
 	width: 80%;
-	font-family: 'Liberation Mono';
+	font-family: $kmapFont;
 }
 
 #kmap_legend {
@@ -81,7 +109,7 @@
 }
 
 .category_label {
-
+	font-family: $categoryFont;
 }
 
 #kmap_articles {
@@ -100,30 +128,30 @@
 }
 
 .a_category {
-	font-family: 'Liberation Mono';
+	font-family: $articleCategoryFont;
 	color: lightgrey;
 	padding: 0 0 5px 0;
 	font-size: 0.8em;
 }
 
 .title {
-	font-family: 'Tex Gyre Heros bold';
+	font-family: $titleFont;
 	padding: 0 0 10px 0;
 }
 
 .authors {
-	font-family: 'Liberation Mono';
+	font-family: $authorFont;
 	padding: 0 0 5px 0;
-	font-size: 0.8em;
+	font-size: $authorFontSize;
 }
 
 .citation {
-	font-family: 'Liberation Mono';
-	font-size: 0.8em;
+	font-family: $citationFont;
+	font-size: $citationFontSize;
 }
 
 .journal {
-	font-family: 'Liberation Mono italic';
+	font-family: $journalFont;
 }
 
 .year {
@@ -136,9 +164,9 @@
 }
 
 .abstract {
-	font-family: 'Liberation Mono';
+	font-family: $abstractFont;
 	padding: 10px 0 0 0;
-	font-size: 0.8em;
+	font-size: $abstractFontSize;
 }
 
 @media only screen and (max-width:1200px) {

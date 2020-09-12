@@ -11,21 +11,8 @@ require("channels")
 require("jquery")
 require("d3")
 require("packs/kmap")
+require("packs/download")
 
-// import drawKmap from './kmap'
-// window.drawKmap = drawKmap
-
-// import mousePageLine from './kmap'
-// window.mousePageLine = mousePageLine
-
-// import mouseCluster from './kmap'
-// window.mouseCluster = mouseCluster
-// import mouseCategoryLine from './kmap'
-// window.mouseCategoryLine = mouseCategoryLine
-// import mouseLegendItem from './kmap'
-// window.mouseLegendItem = mouseLegendItem
-// import mouseArticle from './kmap'
-// window.mouseArticle = mouseArticle
 
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)

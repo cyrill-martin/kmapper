@@ -616,34 +616,37 @@ window.mouseCluster = function() {
 // Hover/click article
 window.mouseArticle = function() {
     $(document).ready(function() {
-        $(".article").mouseover(function() {
-		    let page = $(this).attr("id").slice(12, 13),
-		        cat = $(this).attr("id").slice(14, 17),
-		        color = $("#category_line_" + cat).attr("stroke");
-		    $(this).find("a")
-		    	.css("color", color),
-		    $("#circle_" + cat)
-		    	.attr("fill", color),
-		    $("#cluster_" + page + "_" + cat).children("circle")
-		    	.attr("fill",  color)
-		    	.attr("r", "1.2em")
-        }),
-        $(".article").mouseout(function() {
-		    let page = $(this).attr("id").slice(12, 13),
-		        cat = $(this).attr("id").slice(14, 17);
-		    $(this).find("a")
-		    	.css("color", "")
-		    $("#cluster_" + page + "_" + cat).children("circle")
-		    	.attr("r", cluster.radius)
-		    if ($("#cluster_" + page + "_" + cat).attr("data-clicked") == "false") { 
+    	if (mobile == false) {
+	        $(".article").mouseover(function() {
+				    let page = $(this).attr("id").slice(12, 13),
+				        cat = $(this).attr("id").slice(14, 17),
+				        color = $("#category_line_" + cat).attr("stroke");
+				    $(this).find("a")
+				    	.css("color", color),
+				    $("#circle_" + cat)
+				    	.attr("fill", color),
+				    $("#cluster_" + page + "_" + cat).children("circle")
+				    	.attr("fill",  color)
+				    	.attr("r", "1.2em")
+
+	        }),
+	        $(".article").mouseout(function() {
+			    let page = $(this).attr("id").slice(12, 13),
+			        cat = $(this).attr("id").slice(14, 17);
+			    $(this).find("a")
+			    	.css("color", "")
 			    $("#cluster_" + page + "_" + cat).children("circle")
-			    	.attr("fill", "white")
-			}
-			if ($("#item_" + cat).attr("data-clicked") == "false") {
-				$("#circle_" + cat)
-		    		.attr("fill", "white")
-			}
-        })
+			    	.attr("r", cluster.radius)
+			    if ($("#cluster_" + page + "_" + cat).attr("data-clicked") == "false") { 
+				    $("#cluster_" + page + "_" + cat).children("circle")
+				    	.attr("fill", "white")
+				}
+				if ($("#item_" + cat).attr("data-clicked") == "false") {
+					$("#circle_" + cat)
+			    		.attr("fill", "white")
+				}
+	        })
+    	}
 	})
 };
 

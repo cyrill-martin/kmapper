@@ -31,46 +31,54 @@ THE SOFTWARE.  -->
   </head>
 
   <body>
-      <div id="container">
-          <header id="header">
+    <div id="container">
+        <header id="header">
 
-            <% if @show_kmapper %>
-              <div id="logo_container">
-                  <%= link_to "kmapperBETA", root_path %>
-              </div>
-            <% end %>
-
-            <div id="menu_container">
-
-              <% if @show_download %>
-                <%= link_to "Download", "#" %>
-              <% end %>
-
-               <% if @show_about %>
-                <%= link_to "About", about_path %>
-              <% end %>  
-
+          <% if @show_kmapper %>
+            <div id="logo_container">
+                <%= link_to(image_tag("kmapper_k.png", class: "logo_header"), root_path) %>
             </div>
+          <% end %>
 
-            <% if @show_header_search %>
-              <div class="header_search">
-                <div class="search">
-                  <%= form_tag("/doaj", method: "get") do %>
-                    <%= label_tag(:q, "") %>
-                    <%= text_field_tag(:q, params[:q], placeholder: "Search DOAJ") %>
-                    <%= submit_tag("Search", name: "") %>
-                  <% end %>
+          <div id="menu_container">
+            <% if @show_download %>
+                <a class="dropbtn">Download</a>
+                <div class="dropdown-content">
+                  <a id="downloadAll">• All articles</button><br>
+                  <a id="downloadVisible">• Visible articles</a><br>
+                  <a id="downloadKmap">• kmap data</a>
                 </div>
-              </div>
             <% end %>
 
-          </header>
-          <div id="main">
-              <%= yield %>
+            <% if @show_about %>
+              <%= link_to "About", about_path %>
+            <% end %> 
+
           </div>
-          <footer id="footer">
-          </footer>
-      </div>
+
+          <% if @show_header_search %>
+            <div class="header_search">
+              <div class="search">
+                <%= form_tag("/doaj", method: "get") do %>
+                  <%= label_tag(:q, "") %>
+                  <%= text_field_tag(:q, params[:q], placeholder: "Search DOAJ") %>
+                  <%= submit_tag("Search", name: "") %>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+
+        </header>
+        <div id="main">
+            <%= yield %>
+        </div>
+        <footer id="footer">
+        </footer>
+    </div>
+    <script>
+      downloadAll();
+      downloadVisible();
+      downloadKmap();
+    </script>
   </body>
-  
 </html>
