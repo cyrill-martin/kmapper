@@ -26,6 +26,8 @@ gem 'jbuilder', '~> 2.7'
 
 gem 'rest-client'
 
+gem 'meta-tags'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 

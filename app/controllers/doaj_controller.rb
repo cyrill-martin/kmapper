@@ -3,6 +3,31 @@ class DoajController < ApplicationController
     end
 
     def show
+
+        set_meta_tags(
+            title: "#{params[:q]}",
+            description: "Visualize \"" + params[:q] + "\" in an interdisciplinary context",
+            keywords: "#{params[:q]}, interdisciplinarity, visualization",
+            image: request.base_url + "/kmapper_k_social.png",
+            noindex: true,
+            nofollow: true,
+            twitter: {
+                site_name: "kmapper - The knowledge mapper",
+                card: "summary_large_image",
+                site: "@cyrill_martin",
+                description: "Visualize \"" + params[:q] + "\" in an interdisciplinary context",
+                image: request.base_url + "/kmapper_k_social.png"
+            },
+            og: {
+                url: request.original_url,
+                site_name: "kmapper",
+                title: "The knowledge mapper",
+                image: request.base_url + "/kmapper_k_social.png",
+                description: "Visualize \"" + params[:q] + "\" in an interdisciplinary context",
+                type: 'website'
+            }
+        )
+
         @show_kmapper = true
         @show_about = true
         @show_download = true
