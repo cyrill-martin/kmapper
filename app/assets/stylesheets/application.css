@@ -146,6 +146,7 @@ header {
 	right: 15px;
 	-ms-transform: translateY(-50%);
 	transform: translateY(-50%);
+	z-index: 100;
 }
 
 .dropbtn {
@@ -160,7 +161,6 @@ header {
   overflow: auto;
   background-color: white;
   padding: 5px 0 5px 5px;
-  z-index: 1;
 }
 
 .dropdown-content div {
