@@ -18,7 +18,8 @@ By showing a little bit more than the top 10 results of a search and by also bol
 ## What's the license?
 
 kmapper is licensed under the [MIT license][MIT]. 
-
+The kmapper logos are licensed under the [CC BY-NC-ND 4.0][CC BY-NC-ND 4.0] International License.
+Article metadata is provided by the Directory of Open Access Journals under the [CC BY-SA 4.0][CC BY-SA 4.0] International License.
 
 ## How to use and develop locally?
 
@@ -66,3 +67,5 @@ kmapper is licensed under the [MIT license][MIT].
 [Docker]: https://www.docker.com/
 [Node]: https://nodejs.org/
 [Yarn]: https://classic.yarnpkg.com/
+[CC BY-NC-ND 4.0]: https://creativecommons.org/licenses/by-nc-nd/4.0/
+[CC BY-SA 4.0]: https://creativecommons.org/licenses/by-sa/4.0/
