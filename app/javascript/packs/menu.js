@@ -4,8 +4,10 @@ import { saveAs } from 'file-saver';
 toggle between hiding and showing the dropdown content */
 window.showDownloadMenu = function() {
   $(document).ready(function() {
-    $(".dropbtn").click(function() {
-      $(".dropdown-content").toggleClass("dropdown-show");
+    $(".menu_item").click(function() {
+      console.log("hallo");
+      $(this).find(".menu_content").toggleClass("menu_content_show");
+      // $(".menu_content").toggleClass("menu_content_show");
     })
   });
 };
@@ -13,26 +15,36 @@ window.showDownloadMenu = function() {
 // Close the dropdown if the user clicks outside of it
 window.onclick = function(event) {
   $(document).ready(function() {
-    if (!event.target.matches(".dropbtn")) {
-      let dropdowns = document.getElementsByClassName("dropdown-content");
+    if (!event.target.matches(".menu_item")) {
+      let dropdowns = document.getElementsByClassName("menu_content");
       let i;
       for (i = 0; i < dropdowns.length; i++) {
         let openDropdown = dropdowns[i];
-        if (openDropdown.classList.contains("dropdown-show")) {
-          openDropdown.classList.remove("dropdown-show");
+        if (openDropdown.classList.contains("menu_content_show")) {
+          openDropdown.classList.remove("menu_content_show");
         }
       }
     }
   });
 };
 
+function createTimestamp() {
+  let now = new Date();
+  let timeString = now.getFullYear().toString() 
+    + (now.getMonth() +1).toString() 
+    + now.getDate().toString() 
+    + now.getHours().toString() 
+    + now.getMinutes().toString();
+  return timeString;
+};
+
 window.downloadAll = function(object) {
   $(document).ready(function() {
-    $("#downloadAll").click(function() {
+    $("#download_all").click(function() {
+      let timestamp = createTimestamp();
       let FileSaver = require('file-saver');
       let blob = new Blob([JSON.stringify(object, null, 4)], {type: "application/json"});
-      FileSaver.saveAs(blob, "allArticles.json");
-      // alert("You will be able to download json metadata of all articles");
+      FileSaver.saveAs(blob, timestamp + "_all_articles.json");
     })
   });
 };
@@ -62,21 +74,20 @@ function createNewObject(object, ary) {
 
 window.downloadVisible = function(object) {
   $(document).ready(function() {
-    $("#downloadVisible").click(function() {
-      // All --> download all
-      // Else:
+    $("#download_visible").click(function() {
       let ids = [];
       $('.article[data-clicked="true"]').each(function() {
          ids.push(parseInt(this.id.slice(8,11)));
       });
 
       if (ids.length == 0) {
-        $("#downloadAll").click();
+        $("#download_all").click();
       } else {
+        let timestamp = createTimestamp();
         let newObject = createNewObject(object, ids);
         let FileSaver = require('file-saver');
         let blob = new Blob([JSON.stringify(newObject, null, 4)], {type: "application/json"});
-        FileSaver.saveAs(blob, "visibleArticles.json");
+        FileSaver.saveAs(blob, timestamp + "_visible_articles.json");
       }
     })
   });
@@ -84,10 +95,11 @@ window.downloadVisible = function(object) {
 
 window.downloadKmap = function(object) {
   $(document).ready(function() {
-    $("#downloadKmap").click(function() {
+    $("#download_kmap").click(function() {
+      let timestamp = createTimestamp();
       let FileSaver = require('file-saver');
       let blob = new Blob([JSON.stringify(object, null, 4)], {type: "application/json"});
-      FileSaver.saveAs(blob, "kmap.json");
+      FileSaver.saveAs(blob, timestamp + "_kmap.json");
     })
   });
 };

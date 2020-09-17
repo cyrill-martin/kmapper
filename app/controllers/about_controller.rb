@@ -1,32 +1,32 @@
 class AboutController < ApplicationController
   def show
 
+  	@show_kmapper = true
+
     set_meta_tags(
-        title: "About the knowledge mapper",
+        title: "About kmapper",
         description: "Visualize your subject in an interdisciplinary context",
-        keywords: "reasearch, interdisciplinarity, visualization",
         image: request.base_url + "/kmapper_k_social.png",
+        url: request.original_url,
         noindex: true,
         nofollow: true,
         twitter: {
-            site_name: "kmapper - The knowledge mapper",
-            card: "summary_large_image",
-            site: "@cyrill_martin",
-            description: "Visualize your subject in an interdisciplinary context",
-            image: request.base_url + "/kmapper_k_social.png"
+            title: :title,
+            description: :description,
+            image: :image,
+            card: "summary",
+            creator: "@cyrill_martin",
+            site: "@cyrill_martin"
         },
         og: {
-            url: request.original_url,
             site_name: "kmapper",
-            title: "The knowledge mapper",
-            image: request.base_url + "/kmapper_k_social.png",
-            description: "Visualize your subject in an interdisciplinary context",
-            type: 'website'
+            title: :title,
+            description: :description,
+            image: :image,
+            url: :url,
+            type: "website"
         }
     )
 
-  	@show_kmapper = true
-  	@show_about = false
-  	@show_download = false
   end
 end

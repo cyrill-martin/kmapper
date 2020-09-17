@@ -1,32 +1,33 @@
 class HomeController < ApplicationController
   def home
+
+  	@show_about = true
+
     set_meta_tags(
         title: "The knowledge mapper",
         description: "Visualize your subject in an interdisciplinary context",
-        keywords: "reasearch, interdisciplinarity, visualization",
         image: request.base_url + "/kmapper_k_social.png",
+        keywords: "reasearch, interdisciplinarity, search, visualization",
+        url: request.original_url,
         noindex: true,
         nofollow: true,
         twitter: {
-            site_name: "kmapper - The knowledge mapper",
+        	title: :title,
+            description: :description,
+            image: :image,
             card: "summary_large_image",
-            site: "@cyrill_martin",
-            description: "Visualize your subject in an interdisciplinary context",
-            image: request.base_url + "/kmapper_k_social.png"
+            creator: "@cyrill_martin",
+            site: "@cyrill_martin"
         },
         og: {
-            url: request.original_url,
-            site_name: "kmapper",
-            title: "The knowledge mapper",
-            image: request.base_url + "/kmapper_k_social.png",
-            description: "Visualize your subject in an interdisciplinary context",
-            type: 'website'
+        	site_name: "kmapper",
+        	title: :title,
+            description: :description,
+        	image: :image,
+            url: :url,
+            type: "website"
         }
     )
 
-  	@show_kmapper = false
-  	@show_about = true
-  	@show_download = false
-  	@show_header_search = false
   end
 end

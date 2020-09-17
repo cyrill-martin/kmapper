@@ -4,34 +4,38 @@ class DoajController < ApplicationController
 
     def show
 
+        @show_kmapper = true
+        @show_header_search = true
+        @show_share = false
+        @show_download = true
+        @show_about = true
+
         set_meta_tags(
             title: "#{params[:q]}",
             description: "Visualize \"" + params[:q] + "\" in an interdisciplinary context",
-            keywords: "#{params[:q]}, interdisciplinarity, visualization",
             image: request.base_url + "/kmapper_k_social.png",
+            keywords: "#{params[:q]}, interdisciplinarity, visualization, search",
+            url: request.original_url,
             noindex: true,
             nofollow: true,
             twitter: {
-                site_name: "kmapper - The knowledge mapper",
-                card: "summary_large_image",
-                site: "@cyrill_martin",
-                description: "Visualize \"" + params[:q] + "\" in an interdisciplinary context",
-                image: request.base_url + "/kmapper_k_social.png"
+                title: :title,
+                description: :description,
+                image: :image,
+                card: "summary",
+                creator: "@cyrill_martin",
+                site: "@cyrill_martin"
             },
             og: {
-                url: request.original_url,
                 site_name: "kmapper",
-                title: "The knowledge mapper",
-                image: request.base_url + "/kmapper_k_social.png",
-                description: "Visualize \"" + params[:q] + "\" in an interdisciplinary context",
-                type: 'website'
+                title: :title,
+                description: :description,
+                image: :image,
+                url: :url,
+                type: "website"
             }
         )
 
-        @show_kmapper = true
-        @show_about = true
-        @show_download = true
-        @show_header_search = true
         # Get search query and do URL encoding
         query = URI::encode(params[:q])
 
