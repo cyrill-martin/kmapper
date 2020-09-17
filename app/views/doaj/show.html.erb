@@ -108,8 +108,8 @@
 		mouseLegendItem();
 		mouseArticle();
 		resetKmap();
-        showDownloadMenu();
-        downloadKmap(<%= raw(@kmap.to_json) %>);
+		openDropdown();
+        // downloadKmap(<%= raw(@kmap.to_json) %>);
         downloadAll(<%= raw(@response) %>);
         downloadVisible(<%= raw(@response) %>);
 	</script>

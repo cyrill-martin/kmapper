@@ -35,38 +35,52 @@ according to the terms and conditions of the Attribution-NonCommercial-NoDerivat
 
           <div id="menu_container">
 
-            <% if @show_share %>
-                <a class="meun_item">Share</a>
-                <div class="menu_content">
-                  <div><a id="share_twitter">Twitter</a></div>
-                  <div><a id="share_linkedIn">LinkedIn</a></div>
-                  <div><a id="share_email">E-Mail</a></div>
-                </div>
-            <% end %>
+            <div class="nav-container">
+              <nav>
+                <ul class="nav-list">
 
-            <% if @show_download %>
-              <div class="menu_item" id="menu_download">
-                <a id="download">Download</a>
-                <div class="menu_content">
-                  <div><a id="download_all">All articles</a></div>
-                  <div><a id="download_visible">Visible articles</a></div>
-                  <div><a id="download_kmap">kmap data</a></div>
-                </div>
-              </div>
-            <% end %>
+                  <% if @show_share %>
+                    <li>
+                      <a>Share</a>
+                      <ul class="nav-dropdown">
+                        <li>
+                          <a id="share_twitter">Twitter</a>
+                        </li>
+                        <li>
+                          <a id="share_linkedIn">LinkedIn</a>
+                        </li>
+                        <li>
+                          <a id="share_email">E-Mail</a>
+                        </li>
+                      </ul>
+                    </li>
+                  <% end %>
 
-<!--          <a class="menu_item download">Download</a>
-              <div class="menu_content">
-                <div><a id="download_all">All articles</a></div>
-                <div><a id="download_visible">Visible articles</a></div>
-                <div><a id="download_kmap">kmap data</a></div>
-              </div>-->
+                  <% if @show_download %>
+                    <li>
+                      <a>Download</a>
+                      <ul class="nav-dropdown">
+                        <li>
+                          <a id="download_all">All articles</a>
+                        </li>
+                        <li>
+                          <a id="download_visible">Visible articles</a>
+                        </li>
+                      </ul>
+                    </li>
+                  <% end %>
 
-            <% if @show_about %>
-              <div class="menu_item" id="menu_about">
-                <%= link_to "About", about_path %>
-              </div>
-            <% end %>
+                  <% if @show_about %>
+                    <li>
+                      <%= link_to "About", about_path %>
+                    </li>
+                  <% end %>
+
+                </ul>
+              </nav>
+            </div>
+
+            <!-- old menu -->
 
           </div>
 

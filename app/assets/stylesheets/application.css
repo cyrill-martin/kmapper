@@ -137,6 +137,7 @@ header {
 	width: 65px;
 }
 
+
 #menu_container {
 	margin: 0;
 	position: absolute;
@@ -148,68 +149,57 @@ header {
 }
 
 
+/*Outer navigation wrapper*/
+.navigation {
 
-
-.menu_item {
-  cursor: pointer;
-  margin-right: 10px;
 }
 
-.menu_item a {
-  cursor: pointer;
+/*Container with no padding for navbar*/
+.nav-container {
+
 }
 
-.menu_content {
-  display: none;
-  position: absolute;
-  min-width: 180px;
-  overflow: auto;
-  background-color: white;
-  padding: 5px 0 5px 5px;
+/*Navigation*/ 
+nav {
+	 float: right;
+}
+ nav ul {
+	 list-style: none;
+	 margin: 0;
+	 padding: 0;
+}
+ nav ul li {
+	 float: left;
+	 position: relative;
+	 margin-right: 10px;
+}
+ nav ul li a, nav ul li a:visited {
+	 display: block;
+	 background: white;
+}
+ nav ul li a:hover, nav ul li a:visited:hover {
+ 	cursor: pointer;
+}
+ nav ul li a:not(:only-child):after, nav ul li a:visited:not(:only-child):after {
+	 padding-left: 4px;
+}
+ nav ul li ul li {
+	 min-width: 190px;
+}
+ nav ul li ul li a {
+
 }
 
-.menu_content div {
-	width: 100%;
-	margin-top: 5px;
+/*Dropdown list binds to JS toggle event*/
+.nav-dropdown {
+	 position: absolute;
+	 display: none;
+	 z-index: 1;
+	 background-color: white;
 }
-
-.menu_content div a {
-	cursor: pointer;
+ .nav-dropdown li {
+	 width: 100%;
 }
-
-.menu_content_show {
-	display: block;
-}
-
-
-
-
-/*.menu_item {
-  cursor: pointer;
-  margin-right: 10px;
-}
-
-.menu_content {
-  display: none;
-  position: absolute;
-  min-width: 180px;
-  overflow: auto;
-  background-color: white;
-  padding: 5px 0 5px 5px;
-}
-
-.menu_content div {
-	width: 100%;
-	margin-top: 5px;
-}
-
-.menu_content div a {
-	cursor: pointer;
-}
-
-.menu_content_show {
-	display: block;
-}*/
 
 
 #main {
