@@ -50,23 +50,17 @@ $abstractFontSize: 0.8em;
 
 }
 
-// #info {
-// 	position: relative; 
-//	padding: 5% 0 0 10%;
-//	font-family: 'Liberation Mono';	
-// }
-
 #kmap {
 	position: relative; 
-	padding: 5% 0 0 10%;
-	width: 75%;
+	padding: 5% 0 0 0;
+	width: 65%;
 	font-family: $kmapFont;
 }
 
 #kmap_legend {
   	position: fixed; 
-  	left: 28%;
-  	width: 32%;
+  	left: 25%;
+  	width: 34%;
 	max-height: 1300px;
 	overflow-y: hidden;
   	padding: 2% 1% 2% 0;
@@ -179,7 +173,7 @@ $abstractFontSize: 0.8em;
   	}
 	#kmap {
 		position: relative;
-		padding: 5% 0 0 10%;
+		padding: 5% 0 0 0;
 		width: 80%;
 	}
 
