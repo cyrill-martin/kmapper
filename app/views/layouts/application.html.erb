@@ -6,17 +6,20 @@ Copyright 2020 Cyrill Martin (https://github.com/cyrill-martin)
 This project is free software.  There is no warranty; not even for
 merchantability or fitness for a particular purpose.
 
-Exept otherwise noted, you may use, copy, modify and redistribute all files included in this
+Except otherwise noted, you may use, copy, modify and redistribute all files included in this
 distribution, individually or in aggregate, subject to the terms and conditions
-of the MIT license. See the file 'LICENSE-MIT.txt' for details.
+of the MIT license. 
+See the file 'LICENSE-MIT.txt' for details (https://raw.githubusercontent.com/cyrill-martin/kmapper/master/LICENSE-MIT.txt).
 
 In addition, you may use, copy, and redistribute the kmapper logo files 
 included in this distribution under the directories named 'images' and 'public'
 according to the terms and conditions of the Attribution-NonCommercial-NoDerivatives
-4.0 International License. See https://creativecommons.org/licenses/by-nc-nd/4.0/ for details.
+4.0 International License. 
+See https://creativecommons.org/licenses/by-nc-nd/4.0/ for details.
 
-Article metadata is provided by the Directory of Open Access Journals under the 
-Attribution-ShareAlike 4.0 International License. See https://creativecommons.org/licenses/by-sa/4.0/ for details. 
+Article meta data is provided by the Directory of Open Access Journals (https://doaj.org) under the 
+Attribution-ShareAlike 4.0 International License.
+See https://creativecommons.org/licenses/by-sa/4.0/ for details.
 -->
   <head>
     <%= csrf_meta_tags %>
@@ -35,7 +38,6 @@ Attribution-ShareAlike 4.0 International License. See https://creativecommons.or
                 <%= link_to(image_tag("kmapper_k.png", class: "logo_header"), root_path) %>
             </div>
           <% end %>
-
           <div id="menu_container">
 
             <div class="nav-container">
@@ -47,13 +49,18 @@ Attribution-ShareAlike 4.0 International License. See https://creativecommons.or
                       <a>Share</a>
                       <ul class="nav-dropdown">
                         <li>
-                          <a id="share_twitter">Twitter</a>
+                          <a href="http://twitter.com/share?url=<%=request.original_url.gsub("+", "%2B")%>&hashtags=kmapper" target="_blank">Twitter</a>
                         </li>
                         <li>
-                          <a id="share_linkedIn">LinkedIn</a>
+                          <a href="http://www.linkedin.com/shareArticle?mini=true&url=<%=request.original_url
+                            .gsub("+", "%2B")
+                            .gsub("/","%2F")
+                            .gsub(":", "%3A")
+                            .gsub("?", "%3F")
+                            .gsub("=", "%3D")%>" target="_blank">LinkedIn</a>
                         </li>
                         <li>
-                          <a id="share_email">E-Mail</a>
+                          <a href="mailto:?subject=kmapper&body=<%=request.original_url.gsub("+", "%2B")%>">E-Mail</a>
                         </li>
                       </ul>
                     </li>
