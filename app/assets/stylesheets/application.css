@@ -83,7 +83,8 @@ header {
 .search input[type="submit"] {
 	border: 0px;
 	background: none;
-	background-color: rgba(38, 50, 56, 0.8);
+	/*background-color: rgba(74, 167, 217, 0.8);*/
+	background-color: rgba(115, 181, 160, 0.8);
 	color: #fff;
 	float: right;
 	padding: 10px;

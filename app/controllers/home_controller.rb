@@ -5,7 +5,7 @@ class HomeController < ApplicationController
 
     set_meta_tags(
         title: "The knowledge mapper",
-        description: "Visualize your subject in an interdisciplinary context",
+        description: "Tackling complex real-world problems needs interdisciplinary research and an open and easy to navigate knowledge landscape. kmapper is the knowledge mapper.",
         image: request.base_url + "/kmapper_k_social.png",
         keywords: "reasearch, interdisciplinarity, search, visualization",
         url: request.original_url,
@@ -14,7 +14,7 @@ class HomeController < ApplicationController
         twitter: {
         	title: :title,
             description: :description,
-            image: :image,
+            image: request.base_url + "/kmapper_k_social.png",
             card: "summary_large_image",
             creator: "@cyrill_martin",
             site: "@cyrill_martin"
@@ -23,8 +23,8 @@ class HomeController < ApplicationController
         	site_name: "kmapper",
         	title: :title,
             description: :description,
-        	image: :image,
-            url: :url,
+        	image: request.base_url + "/kmapper_k_social.png",
+            url: request.original_url,
             type: "website"
         }
     )

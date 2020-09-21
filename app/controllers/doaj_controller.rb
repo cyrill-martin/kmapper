@@ -21,7 +21,7 @@ class DoajController < ApplicationController
             twitter: {
                 title: :title,
                 description: :description,
-                image: :image,
+                image: request.base_url + "/kmapper_k_social.png",
                 card: "summary",
                 creator: "@cyrill_martin",
                 site: "@cyrill_martin"
@@ -30,8 +30,8 @@ class DoajController < ApplicationController
                 site_name: "kmapper",
                 title: :title,
                 description: :description,
-                image: :image,
-                url: :url,
+                image: request.base_url + "/kmapper_k_social.png",
+                url: request.original_url,
                 type: "website"
             }
         )

@@ -4,8 +4,8 @@ class AboutController < ApplicationController
   	@show_kmapper = true
 
     set_meta_tags(
-        title: "About kmapper",
-        description: "Visualize your subject in an interdisciplinary context",
+        title: "About the knowledge mapper",
+        description: "kmapper breaks discipline silos without changing the disciplinarity of journal publications and review processes in place. kmapper pushes for serendipity.",
         image: request.base_url + "/kmapper_k_social.png",
         url: request.original_url,
         noindex: true,
@@ -13,7 +13,7 @@ class AboutController < ApplicationController
         twitter: {
             title: :title,
             description: :description,
-            image: :image,
+            image: request.base_url + "/kmapper_k_social.png",
             card: "summary",
             creator: "@cyrill_martin",
             site: "@cyrill_martin"
@@ -22,8 +22,8 @@ class AboutController < ApplicationController
             site_name: "kmapper",
             title: :title,
             description: :description,
-            image: :image,
-            url: :url,
+            image: request.base_url + "/kmapper_k_social.png",
+            url: request.original_url,
             type: "website"
         }
     )
