@@ -100,7 +100,7 @@ header {
 
 .header_search {
 	position: absolute; 
-	left: 100px; 
+	left: 200px; 
 	width: 45%;
 	margin: 0;
 	position: absolute;
@@ -124,19 +124,8 @@ header {
 	top: 50%;
 	-ms-transform: translateY(-50%);
 	transform: translateY(-50%);
-	width: 15px;
+	width: 120px;
 }
-
-.logo_home {
-	position: fixed;
-	top: -25%;
-	left: -25%;
-}
-
-.logo_home img {
-	width: 65px;
-}
-
 
 #menu_container {
 	margin: 0;
@@ -235,17 +224,6 @@ nav {
 	#logo_container {
 		margin: 0;
 	}
-
-	.logo_home {
-		position: relative;
-		left: 0;
-		width: 100%;
-	}
-
-	.logo_home img {
-		width: 65px;
-	}
-
 
 	#main {
 		margin-top: 20px;
