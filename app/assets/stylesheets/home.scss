@@ -34,20 +34,23 @@
 	
 }
 
-
 @media only screen and (min-width : 150px) and (max-width : 780px) {
 	
 	.home {
 		position: absolute;
-		top: 50%;
+		top: 55%;
   		left: 50%;
 		width: 95%;
 	}
 
 	.logo_home {
 		position: relative;
-		left: 0;
+		left: -4px;
 		top: 0;
+	}
+
+	.logo_home img {
+		width: 150px;
 	}
 
 }
