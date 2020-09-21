@@ -2,18 +2,18 @@
 
 ## What does kmapper do?
 
-To disappoint everyone upfront, there's no fancy topic modeling or NLP going on at kmapper's side. It's a plain-simple (re-)organization of search results. 
+There's no fancy topic modeling or NLP going on at kmapper. It's an organization of search results.
 
 1. With kmapper you send a search query to the [DOAJ][DOAJ]'s article [search API][searchAPI].
-2. kmapper gets a response of the top **50** articles matching your query (10 results per "page").
+2. kmapper gets a response of the top **50** articles (sorted by relevance) matching your query.
 3. Based on an article's journal it has been published in, the DOAJ has already tagged each article with [LCC][LCC] classes and subclasses.
-4. kmapper maps the received LCC classes to its own set of scientific disciplines and groups the search results based on relevance (search result "page") and scientific discipline.
+4. kmapper maps the received LCC classes to its own table of scientific disciplines and groups the search results based on relevance and scientific discipline.
 
 ## Why kmapper?
 
 Tackling complex real-world problems needs interdisciplinary research and an open and easy to navigate knowledge landscape. kmapper is the knowledge mapper. 
 
-By showing a little bit more than the top 10 results of a search and by also boldly showing different scientific disciplines involved with a user's search, kmapper breaks discipline silos without changing the disciplinarity of journal publications and review processes in place. In that way, kmapper also pushes for serendipity. 
+By showing more than the usual top 10-15 results of a search and by also showing different scientific disciplines involved with a user's search, kmapper breaks discipline silos without changing the disciplinarity of journal publications and review processes in place. kmapper pushes for serendipity. 
 
 ## What's the license?
 
