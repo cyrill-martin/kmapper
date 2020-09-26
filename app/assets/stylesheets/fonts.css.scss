@@ -1,89 +1,110 @@
 @font-face {
-    font-family: 'Open Sans Condensed Light';
-    src: url('OpenSans-CondLight-webfont.eot');
-    src: url('OpenSans-CondLight-webfont.eot?#iefix') format('embedded-opentype'),
-         url('OpenSans-CondLight-webfont.woff2') format('woff2'),
-         url('OpenSans-CondLight-webfont.woff') format('woff'),
-         url('OpenSans-CondLight-webfont.ttf') format('truetype'),
-         url('OpenSans-CondLight-webfont.svg#open_sanscondensed_light') format('svg');
-    font-weight: normal;
-    font-style: normal;
-
+font-family: 'Tanohe Sans Regular';
+font-style: normal;
+font-weight: normal;
+src: font-url('TanoheSans-Regular.woff') format('woff');
 }
 
-@font-face {
-    font-family: 'Open Sans Condensed Italic';
-    src: url('OpenSans-CondLightItalic-webfont.eot');
-    src: url('OpenSans-CondLightItalic-webfont.eot?#iefix') format('embedded-opentype'),
-         url('OpenSans-CondLightItalic-webfont.woff2') format('woff2'),
-         url('OpenSans-CondLightItalic-webfont.woff') format('woff'),
-         url('OpenSans-CondLightItalic-webfont.ttf') format('truetype'),
-         url('OpenSans-CondLightItalic-webfont.svg#open_sansCnLtIt') format('svg');
-    font-weight: normal;
-    font-style: normal;
 
+@font-face {
+font-family: 'Tanohe Sans Italic';
+font-style: normal;
+font-weight: normal;
+src: font-url('TanoheSans-Italic.woff') format('woff');
 }
 
-@font-face {
-    font-family: 'Open Sans Condensed Bold';
-    src: url('OpenSans-CondBold-webfont.eot');
-    src: url('OpenSans-CondBold-webfont.eot?#iefix') format('embedded-opentype'),
-         url('OpenSans-CondBold-webfont.woff2') format('woff2'),
-         url('OpenSans-CondBold-webfont.woff') format('woff'),
-         url('OpenSans-CondBold-webfont.ttf') format('truetype'),
-         url('OpenSans-CondBold-webfont.svg#open_sans_condensedbold') format('svg');
-    font-weight: normal;
-    font-style: normal;
 
+@font-face {
+font-family: 'Tanohe Sans Thin';
+font-style: normal;
+font-weight: normal;
+src: font-url('TanoheSans-Thin.woff') format('woff');
 }
 
+
 @font-face {
-    font-family: 'Open Sans Regular';
-    src: url('OpenSans-Regular-webfont.eot');
-    src: url('OpenSans-Regular-webfont.eot?#iefix') format('embedded-opentype'),
-         url('OpenSans-Regular-webfont.woff2') format('woff2'),
-         url('OpenSans-Regular-webfont.woff') format('woff'),
-         url('OpenSans-Regular-webfont.ttf') format('truetype'),
-         url('OpenSans-Regular-webfont.svg#open_sansregular') format('svg');
-    font-weight: normal;
-    font-style: normal;
+font-family: 'Tanohe Sans Thin Italic';
+font-style: normal;
+font-weight: normal;
+src: font-url('TanoheSans-ThinItalic.woff') format('woff');
 }
 
-@font-face {
-    font-family: 'Open Sans Light';
-    src: url('OpenSans-Light-webfont.eot');
-    src: url('OpenSans-Light-webfont.eot?#iefix') format('embedded-opentype'),
-         url('OpenSans-Light-webfont.woff2') format('woff2'),
-         url('OpenSans-Light-webfont.woff') format('woff'),
-         url('OpenSans-Light-webfont.ttf') format('truetype'),
-         url('OpenSans-Light-webfont.svg#open_sanslight') format('svg');
-    font-weight: normal;
-    font-style: normal;
 
+@font-face {
+font-family: 'Tanohe Sans Light';
+font-style: normal;
+font-weight: normal;
+src: font-url('TanoheSans-Light.woff') format('woff');
 }
 
-@font-face {
-    font-family: 'Open Sans Italic';
-    src: url('OpenSans-Italic-webfont.eot');
-    src: url('OpenSans-Italic-webfont.eot?#iefix') format('embedded-opentype'),
-         url('OpenSans-Italic-webfont.woff2') format('woff2'),
-         url('OpenSans-Italic-webfont.woff') format('woff'),
-         url('OpenSans-Italic-webfont.ttf') format('truetype'),
-         url('OpenSans-Italic-webfont.svg#open_sansitalic') format('svg');
-    font-weight: normal;
-    font-style: normal;
 
+@font-face {
+font-family: 'Tanohe Sans Light Italic';
+font-style: normal;
+font-weight: normal;
+src: font-url('TanoheSans-LightItalic.woff') format('woff');
 }
 
-@font-face {
-    font-family: 'Open Sans Semibold';
-    src: url('OpenSans-Semibold-webfont.eot');
-    src: url('OpenSans-Semibold-webfont.eot?#iefix') format('embedded-opentype'),
-         url('OpenSans-Semibold-webfont.woff2') format('woff2'),
-         url('OpenSans-Semibold-webfont.woff') format('woff'),
-         url('OpenSans-Semibold-webfont.ttf') format('truetype'),
-         url('OpenSans-Semibold-webfont.svg#open_sanssemibold') format('svg');
-    font-weight: normal;
-    font-style: normal;
 
+@font-face {
+font-family: 'Tanohe Sans Medium';
+font-style: normal;
+font-weight: normal;
+src: font-url('TanoheSans-Medium.woff') format('woff');
+}
+
+
+@font-face {
+font-family: 'Tanohe Sans Medium Italic';
+font-style: normal;
+font-weight: normal;
+src: font-url('TanoheSans-MediumItalic.woff') format('woff');
+}
+
+
+@font-face {
+font-family: 'Tanohe Sans SemiBold';
+font-style: normal;
+font-weight: normal;
+src: font-url('TanoheSans-SemiBold.woff') format('woff');
+}
+
+
+@font-face {
+font-family: 'Tanohe Sans SemiBold Italic';
+font-style: normal;
+font-weight: normal;
+src: font-url('TanoheSans-SemiBoldItalic.woff') format('woff');
+}
+
+
+@font-face {
+font-family: 'Tanohe Sans Bold';
+font-style: normal;
+font-weight: normal;
+src: font-url('TanoheSans-Bold.woff') format('woff');
+}
+
+
+@font-face {
+font-family: 'Tanohe Sans Bold Italic';
+font-style: normal;
+font-weight: normal;
+src: font-url('TanoheSans-BoldItalic.woff') format('woff');
+}
+
+
+@font-face {
+font-family: 'Tanohe Sans Black';
+font-style: normal;
+font-weight: normal;
+src: font-url('TanoheSans-Black.woff') format('woff');
+}
+
+
+@font-face {
+font-family: 'Tanohe Sans Black Italic';
+font-style: normal;
+font-weight: normal;
+src: font-url('TanoheSans-BlackItalic.woff') format('woff');
 }

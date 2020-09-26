@@ -31,7 +31,7 @@ body {
 	height: 100%;
 	position: relative;
 	margin: 0;
-	font-family: 'Open Sans Regular';
+	font-family: 'Tanohe Sans Regular';
 	font-size: 16px;
 }
 
@@ -76,9 +76,9 @@ header {
 .search input[type="text"] {
 	border: 0px;
 	width: 67%;
-	padding: 10px;
+	padding: 14px 10px 10px 10px;
 	background-color: rgba(255, 255, 255, 0.8);
-	font-family: 'Open Sans Regular';
+	font-family: 'Tanohe Sans Regular';
 }
 
 .search input[type="submit"] {
@@ -87,7 +87,7 @@ header {
 	background-color: rgba(115, 181, 160, 0.8);
 	color: #fff;
 	float: right;
-	padding: 10px;
+	padding: 14px 10px 10px 10px;
 	border-radius-top-right: 4px;
 	-moz-border-radius-top-right: 4px;
 	-webkit-border-radius-top-right: 4px;
@@ -97,7 +97,7 @@ header {
     cursor:pointer;
   	outline: 0;
   	-webkit-appearance: none;
-  	font-family: 'Open Sans Regular';
+  	font-family: 'Tanohe Sans Regular';
 }
 
 .header_search {
