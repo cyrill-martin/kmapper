@@ -93,8 +93,7 @@
 				<% end %>					
 			</div>
 			<div class="abstract">
-				<% if %>
-					<% article['abstract'] != nil %>
+				<% if article['abstract'] != nil %>
 					<%= article['abstract'][0...500] + "..." %>
 				<% end %>
 			</div>
