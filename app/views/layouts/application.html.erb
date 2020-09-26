@@ -49,7 +49,7 @@ See https://creativecommons.org/licenses/by-sa/4.0/ for details.
                       <a>Share</a>
                       <ul class="nav-dropdown">
                         <li>
-                          <a href="http://twitter.com/share?url=<%=request.original_url.gsub("+", "%2B")%>&hashtags=kmapper" target="_blank">• Twitter</a>
+                          <a href="http://twitter.com/share?url=<%=request.original_url.gsub("+", "%2B")%>&hashtags=kmapper" target="_blank">- Twitter</a>
                         </li>
                         <li>
                           <a href="http://www.linkedin.com/shareArticle?mini=true&url=<%=request.original_url
@@ -57,10 +57,10 @@ See https://creativecommons.org/licenses/by-sa/4.0/ for details.
                             .gsub("/","%2F")
                             .gsub(":", "%3A")
                             .gsub("?", "%3F")
-                            .gsub("=", "%3D")%>" target="_blank">• LinkedIn</a>
+                            .gsub("=", "%3D")%>" target="_blank">- LinkedIn</a>
                         </li>
                         <li>
-                          <a href="mailto:?subject=kmapper&body=<%=request.original_url.gsub("+", "%2B")%>">• E-Mail</a>
+                          <a href="mailto:?subject=kmapper&body=<%=request.original_url.gsub("+", "%2B")%>">- E-Mail</a>
                         </li>
                       </ul>
                     </li>
@@ -71,10 +71,10 @@ See https://creativecommons.org/licenses/by-sa/4.0/ for details.
                       <a>Download</a>
                       <ul class="nav-dropdown">
                         <li>
-                          <a id="download_all">• All articles</a>
+                          <a id="download_all">- All articles</a>
                         </li>
                         <li>
-                          <a id="download_visible">• Visible articles</a>
+                          <a id="download_visible">- Visible articles</a>
                         </li>
                       </ul>
                     </li>

@@ -31,8 +31,8 @@ body {
 	height: 100%;
 	position: relative;
 	margin: 0;
-	font-family: 'Tex Gyre Heros';
-	font-size: 1em;
+	font-family: 'Tanohe Sans Regular';
+	font-size: 16px;
 }
 
 a, a:visited {
@@ -76,18 +76,18 @@ header {
 .search input[type="text"] {
 	border: 0px;
 	width: 67%;
-	padding: 10px 10px;
+	padding: 10px 10px 6px 10px;
 	background-color: rgba(255, 255, 255, 0.8);
+	font-family: 'Tanohe Sans Regular';
 }
 
 .search input[type="submit"] {
 	border: 0px;
 	background: none;
-	/*background-color: rgba(74, 167, 217, 0.8);*/
 	background-color: rgba(115, 181, 160, 0.8);
 	color: #fff;
 	float: right;
-	padding: 10px;
+	padding: 10px 10px 6px 10px;
 	border-radius-top-right: 4px;
 	-moz-border-radius-top-right: 4px;
 	-webkit-border-radius-top-right: 4px;
@@ -97,6 +97,7 @@ header {
     cursor:pointer;
   	outline: 0;
   	-webkit-appearance: none;
+  	font-family: 'Tanohe Sans Regular';
 }
 
 .header_search {
@@ -116,7 +117,6 @@ header {
 	margin: 5px 0 0 5px;
 	width: 150px;
 	height: 37px;
-	font-size: 1em;
 }
 
 .logo_header {

@@ -4,32 +4,24 @@
 
 
 // Original
-$kmapFont: 'Liberation Mono';
-$categoryFont: 'Tex Gyre Heros';
+// $kmapFont: 'Liberation Mono';
+// $categoryFont: 'Tex Gyre Heros';
 
-$articleCategoryFont: 'Liberation Mono';
-$titleFont: 'Tex Gyre Heros bold';
-$journalFont: 'Liberation Mono italic';
-$authorFont: 'Liberation Mono';
-$authorFontSize: 0.8em;
-$citationFont: 'Liberation Mono';
-$citationFontSize: 0.8em;
-$abstractFont: 'Liberation Mono';
+// $articleCategoryFont: 'Liberation Mono';
+// $titleFont: 'Tex Gyre Heros bold';
+// $journalFont: 'Liberation Mono italic';
+// $authorFont: 'Liberation Mono';
+// $authorFontSize: 0.8em;
+// $citationFont: 'Liberation Mono';
+// $citationFontSize: 0.8em;
+// $abstractFont: 'Liberation Mono';
+// $abstractFontSize: 0.8em;
+
+
+$titleFont: 'Tanohe Sans Medium';
+$journalFont: 'Tanohe Sans Italic';
+$abstractFont: 'Tanohe Sans Regular';
 $abstractFontSize: 0.8em;
-
-// $kmapFont: 'Lane';
-// $categoryFont: 'Lane';
-
-// $articleCategoryFont: 'Lane';
-// $titleFont: 'Lane';
-// $journalFont: 'Lane';
-// $authorFont: 'Lane';
-// $authorFontSize: 1em;
-// $citationFont: 'Lane';
-// $citationFontSize: 1em;
-// $abstractFont: 'Cormorant';
-// $abstractFontSize: 1em;
-
 
 #kmap_wrapper {
 	position: fixed;
@@ -54,7 +46,6 @@ $abstractFontSize: 0.8em;
 	position: relative; 
 	padding: 5% 0 0 0;
 	width: 65%;
-	font-family: $kmapFont;
 }
 
 #kmap_legend {
@@ -70,7 +61,6 @@ $abstractFontSize: 0.8em;
 .kmap_legend_column {
 	float: left;
 	width: 50%;
-	font-size: 0.9em;	
 }
 
 .kmap_legend_row:after {
@@ -81,7 +71,6 @@ $abstractFontSize: 0.8em;
 
 .legend_item {
 	overflow: hidden;
-	margin: 0 0 -8px 0;
 }
 
 .legend_circle{
@@ -98,12 +87,11 @@ $abstractFontSize: 0.8em;
 
 .legend_label {
 	margin: auto;
-	padding: 0.5em 0 0.5em 0;
 	overflow: hidden;
 }
 
 .category_label {
-	font-family: $categoryFont;
+	font-size: 0.9em;
 }
 
 #kmap_articles {
@@ -122,10 +110,9 @@ $abstractFontSize: 0.8em;
 }
 
 .a_category {
-	font-family: $articleCategoryFont;
 	color: lightgrey;
 	padding: 0 0 5px 0;
-	font-size: 0.8em;
+	font-size: 0.85em;
 }
 
 .title {
@@ -134,27 +121,26 @@ $abstractFontSize: 0.8em;
 }
 
 .authors {
-	font-family: $authorFont;
 	padding: 0 0 5px 0;
-	font-size: $authorFontSize;
+	font-size: 0.9em;
 }
 
 .citation {
-	font-family: $citationFont;
-	font-size: $citationFontSize;
-}
+	font-size: 0.8em;
 
-.journal {
-	font-family: $journalFont;
-}
+	.journal {
+		font-family: $journalFont;
+	}
 
-.year {
-}
+	.year {
+	}
 
-.doi {
-}
+	.doi {
+	}
 
-.doaj {
+	.doaj {
+	}
+
 }
 
 .abstract {

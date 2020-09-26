@@ -54,7 +54,7 @@ window.drawKmap = function(kmap_object, append_to) {
 	let degree = (180-(2*margin))/length;
 	// Query
 	let query = {
-		fontSize: "1em",
+		fontSize: "1.2em",
 		fill: "grey",
 		pointerEvents: "none"
 	};
@@ -189,6 +189,7 @@ window.drawKmap = function(kmap_object, append_to) {
 		     .attr("r", cluster.radius)
 		     .attr("stroke", color)
 		     .attr("stroke-width", cluster.strokeWidth)
+		     .attr("font-size", "0.8em")
 		     .attr("fill", cluster.fill);
 		// Counts
 		clusterGroup.append("text")

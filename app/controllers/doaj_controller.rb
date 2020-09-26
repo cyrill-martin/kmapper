@@ -167,7 +167,7 @@ class DoajController < ApplicationController
                             authors.each do |a|
                                 all.push(a["name"])
                             end
-                            hsh["authors"] = all.join(" • ")
+                            hsh["authors"] = all.join(" - ")
                         end
                     end
                     # journal
