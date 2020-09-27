@@ -3,14 +3,15 @@
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
 .logo_home {
-	position: fixed;
-	top: 30px;
-	left: 30px;
-	z-index: 999;
+	position: relative;
+	// position: fixed;
+	// top: 30px;
+	// left: 30px;
+	// z-index: 999;
 }
 
 .logo_home img {
-	width: 250px;
+	width: 260px;
 }
 
 .home {
@@ -20,17 +21,14 @@
   	transform: translate(-50%, -50%);
 }
 
-.home div {
-	margin-bottom: 25px;
-}
-
 .intro1 {
 	font-family: 'Tanohe Sans Medium';
 	font-size: 1.1em;
+	margin-bottom: 25px;
 }
 
 .intro2 {
-	
+	margin-bottom: 25px;
 }
 
 @media only screen and (min-width : 150px) and (max-width : 780px) {
@@ -42,14 +40,8 @@
 		width: 95%;
 	}
 
-	.logo_home {
-		position: relative;
-		left: -4px;
-		top: 0;
-	}
-
 	.logo_home img {
-		width: 150px;
+		width: 200px;
 	}
 
 }

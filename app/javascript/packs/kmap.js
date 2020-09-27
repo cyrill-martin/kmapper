@@ -22,7 +22,7 @@ let canvas = {
 };
 // Page lines
 let pageLine = {
-	width: "0.2em",
+	width: "3",
 	color: "lightgrey",
 };
 // Labels
@@ -33,14 +33,14 @@ let pageLabel = {
 };
 // Category lines
 let categoryLine = {
-	width: "0.4em",
+	width: "4",
 	opacity: "1.0"
 
 };
 // Article clusters
 let cluster = {
-	strokeWidth: "0.4em",
-	radius: "1em",
+	strokeWidth: "4",
+	radius: "14",
 	fill: "white"
 };
 
@@ -54,7 +54,7 @@ window.drawKmap = function(kmap_object, append_to) {
 	let degree = (180-(2*margin))/length;
 	// Query
 	let query = {
-		fontSize: "1.2em",
+		fontSize: "1.4em",
 		fill: "grey",
 		pointerEvents: "none"
 	};
@@ -189,7 +189,6 @@ window.drawKmap = function(kmap_object, append_to) {
 		     .attr("r", cluster.radius)
 		     .attr("stroke", color)
 		     .attr("stroke-width", cluster.strokeWidth)
-		     .attr("font-size", "0.8em")
 		     .attr("fill", cluster.fill);
 		// Counts
 		clusterGroup.append("text")
@@ -202,8 +201,9 @@ window.drawKmap = function(kmap_object, append_to) {
 				return getX(canvas.radii[d.page], id);
 			})
 			.attr("y", function(d) {
-				return getY(canvas.radii[d.page], id) +5;
-			});
+				return getY(canvas.radii[d.page], id) +4;
+			})
+			.attr("font-size", "0.85em");
 	};
 	// Query
 	svg.selectAll("query")
@@ -221,20 +221,20 @@ window.drawKmap = function(kmap_object, append_to) {
 		.attr("pointer-events", query.pointerEvents);
 	
 	// Reset kmap
-	svg.selectAll("reset")
-    	.data(["x reset"])
-    	.enter()
-    	.append("text")
-    	.attr("class", "reset")
-    	.attr("id", "resetKmap")
-    	.text(function(d) {
-            return d;
-        })
-        .attr("x", 420)
-        .attr("y", 30)
-		.attr("font-size", "1.1em")
-		.attr("fill", pageLabel.fill)
-		.attr("cursor", "pointer");
+	// svg.selectAll("reset")
+ //    	.data(["x reset"])
+ //    	.enter()
+ //    	.append("text")
+ //    	.attr("class", "reset")
+ //    	.attr("id", "resetKmap")
+ //    	.text(function(d) {
+ //            return d;
+ //        })
+ //        .attr("x", 420)
+ //        .attr("y", 30)
+	// 	.attr("font-size", query.fontSize)
+	// 	.attr("fill", pageLabel.fill)
+	// 	.attr("cursor", "pointer");
 };
 
 function coolCluster(element) {
@@ -628,11 +628,9 @@ window.resetKmap = function() {
         	uncoolCluster(".cluster");
         	$(".article, .cluster, .category_line, .page, .legend_item")
         		.attr("data-clicked", "false"),
-	    		// .attr("filter", "none"),
 	    	$(".category_circle")
 	    		.attr("fill", "white")
 	    		.attr("data-clicked", "false");
-	    		// .css("filter", "none");
         	showArticles();
         })
 	})

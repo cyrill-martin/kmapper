@@ -1,12 +1,9 @@
 <!-- kmapper map -->
-<div id="kmap_wrapper">
+<div id="kmap_wrapper" data-step="4" data-intro="...and groups them based on relevance and discipline. More relevant articles are located closer to your query than less relevant articles. You can filter the list of articles by selecting elements on either the map or the discipline legend.">
 	<div id="kmap_map">
-		<% if false %>
-		<div id="info">
-			<%= @kmap['articles'].length %> articles<br/>
-			<%= @kmap['page_size'] %> articles per page<br/>
-		</div>
-		<% end %>
+		<div class="header_bottom">
+	        <div id="resetKmap"><a>&times; Reset</a></div>
+	    </div>
 		<script>
 			drawKmap(<%= raw(@kmap.to_json) %>, "#kmap_map");
 		</script>
@@ -14,12 +11,12 @@
 </div>
 <!-- kmapper map legend -->
 <% if @kmap["categories"].length < 21 %>
-	<div id="kmap_legend">
+	<div id="kmap_legend" data-step="3" data-intro="kmapper maps the articles to according scientific disciplines...">
 	    <% @kmap["categories"].each do |category| %>
 	    	<div class="legend_item" id="item_<%= category['id'] %>" data-clicked="false">
 	    		<div class="legend_circle">
 		        	<svg class="legend_circle_svg" width="35" height="22">
-		                <circle class="category_circle" id="circle_<%= category['id'] %>" cx="20" cy="9" r="7.5" stroke="<%= category['color'] %>" stroke-width="3" fill="white" data-clicked="false"></circle>
+		                <circle class="category_circle" id="circle_<%= category['id'] %>" cx="20" cy="9" r="7.5" stroke="<%= category['color'] %>" stroke-width="2.5" fill="white" data-clicked="false"></circle>
 		            </svg>
 		        </div>
 		        <div class="legend_label">
@@ -29,20 +26,20 @@
 	    <% end %>
 	</div>
 <% else %>
-	<div id="kmap_legend">
+	<div id="kmap_legend" data-step="3" data-intro="kmapper maps the articles to according scientific disciplines...">
 		<div class="kmap_legend_row">
 			<div class="kmap_legend_column">
 				<%@kmap["categories"][0..14].each do |category| %>
-					    	<div class="legend_item" id="item_<%= category['id'] %>" data-clicked="false">
-					    		<div class="legend_circle">
-						        	<svg class="legend_circle_svg" width="35" height="22">
-						                <circle class="category_circle" id="circle_<%= category['id'] %>" cx="20" cy="9" r="7.5" stroke="<%= category['color'] %>" stroke-width="3" fill="white"  data-clicked="false"></circle>
-						            </svg>
-						        </div>
-						        <div class="legend_label">
-						        	<span class="category_label" id="label_<%= category['id']%>"><%= category["label"] %></span>
-						        </div>
-					        </div>
+			    	<div class="legend_item" id="item_<%= category['id'] %>" data-clicked="false">
+			    		<div class="legend_circle">
+				        	<svg class="legend_circle_svg" width="35" height="22">
+				                <circle class="category_circle" id="circle_<%= category['id'] %>" cx="20" cy="9" r="7.5" stroke="<%= category['color'] %>" stroke-width="2.5" fill="white"  data-clicked="false"></circle>
+				            </svg>
+				        </div>
+				        <div class="legend_label">
+				        	<span class="category_label" id="label_<%= category['id']%>"><%= category["label"] %></span>
+				        </div>
+			        </div>
 
 				<% end %>
 			</div>
@@ -52,7 +49,7 @@
 			    	<div class="legend_item" id="item_<%= category['id'] %>" data-clicked="false">
 			    		<div class="legend_circle">
 				        	<svg class="legend_circle_svg" width="35" height="22">
-				                <circle class="category_circle" id="circle_<%= category['id'] %>" cx="20" cy="9" r="7.5" stroke="<%= category['color'] %>" stroke-width="3" fill="white" data-clicked="false"></circle>
+				                <circle class="category_circle" id="circle_<%= category['id'] %>" cx="20" cy="9" r="7.5" stroke="<%= category['color'] %>" stroke-width="2.5" fill="white" data-clicked="false"></circle>
 				            </svg>
 				        </div>
 				        <div class="legend_label">
@@ -66,8 +63,8 @@
 <% end %>
 <!-- kmapper map articles -->
 <div id="kmap_articles">
-	<% @kmap["articles"].each do |article| %>
-		<div class="article a_page_<%= article['page'] %> a_category_<%= article['category_id'] %> article_<%= article['page'] %>_<%= article['category_id'] %>" id="article_<%= article['id'] %>_<%= article['page'] %>_<%= article['category_id'] %>" data-clicked="false">
+	<% @kmap["articles"].each_with_index do |article, index| %>
+		<div class="article a_page_<%= article['page'] %> a_category_<%= article['category_id'] %> article_<%= article['page'] %>_<%= article['category_id'] %>" id="article_<%= article['id'] %>_<%= article['page'] %>_<%= article['category_id'] %>" data-clicked="false" <% if index == 0 %> data-step="2" data-intro="The DOAJ responded with the top matching articles." <% end %> >
 			<div class="a_category">
 				<%= @kmap["categories"][article["category_id"]]["label"] %>
 			</div>
@@ -110,5 +107,6 @@
         // downloadKmap(<%= raw(@kmap.to_json) %>);
         downloadAll(<%= raw(@response) %>);
         downloadVisible(<%= raw(@response) %>);
+        startIntro();
 	</script>
 </div>
