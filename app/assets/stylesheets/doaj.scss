@@ -18,8 +18,8 @@
 // $abstractFontSize: 0.8em;
 
 
-$titleFont: 'Tanohe Sans Medium';
-$journalFont: 'Tanohe Sans Italic';
+$titleFont: 'Tanohe Sans SemiBold';
+$journalFont: 'Tanohe Sans Medium Italic';
 $abstractFont: 'Tanohe Sans Regular';
 $abstractFontSize: 0.85em;
 
@@ -131,11 +131,11 @@ $abstractFontSize: 0.85em;
 
 .authors {
 	padding: 0 0 5px 0;
-	font-size: 0.85em;
+	font-size: 0.8em;
 }
 
 .citation {
-	font-size: 0.85em;
+	font-size: 0.8em;
 
 	.journal {
 		font-family: $journalFont;

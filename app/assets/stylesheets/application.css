@@ -31,7 +31,7 @@ body {
 	height: 100%;
 	position: relative;
 	margin: 0;
-	font-family: 'Tanohe Sans Regular';
+	font-family: 'Tanohe Sans Medium';
 	font-size: 16px;
 }
 
@@ -78,7 +78,7 @@ header {
 	width: 67%;
 	padding: 14px 10px 10px 10px;
 	background-color: rgba(255, 255, 255, 0.8);
-	font-family: 'Tanohe Sans Regular';
+	font-family: 'Tanohe Sans Medium';
 }
 
 .search input[type="submit"] {
@@ -97,7 +97,7 @@ header {
     cursor:pointer;
   	outline: 0;
   	-webkit-appearance: none;
-  	font-family: 'Tanohe Sans Regular';
+  	font-family: 'Tanohe Sans Medium';
 }
 
 .header_search {
@@ -129,6 +129,7 @@ header {
 }
 
 #menu_container {
+	font-family: 'Tanohe Sans Medium';
 	margin: 0;
 	position: absolute;
 	top: 50%;
@@ -137,7 +138,6 @@ header {
 	transform: translateY(-50%);
 	z-index: 100;
 }
-
 
 /*Outer navigation wrapper*/
 .navigation {
@@ -161,7 +161,7 @@ nav {
  nav ul li {
 	 float: left;
 	 position: relative;
-	 margin-left: 10px;
+	 margin-left: 8px;
 }
  nav ul li a, nav ul li a:visited {
 	 display: block;

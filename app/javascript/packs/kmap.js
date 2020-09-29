@@ -22,7 +22,7 @@ let canvas = {
 };
 // Page lines
 let pageLine = {
-	width: "3",
+	width: "4",
 	color: "lightgrey",
 };
 // Labels
@@ -33,13 +33,13 @@ let pageLabel = {
 };
 // Category lines
 let categoryLine = {
-	width: "4",
+	width: "5",
 	opacity: "1.0"
 
 };
 // Article clusters
 let cluster = {
-	strokeWidth: "4",
+	strokeWidth: "5",
 	radius: "14",
 	fill: "white"
 };
