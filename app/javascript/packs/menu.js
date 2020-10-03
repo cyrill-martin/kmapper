@@ -17,6 +17,10 @@ window.openDropdown = function() {
     $("#nav-toggle").click(function() {
       $("nav ul").slideToggle();
     });
+    // Hamburger to X toggle
+    $("#nav-toggle").click(function() {
+      $(this).toggleClass("active");
+    });
   });
 };
 
@@ -152,9 +156,6 @@ function kmapperIntro() {
     });
     intro.start();
 };
-
-// More relevant articles are located closer to your query than less relevant articles.
-// You can filter the list of articles by selecting elements on either the map or the discipline legend.
 
 window.startIntro = function() {
   $(document).ready(function() {
