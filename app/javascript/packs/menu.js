@@ -126,22 +126,19 @@ function kmapperIntro() {
         {
           element: document.querySelectorAll(".c_page_0")[0],
           intro: `<h4>The Clusters</h4>
-          More relevant articles of the same discipline are located closer to your query than less relevant articles.
+          More relevant articles of the same category are located closer to your query than less relevant articles.
           <br><br>
-          The clusters show the number of articles located there.`,
+          The clusters show the number of articles located here.`,
           position: "top"
         },
         {
-          intro: `<h4>Filtering the Articles</h4>
-          You can click on any element in the legend or the map to filter the list of articles.
+          intro: `You can click on any element in the legend or map to filter the list of articles.
           <br><br>
-          Clicked elements will be highlighted and the list of articles will be reduced to your selection.
-          <br><br>
-          If filtered, the list will always remain sorted by relevance.`
+          If you filter the list of articles, it will always remain sorted by relevance.`
         },
         {
           element: document.querySelector("#download"),
-          intro: "You can download DOAJ article meta data of the complete or filtered list of articles."
+          intro: "You can also download DOAJ article meta data of the complete or filtered list of articles."
         }
       ],
       overlayOpacity: 0.1,
