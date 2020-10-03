@@ -170,7 +170,7 @@ nav {
 }
  nav ul li a:hover, nav ul li a:visited:hover {
  	cursor: pointer;
- 	color: #333;
+ 	color: #f240ff;
 }
 
  nav ul li ul li {
