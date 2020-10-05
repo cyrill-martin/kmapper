@@ -1,6 +1,7 @@
 class HomeController < ApplicationController
   def home
 
+    @show_burger = true
   	@show_about = true
 
     set_meta_tags(

@@ -6,6 +6,7 @@ class DoajController < ApplicationController
 
         @show_kmapper = true
         @show_header_search = true
+        @show_burger = true
         @show_info = true
         @show_share = true
         @show_download = true

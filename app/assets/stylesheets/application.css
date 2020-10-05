@@ -240,10 +240,12 @@ nav {
 
 /* Burger */
 #nav-toggle {
-	position: fixed;
-	top: -5px;
-	right: 26px;
+	position: absolute;
+	cursor: pointer;
+	top: -15px;
+	right: 0;
 	z-index: 99;
+	padding: 10px 25px 12px 0px;
 }
 #nav-toggle span, #nav-toggle span:before, #nav-toggle span:after {
 	cursor: pointer;

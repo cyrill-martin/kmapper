@@ -48,9 +48,11 @@ SIL Open Font License, Version 1.1.
             <div class="nav-container">
               <nav>
 
-                <div class="nav-mobile">
-                  <a id="nav-toggle"><span></span></a>
-                </div>
+                <% if @show_burger %>
+                  <div class="nav-mobile">
+                    <a id="nav-toggle"><span></span></a>
+                  </div>
+                <% end %>
 
                 <ul class="nav-list">
 
