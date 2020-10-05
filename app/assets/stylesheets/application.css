@@ -202,7 +202,11 @@ nav {
 @media only screen and (max-width: 780px) {
 	.nav-list {
 		width: 200px;
-		right: 0;
+		right: -15px;
+		top: -25px;
+		border-left: 1px dashed lightgrey;
+		border-bottom: 1px dashed lightgrey;
+		background-color: white;
 	}
 	.nav-mobile {
 		display: block;
