@@ -10,8 +10,8 @@ class HomeController < ApplicationController
         image: request.base_url + "/kmapper_k_social.png",
         keywords: "reasearch, interdisciplinarity, search, visualization",
         url: request.original_url,
-        noindex: true,
-        nofollow: true,
+        index: true,
+        follow: true,
         twitter: {
         	title: :title,
             description: :description,

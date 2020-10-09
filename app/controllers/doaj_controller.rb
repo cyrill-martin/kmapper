@@ -18,8 +18,8 @@ class DoajController < ApplicationController
             image: request.base_url + "/kmapper_k_social.png",
             keywords: "#{params[:q]}, interdisciplinarity, visualization, search",
             url: request.original_url,
-            noindex: true,
-            nofollow: true,
+            index: true,
+            follow: true,
             twitter: {
                 title: :title,
                 description: :description,
