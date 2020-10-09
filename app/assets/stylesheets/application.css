@@ -161,7 +161,7 @@ nav {
  nav ul li {
 	 float: left;
 	 position: relative;
-	 margin-left: 12px;
+	 margin: 0 9px 0 9px;
 }
  nav ul li a, nav ul li a:visited {
 	 display: block;
@@ -171,7 +171,7 @@ nav {
  nav ul li a:hover, nav ul li a:visited:hover {
  	cursor: pointer;
  	background: white;
- 	color: #f240ff;
+ 	color: rgba(115, 181, 160, 0.8);
 }
 
  nav ul li ul li {

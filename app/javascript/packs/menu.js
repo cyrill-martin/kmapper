@@ -104,45 +104,43 @@ function kmapperIntro() {
       steps: [
         {
           element: document.querySelector(".header_search"),
-          intro: `<h4>The Query</h4>
-          kmapper used your query to search articles in the Directory of Open Access Journals (DOAJ).`
+          intro: `<h4>The Search</h4>
+          We search articles in the Directory of Open Access Journals (DOAJ) based on your term or phrase.`
         },
         {
           element: document.querySelector("#kmap_articles"),
           intro: `<h4>The Articles</h4>
-          The DOAJ responded with the top matching articles to your query - sorted by relevance.`,
+          The DOAJ responds with the top matching articles - sorted by relevance.`,
           position: "top"
         },
         {
           element: document.querySelector("#kmap_legend"),
           intro: `<h4>The Legend</h4>
-          kmapper used meta data provided by the DOAJ to map the articles to its own set of scientific disciplines...`,
+          We use DOAJ meta data to map the articles to their scientific disciplines.`,
           position: "top"
         },
         {
           element: document.querySelector("#kmap_wrapper"),
           intro: `<h4>The Map</h4>
-          ...and created clusters of articles based on their discipline and relevance to your search query.
-          <br><br>
-          Each colored line represents an according discipline from the legend.`,
+          Each colored line represents a discipline and clusters articles by their relevance.`,
           position: "top"
         },
         {
           element: document.querySelectorAll(".c_page_0")[0],
           intro: `<h4>The Clusters</h4>
-          More relevant articles of the same category are located closer to your query than less relevant articles.
+          The closer to the center the more relevant.
           <br><br>
-          The clusters show the number of articles located here.`,
+          The number shows the count of articles.`,
           position: "top"
         },
         {
-          intro: `You can click on any element in the legend or map to filter the list of articles.
+          intro: `Filter the results by clicking on one or more elements in the legend or map.
           <br><br>
-          If you filter the list of articles, it will always remain sorted by relevance.`
+          The results will remain sorted by relevance.`
         },
         {
           element: document.querySelector("#download"),
-          intro: "You can also download DOAJ article meta data of the complete or filtered list of articles."
+          intro: "Download the original DOAJ meta data."
         }
       ],
       overlayOpacity: 0.1,

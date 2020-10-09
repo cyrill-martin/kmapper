@@ -62,7 +62,21 @@ SIL Open Font License, Version 1.1.
                     </li>
                   <% end %>
 
-                  <% if @show_share %>
+                  <% if @show_download %>
+                    <li>
+                      <a id="download">Data</a>
+                      <ul class="nav-dropdown">
+                        <li>
+                          <a id="download_all">All articles</a>
+                        </li>
+                        <li>
+                          <a id="download_visible">Visible articles</a>
+                        </li>
+                      </ul>
+                    </li>
+                  <% end %>
+
+                   <% if @show_share %>
                     <li>
                       <a>Share</a>
                       <ul class="nav-dropdown">
@@ -82,21 +96,7 @@ SIL Open Font License, Version 1.1.
                         </li>
                       </ul>
                     </li>
-                  <% end %>
-
-                  <% if @show_download %>
-                    <li>
-                      <a id="download">Download</a>
-                      <ul class="nav-dropdown">
-                        <li>
-                          <a id="download_all">All articles</a>
-                        </li>
-                        <li>
-                          <a id="download_visible">Visible articles</a>
-                        </li>
-                      </ul>
-                    </li>
-                  <% end %>
+                  <% end %>               
 
                   <% if @show_about %>
                     <li>
