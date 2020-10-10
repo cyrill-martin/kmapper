@@ -6,15 +6,15 @@
 		<span style="font-family: 'Tanohe Sans Regular'; font-size: 1.5em;">Visualize your subject in an interdisciplinary context</span>
 	</div>
 
-	<div class="intro2">
-		We search the <%= link_to "DOAJ", "https://doaj.org", target: "_blank" %> to show the top articles in order of relevance - mapped by discipline. With more than 5.2 million publications you’ll get a pretty clear idea where to find relevant content to push your research further.
-	</div>
-
 	<div class="search home_search">
 		<%= form_tag("/doaj", method: "get") do %>
 			<%= label_tag(:q, "") %>
 			<%= text_field_tag(:q, nil, placeholder: "Search for your term or phrase") %>
 			<%= submit_tag("Search", name: "") %>
 		<% end %>
+	</div>
+
+	<div class="intro2">
+		We search the <%= link_to "DOAJ", "https://doaj.org", target: "_blank" %> to show the top articles in order of relevance - mapped by discipline. With more than 5.2 million publications you’ll get a pretty clear idea where to find relevant content to push your research further.
 	</div>
 </div>

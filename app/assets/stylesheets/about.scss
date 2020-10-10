@@ -1,11 +1,11 @@
-// Place all the styles related to the About controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: https://sass-lang.com/
-
 #about {
-	
+	position: relative;
+  	margin: 0 25% 0 25%;
 }
 
-@media only screen and (max-width: 780px) {
-
- }
+@media only screen and (max-width : 780px) {
+	#about {
+		position: relative;
+	  	margin: 0;
+	}
+}

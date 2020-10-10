@@ -1,28 +1,82 @@
 <div id="about">
+	<p>
+		Hi, I’m <%= link_to "Cyrill Martin", "https://www.linkedin.com/in/cyrill-martin-b7177a12b/", target: "_blank" %>, creator of kmapper. I’m an information architect and tool developer, dedicated to interdisciplinary perspectives on information retrieval and knowledge transfer.
+	</p>
+	<p>
+		Are you facing a problem to make your data volume easily accessible and visually understandable for humans? Currently, I’m open for work, so let’s get in touch to check if we could cooperate.
+	</p>
+	<h2>Why kmapper?</h2>
+	<p>
+		I’ve developed kmapper as a personal project based on my interdisciplinary university degree and work experience as digital strategist in a scientific publishing company.
+	</p>
+	<p>
+		Tackling complex real-world problems needs interdisciplinary research and an open knowledge landscape easy to navigate. kmapper is such a knowledge mapper.
+	</p>
+	<p>
+		By showing more than the usual top 10-15 search results and by showing different scientific disciplines, kmapper breaks down knowledge silos. kmapper pushes for research serendipity.
+	</p>
+	<h2>How does kmapper work?</h2>
+	<p>
+		There's no fancy topic modeling or NLP going on at kmapper. It's an organization of search results.
+	</p>
+	<p>
+		<ol>
+			<li>
+				With kmapper you send a search query to the <%= link_to "DOAJ", "https://doaj.org", target: "_blank" %>'s <%= link_to "article search API", "https://doaj.org/api/v1/docs", target: "_blank" %>.
+			</li>
+			<li>
+				kmapper gets a response of the top 50 articles (sorted by relevance) matching your query.
+			</li>
+			<li>
+				Based on an article's journal it has been published in, the DOAJ has already tagged each article with <%= link_to "LCC", "https://www.loc.gov/catdir/cpso/lcco/", target: "_blank" %> classes and subclasses.
+			</li>
+			<li>
+				kmapper maps the LCC classes and subclasses to its own table of scientific disciplines and groups the search results based on relevance and scientific discipline.
+			</li>
+		</ol>
+	</p>
+	<h2>Open for Cooperations</h2>
+	<p>
+		Are you keen to understand more about my approach in structuring content for humans and machines? Get in touch, I’m open for any kind of cooperation.
+	</p>
+	<p>
+		<b>Cyrill Martin</b><br>
+		<%= mail_to "cyrill.martin@hey.com", "cyrill.martin@hey.com" %><br>
+		<a href="tel:+41797456205">+41 79 745 62 05</a><br><br>
+		<%= link_to "LinkedIn", "https://ch.linkedin.com/in/cyrill-martin-b7177a12b", target: "_blank" %><br>
+		<%= link_to "Twitter", "https://twitter.com/cyrill_martin", target: "_blank" %><br>
+		<%= link_to "GitHub", "https://github.com/cyrill-martin", target: "_blank" %>
+	</p>
+	<p>
+		For the design part in projects, I work with <%= link_to "Karlie GmbH", "https://www.hejkarlie.ch/", target: "_blank" %>, a brand studio for strategy and design.
+	</p>
 	<h2>License</h2>
 	<p>
 		Copyright 2020 Cyrill Martin
 	</p>
 	<p>
-		This <%= link_to "project", "https://github.com/cyrill-martin/kmapper", target: "_blank", rel: "nofollow" %> is free software. There is no warranty; not even for
+		This <%= link_to "project", "https://github.com/cyrill-martin/kmapper", target: "_blank" %> is free software. There is no warranty; not even for
 		merchantability or fitness for a particular purpose.
 	</p>
 	<p>
 		Except otherwise noted, you may use, copy, modify and redistribute all files included in this
 		distribution, individually or in aggregate, subject to the terms and conditions
-		of the <%= link_to "MIT license", "https://raw.githubusercontent.com/cyrill-martin/kmapper/master/LICENSE-MIT.txt", target: "_blank", rel: "nofollow" %>.
+		of the <%= link_to "MIT license", "https://raw.githubusercontent.com/cyrill-martin/kmapper/master/LICENSE-MIT.txt", target: "_blank" %>.
 	</p>
 	<p>
 		In addition, you may use, copy, and redistribute the kmapper logo files 
 		included in this distribution under the directories named <i>images</i> and <i>public</i> 
 		according to the terms and conditions of the <%= link_to "Attribution-NonCommercial-NoDerivatives
-		4.0", "https://creativecommons.org/licenses/by-nc-nd/4.0/", target: "_blank", rel: "nofollow" %> International License.
+		4.0", "https://creativecommons.org/licenses/by-nc-nd/4.0/", target: "_blank" %> International License.
 	</p>
 	<p>
-		Article meta data is provided by the <%= link_to "DOAJ", "https://doaj.org", target: "_blank", rel: "nofollow" %> under the 
-		<%= link_to "Attribution-ShareAlike 4.0", "https://creativecommons.org/licenses/by-sa/4.0/", target: "_blank", rel: "nofollow" %> International License.
+		Article meta data is provided by the <%= link_to "DOAJ", "https://doaj.org", target: "_blank" %> under the 
+		<%= link_to "Attribution-ShareAlike 4.0", "https://creativecommons.org/licenses/by-sa/4.0/", target: "_blank" %> International License.
 	</p>
 	<p>
-		The <i>Tanohe Sans</i> font used on this site is licensed under the <%= link_to "SIL Open Font License, Version 1.1", "https://www.fontsquirrel.com/license/tanohe-sans", target: "_blank", rel: "nofollow" %>.
+		The <i>Tanohe Sans</i> font used on this site is licensed under the <%= link_to "SIL Open Font License, Version 1.1", "https://www.fontsquirrel.com/license/tanohe-sans", target: "_blank" %>.
+	</p>
+	<p>
+		Logo design by <%= link_to "Karlie GmbH", "https://www.hejkarlie.ch/", target: "_blank" %>.
 	</p>
 </div>
