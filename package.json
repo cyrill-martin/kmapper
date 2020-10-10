@@ -9,6 +9,7 @@
     "d3": "^5.16.0",
     "file-saver": "^2.0.2",
     "jquery": "^3.5.1",
+    "node-forge": "^0.10.0",
     "turbolinks": "^5.2.0"
   },
   "version": "0.1.0",

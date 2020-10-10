@@ -1,6 +1,14 @@
 # kmapper
 
-## What does kmapper do?
+## Why kmapper?
+
+I’ve developed kmapper as a personal project based on my interdisciplinary university degree and work experience as digital strategist in a scientific publishing company.
+
+Tackling complex real-world problems needs interdisciplinary research and an open knowledge landscape easy to navigate. kmapper is such a knowledge mapper.
+
+By showing more than the usual top 10-15 search results and by showing different scientific disciplines, kmapper breaks down knowledge silos. kmapper pushes for research serendipity. 
+
+## How does kmapper work?
 
 There's no fancy topic modeling or NLP going on at kmapper. It's an organization of search results.
 
@@ -9,13 +17,7 @@ There's no fancy topic modeling or NLP going on at kmapper. It's an organization
 3. Based on an article's journal it has been published in, the DOAJ has already tagged each article with [LCC][LCC] classes and subclasses.
 4. kmapper maps the received LCC classes to its own table of scientific disciplines and groups the search results based on relevance and scientific discipline.
 
-## Why kmapper?
-
-Tackling complex real-world problems needs interdisciplinary research and an open and easy to navigate knowledge landscape. kmapper is the knowledge mapper. 
-
-By showing more than the usual top 10-15 results of a search and by also showing different scientific disciplines involved with a user's search, kmapper breaks discipline silos without changing the disciplinarity of journal publications and review processes in place. kmapper pushes for serendipity. 
-
-## What's the license?
+## License
 
 Copyright 2020 Cyrill Martin
 
