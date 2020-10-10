@@ -8,8 +8,8 @@ class AboutController < ApplicationController
         description: "kmapper breaks discipline silos without changing the disciplinarity of journal publications and review processes in place. kmapper pushes for serendipity.",
         image: request.base_url + "/kmapper_k_social.png",
         url: request.original_url,
-        noindex: true,
-        nofollow: true,
+        index: true,
+        follow: true,
         twitter: {
             title: :title,
             description: :description,

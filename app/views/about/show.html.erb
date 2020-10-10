@@ -34,13 +34,19 @@
 				kmapper maps the LCC classes and subclasses to its own table of scientific disciplines and groups the search results based on relevance and scientific discipline.
 			</li>
 		</ol>
+		<div class="search home_search" style="margin: 25px 0 40px 0">
+			<%= form_tag("/doaj", method: "get") do %>
+				<%= label_tag(:q, "") %>
+				<%= text_field_tag(:q, nil, placeholder: "Search for your term or phrase") %>
+				<%= submit_tag("Search", name: "") %>
+			<% end %>
+		</div>
 	</p>
 	<h2>Open for Cooperations</h2>
 	<p>
 		Are you keen to understand more about my approach in structuring content for humans and machines? Get in touch, I’m open for any kind of cooperation.
 	</p>
 	<p>
-		<b>Cyrill Martin</b><br>
 		<%= mail_to "cyrill.martin@hey.com", "cyrill.martin@hey.com" %><br>
 		<a href="tel:+41797456205">+41 79 745 62 05</a><br><br>
 		<%= link_to "LinkedIn", "https://ch.linkedin.com/in/cyrill-martin-b7177a12b", target: "_blank" %><br>

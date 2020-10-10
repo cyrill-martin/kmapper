@@ -114,7 +114,7 @@ SIL Open Font License, Version 1.1.
               <div class="search">
                 <%= form_tag("/doaj", method: "get") do %>
                   <%= label_tag(:q, "") %>
-                  <%= text_field_tag(:q, params[:q], placeholder: "Search DOAJ") %>
+                  <%= text_field_tag(:q, params[:q], placeholder: "Search for your term or phrase") %>
                   <%= submit_tag("Search", name: "") %>
                 <% end %>
               </div>
