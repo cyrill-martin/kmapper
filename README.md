@@ -21,9 +21,9 @@ There's no fancy topic modeling or NLP going on at kmapper. It's an organization
 
 Copyright 2020 Cyrill Martin
 
-This project is free software. There is no warranty; not even for merchantability or fitness for a particular purpose. Except otherwise noted, you may use, copy, modify and redistribute all files included in this distribution, individually or in aggregate, subject to the terms and conditions of the [MIT license](https://raw.githubusercontent.com/cyrill-martin/kmapper/master/LICENSE-MIT.txt").
+This project is free software. There is no warranty; not even for merchantability or fitness for a particular purpose. Except otherwise noted, you may use, copy, modify and redistribute all files included in this distribution, individually or in aggregate, subject to the terms and conditions of the [MIT license](https://raw.githubusercontent.com/cyrill-martin/kmapper/master/LICENSE-MIT.txt).
 
-In addition, you may use, copy, and redistribute the kmapper logo files included in this distribution under the directories named *images* and *public* according to the terms and conditions of the [Attribution-NonCommercial-NoDerivatives 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/") International License.
+In addition, you may use, copy, and redistribute the kmapper logo files included in this distribution under the directories named *images* and *public* according to the terms and conditions of the [Attribution-NonCommercial-NoDerivatives 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/) International License.
 
 Article meta data is provided by the [DOAJ](https://doaj.org) under the [Attribution-ShareAlike 4.0](https://creativecommons.org/licenses/by-sa/4.0/) International License.
 
