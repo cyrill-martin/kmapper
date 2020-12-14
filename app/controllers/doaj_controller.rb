@@ -48,7 +48,7 @@ class DoajController < ApplicationController
             page_size = 10
 
             # Call DOAJ API and save response in variable
-            request = RestClient.get("https://doaj.org/api/v1/search/articles/#{query}" + "?pageSize=#{search_for}")
+            request = RestClient.get("https://doaj.org/api/v2/search/articles/#{query}" + "?pageSize=#{search_for}")
 
             if request.code == 200
                 # Parse API response into a Ruby hash object
